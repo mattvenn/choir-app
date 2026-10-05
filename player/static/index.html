@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Choir Practice</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/opensheetmusicdisplay@1.9.0/build/opensheetmusicdisplay.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tone@15.1.22/build/Tone.js"></script>
+</head>
+<body>
+  <header>
+    <h1 id="title">Loading…</h1>
+    <div class="controls">
+      <button id="play" disabled>Play</button>
+      <button id="stop" disabled>Stop</button>
+      <button id="solo" aria-pressed="false" title="Hear only the parts shown (S)">Solo</button>
+      <span id="bar">Bar 1</span>
+      <label class="tempo">♩ =
+        <input id="tempo" type="range" min="40" max="160" step="1">
+        <output id="tempo-value" for="tempo"></output>
+      </label>
+      <span id="status">Loading piano…</span>
+    </div>
+    <table class="parts">
+      <thead><tr id="part-names"><th></th></tr></thead>
+      <tbody>
+        <tr id="show-row"><th scope="row">Show</th></tr>
+        <tr id="hear-row"><th scope="row">Hear</th></tr>
+      </tbody>
+    </table>
+    <p class="hint">Click a bar to play from there. Space: play/pause. S: solo the parts shown.</p>
+  </header>
+  <main>
+    <div id="score">
+      <div id="highlight" hidden></div>
+    </div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

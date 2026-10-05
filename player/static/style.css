@@ -1,0 +1,81 @@
+:root {
+  --bg: #fafaf7;
+  --fg: #222;
+  --muted: #666;
+  --accent: #2f6fdf;
+  --highlight: rgba(47, 111, 223, 0.15);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.4 system-ui, sans-serif;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 12px 24px;
+  background: var(--bg);
+  border-bottom: 1px solid #ddd;
+}
+
+h1 { margin: 0 0 8px; font-size: 1.4rem; }
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.tempo { display: flex; align-items: center; gap: 8px; }
+.tempo input { width: 180px; }
+.tempo output { min-width: 2em; font-variant-numeric: tabular-nums; }
+
+.parts { margin-top: 8px; border-collapse: collapse; }
+.parts th, .parts td { padding: 2px 14px 2px 0; }
+.parts th { font-weight: normal; }
+.parts th[scope="row"] { text-align: left; color: var(--muted); font-size: 0.9rem; }
+.parts td { text-align: center; }
+.parts input { cursor: pointer; }
+
+button {
+  min-width: 80px;
+  padding: 6px 14px;
+  font: inherit;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+}
+button#stop, button#solo { background: #fff; color: var(--accent); }
+button#solo[aria-pressed="true"] { background: var(--accent); color: #fff; }
+button:disabled { opacity: 0.4; cursor: default; }
+
+#bar { font-variant-numeric: tabular-nums; min-width: 4.5em; }
+#status, .hint { color: var(--muted); }
+.hint { margin: 6px 0 0; font-size: 0.9rem; }
+
+main { padding: 0 24px 48px; }
+
+#score {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #fff;
+  cursor: pointer;
+}
+
+#highlight {
+  position: absolute;
+  background: var(--highlight);
+  border-radius: 4px;
+  pointer-events: none;
+  transition: left 0.1s, top 0.1s;
+}

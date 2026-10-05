@@ -34,3 +34,15 @@ for now the features these are the features
 * start with the  audio recordings and the 3 pdfs in this directory
 	* the audio recordings are for the 2nd and 4th voices of boga boga
 
+
+# player (first version)
+
+A desktop web page for practising Foc de Nadal: the score is drawn in the browser
+from MusicXML (with lyrics), and played on a sampled grand piano. Tick the parts
+to show and hear; click a bar to play from there.
+
+    .venv/bin/python player/prepare.py                   # builds player/static/scores/
+    .venv/bin/python -m http.server -d player/static 8765
+
+then open http://localhost:8765. `prepare.py` needs the Audiveris and Claude
+transcriptions in `out/` (see `docs/omr-evaluation.md`).

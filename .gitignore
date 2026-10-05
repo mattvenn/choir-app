@@ -6,3 +6,5 @@ out/
 .venv/
 __pycache__/
 .DS_Store
+# built by player/prepare.py
+player/static/scores/
