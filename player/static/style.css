@@ -45,6 +45,7 @@ h1 select {
 .tempo { display: flex; align-items: center; gap: 8px; }
 .tempo input { width: 180px; }
 .tempo output { min-width: 2em; font-variant-numeric: tabular-nums; }
+#click-volume { width: 90px; }
 .check { display: flex; align-items: center; gap: 6px; cursor: pointer; user-select: none; }
 
 .parts { margin-top: 8px; border-collapse: collapse; }

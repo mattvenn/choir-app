@@ -14,8 +14,12 @@ const piano = new Tone.Sampler({ urls: PIANO_SAMPLES, baseUrl: PIANO_URL, releas
 const click = new Tone.Synth({
   oscillator: { type: "square" },
   envelope: { attack: 0.001, decay: 0.04, sustain: 0, release: 0.01 },
-  volume: -12,
 }).toDestination();
+// the slider runs 0-100; 100 is as loud as the first version, which was too loud
+const CLICK_MAX_GAIN = 0.25;
+const setClickVolume = percent => {
+  click.volume.value = Tone.gainToDb(percent / 100 * CLICK_MAX_GAIN);
+};
 
 let song;          // scores/<id>.json
 let osmd;
@@ -272,6 +276,8 @@ $("song").addEventListener("change", e => {
   e.target.blur();  // so Space goes back to play/pause
   loadSong(e.target.value).catch(showError);
 });
+setClickVolume(Number($("click-volume").value));
+$("click-volume").addEventListener("input", e => setClickVolume(Number(e.target.value)));
 $("tempo").addEventListener("input", e => {
   transport.bpm.value = Number(e.target.value);
   $("tempo-value").textContent = e.target.value;
