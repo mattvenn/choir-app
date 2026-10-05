@@ -65,6 +65,8 @@ button {
   color: #fff;
   cursor: pointer;
 }
+/* wide enough for both labels, so the row doesn't jump between Play and Pause */
+button#play { min-width: 7.5em; }
 button#stop, button#solo { background: #fff; color: var(--accent); }
 button#solo[aria-pressed="true"] { background: var(--accent); color: #fff; }
 button:disabled { opacity: 0.4; cursor: default; }

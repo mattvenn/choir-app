@@ -7,6 +7,65 @@ const PIANO_SAMPLES = Object.fromEntries(
    "C4", "Ds4", "Fs4", "A4", "C5", "Ds5", "Fs5", "A5", "C6", "Ds6", "Fs6", "A6",
    "C7", "Ds7", "Fs7", "A7", "C8"].map(n => [n.replace("s", "#"), `${n}.mp3`]));
 
+// Interface text. Spanish is the default; a language button can set `lang` and
+// call applyLanguage(). Part names come from the score, so aren't translated.
+const STRINGS = {
+  en: {
+    appName: "Choir Practice",
+    song: "Song",
+    play: "Play",
+    pause: "Pause",
+    stop: "Stop",
+    solo: "Solo",
+    soloTitle: "Hear only the parts shown (S)",
+    bar: n => `Bar ${n}`,
+    metronome: "Metronome",
+    clickVolume: "Metronome volume",
+    loading: "Loading piano…",
+    show: "Show",
+    hear: "Hear",
+    showPart: part => `Show ${part}`,
+    hearPart: part => `Hear ${part}`,
+    hint: "Click a bar to play from there. Space: play/pause. S: solo the parts shown.",
+    error: message => `Error: ${message}`,
+  },
+  es: {
+    appName: "Ensayo de coro",
+    song: "Canción",
+    play: "Reproducir",
+    pause: "Pausa",
+    stop: "Parar",
+    solo: "Solo",
+    soloTitle: "Oír solo las voces visibles (S)",
+    bar: n => `Compás ${n}`,
+    metronome: "Metrónomo",
+    clickVolume: "Volumen del metrónomo",
+    loading: "Cargando piano…",
+    show: "Ver",
+    hear: "Oír",
+    showPart: part => `Ver ${part}`,
+    hearPart: part => `Oír ${part}`,
+    hint: "Pulsa un compás para reproducir desde ahí. Espacio: reproducir/pausa. S: solo de las voces visibles.",
+    error: message => `Error: ${message}`,
+  },
+};
+let lang = "es";
+const t = (key, ...args) => {
+  const s = STRINGS[lang][key];
+  return typeof s === "function" ? s(...args) : s;
+};
+
+// Fill in the page's fixed text from data-i18n* attributes.
+function applyLanguage() {
+  document.documentElement.lang = lang;
+  for (const el of document.querySelectorAll("[data-i18n]")) el.textContent = t(el.dataset.i18n);
+  for (const el of document.querySelectorAll("[data-i18n-title]")) el.title = t(el.dataset.i18nTitle);
+  for (const el of document.querySelectorAll("[data-i18n-aria-label]")) {
+    el.setAttribute("aria-label", t(el.dataset.i18nAriaLabel));
+  }
+  document.title = song ? `${song.title} · ${t("appName")}` : t("appName");
+}
+
 const $ = id => document.getElementById(id);
 const transport = Tone.getTransport();
 const piano = new Tone.Sampler({ urls: PIANO_SAMPLES, baseUrl: PIANO_URL, release: 1 })
@@ -60,7 +119,7 @@ async function init() {
 async function loadSong(id) {
   if (song) stop();
   song = await getJSON(`scores/${id}.json`);
-  document.title = `${song.title} · Choir Practice`;
+  document.title = `${song.title} · ${t("appName")}`;
   history.replaceState(null, "", `#${id}`);
   await osmd.load(`scores/${id}.musicxml`);
 
@@ -76,8 +135,8 @@ async function loadSong(id) {
     name.scope = "col";
     name.textContent = part.name;
     $("part-names").append(name);
-    $("show-row").append(checkboxCell(shown, i, `Show ${part.name}`, render));
-    $("hear-row").append(checkboxCell(heard, i, `Hear ${part.name}`, endSolo));
+    $("show-row").append(checkboxCell(shown, i, t("showPart", part.name), render));
+    $("hear-row").append(checkboxCell(heard, i, t("hearPart", part.name), endSolo));
   });
 
   transport.bpm.value = song.tempo;
@@ -147,7 +206,7 @@ function barBox(index) {
 
 function showBar(index) {
   currentBar = index;
-  $("bar").textContent = `Bar ${index + 1}`;
+  $("bar").textContent = t("bar", index + 1);
   const box = barBox(index);
   const hl = $("highlight");
   hl.hidden = !box;
@@ -206,21 +265,21 @@ function schedule() {
 async function play() {
   await Tone.start();  // browsers only allow audio after a click
   transport.start();
-  $("play").textContent = "Pause";
+  $("play").textContent = t("pause");
   document.body.classList.add("playing");  // collapses the controls
 }
 
 function pause() {
   transport.pause();
   piano.releaseAll();
-  $("play").textContent = "Play";
+  $("play").textContent = t("play");
   document.body.classList.remove("playing");
 }
 
 function stop() {
   transport.stop();
   piano.releaseAll();
-  $("play").textContent = "Play";
+  $("play").textContent = t("play");
   document.body.classList.remove("playing");
   showBar(0);
 }
@@ -295,8 +354,9 @@ window.addEventListener("resize", () => {
 });
 
 function showError(err) {
-  $("status").textContent = `Error: ${err.message}`;
+  $("status").textContent = t("error", err.message);
   console.error(err);
 }
 
+applyLanguage();
 init().catch(showError);

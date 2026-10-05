@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,29 +10,29 @@
 </head>
 <body>
   <header>
-    <h1><select id="song" aria-label="Song"></select></h1>
+    <h1><select id="song" data-i18n-aria-label="song"></select></h1>
     <div class="controls">
-      <button id="play" disabled>Play</button>
-      <button id="stop" disabled>Stop</button>
-      <button id="solo" aria-pressed="false" title="Hear only the parts shown (S)">Solo</button>
-      <span id="bar">Bar 1</span>
+      <button id="play" disabled data-i18n="play"></button>
+      <button id="stop" disabled data-i18n="stop"></button>
+      <button id="solo" aria-pressed="false" data-i18n="solo" data-i18n-title="soloTitle"></button>
+      <span id="bar"></span>
       <label class="tempo">♩ =
         <input id="tempo" type="range" min="40" max="160" step="1">
         <output id="tempo-value" for="tempo"></output>
       </label>
-      <label class="check"><input id="metronome" type="checkbox"> Metronome</label>
+      <label class="check"><input id="metronome" type="checkbox"> <span data-i18n="metronome"></span></label>
       <input id="click-volume" type="range" min="0" max="100" value="25"
-             aria-label="Metronome volume" title="Metronome volume">
-      <span id="status">Loading piano…</span>
+             data-i18n-aria-label="clickVolume" data-i18n-title="clickVolume">
+      <span id="status" data-i18n="loading"></span>
     </div>
     <table class="parts">
       <thead><tr id="part-names"><th></th></tr></thead>
       <tbody>
-        <tr id="show-row"><th scope="row">Show</th></tr>
-        <tr id="hear-row"><th scope="row">Hear</th></tr>
+        <tr id="show-row"><th scope="row" data-i18n="show"></th></tr>
+        <tr id="hear-row"><th scope="row" data-i18n="hear"></th></tr>
       </tbody>
     </table>
-    <p class="hint">Click a bar to play from there. Space: play/pause. S: solo the parts shown.</p>
+    <p class="hint" data-i18n="hint"></p>
   </header>
   <main>
     <div id="score-wrap">
