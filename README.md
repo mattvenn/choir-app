@@ -47,6 +47,13 @@ a bar to play from there. Space is play/pause and S solos the parts shown.
 
 then open http://localhost:8765. The transcriptions it builds from are in
 `player/sources/`, and each song (lyrics, corrections) is in `player/songs/`.
+The built scores in `player/static/scores/` are committed: after changing a
+song, run `prepare.py` and commit what it writes (CI checks they match).
+
+## Published on GitHub Pages
+
+Every push to `main` publishes `player/static` to
+https://mattvenn.github.io/choir-app/ (see `.github/workflows/pages.yml`).
 
 ## Install on a droplet
 
@@ -55,20 +62,16 @@ service to run. These steps assume nginx is already installed, as for
 online_questions. Replace `choir.example.com` with your domain, and point the
 domain's DNS A record at the droplet.
 
-1. Get the code and build the scores:
+1. Get the code (the built scores are included, so no Python is needed):
 
    ```bash
-   sudo git clone <repo-url> /opt/choir-app
-   sudo chown -R $USER /opt/choir-app
-   cd /opt/choir-app
-   python3 -m venv venv
-   venv/bin/pip install -r player/requirements.txt
-   venv/bin/python player/prepare.py
+   sudo git clone https://github.com/mattvenn/choir-app.git /opt/choir-app
    ```
 
 2. Set your domain in `choir-app.nginx` (the `server_name` line), then enable it:
 
    ```bash
+   cd /opt/choir-app
    sudo cp choir-app.nginx /etc/nginx/sites-available/choir-app
    sudo ln -sf /etc/nginx/sites-available/choir-app /etc/nginx/sites-enabled/choir-app
    sudo nginx -t && sudo systemctl reload nginx
@@ -85,9 +88,7 @@ domain's DNS A record at the droplet.
 To update later:
 
 ```bash
-cd /opt/choir-app
-git pull
-venv/bin/python player/prepare.py
+cd /opt/choir-app && sudo git pull
 ```
 
 No nginx reload is needed for updates.
