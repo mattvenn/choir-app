@@ -37,12 +37,57 @@ for now the features these are the features
 
 # player (first version)
 
-A desktop web page for practising Foc de Nadal: the score is drawn in the browser
-from MusicXML (with lyrics), and played on a sampled grand piano. Tick the parts
-to show and hear; click a bar to play from there.
+A web page for practising Foc de Nadal and Ave Verum Corpus: the score is drawn
+in the browser from MusicXML (with lyrics), and played on a sampled grand piano.
+Tick the parts to show and hear, set the tempo, turn on a metronome, and click
+a bar to play from there. Space is play/pause and S solos the parts shown.
 
     .venv/bin/python player/prepare.py                   # builds player/static/scores/
     .venv/bin/python -m http.server -d player/static 8765
 
-then open http://localhost:8765. `prepare.py` needs the Audiveris and Claude
-transcriptions in `out/` (see `docs/omr-evaluation.md`).
+then open http://localhost:8765. The transcriptions it builds from are in
+`player/sources/`, and each song (lyrics, corrections) is in `player/songs/`.
+
+## Install on a droplet
+
+The player is a static site, so nginx serves it directly and there is no
+service to run. These steps assume nginx is already installed, as for
+online_questions. Replace `choir.example.com` with your domain, and point the
+domain's DNS A record at the droplet.
+
+1. Get the code and build the scores:
+
+   ```bash
+   sudo git clone <repo-url> /opt/choir-app
+   sudo chown -R $USER /opt/choir-app
+   cd /opt/choir-app
+   python3 -m venv venv
+   venv/bin/pip install -r player/requirements.txt
+   venv/bin/python player/prepare.py
+   ```
+
+2. Set your domain in `choir-app.nginx` (the `server_name` line), then enable it:
+
+   ```bash
+   sudo cp choir-app.nginx /etc/nginx/sites-available/choir-app
+   sudo ln -sf /etc/nginx/sites-available/choir-app /etc/nginx/sites-enabled/choir-app
+   sudo nginx -t && sudo systemctl reload nginx
+   ```
+
+3. Open http://choir.example.com.
+
+4. Optional, for https (if certbot is installed):
+
+   ```bash
+   sudo certbot --nginx -d choir.example.com
+   ```
+
+To update later:
+
+```bash
+cd /opt/choir-app
+git pull
+venv/bin/python player/prepare.py
+```
+
+No nginx reload is needed for updates.

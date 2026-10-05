@@ -10,7 +10,7 @@
 </head>
 <body>
   <header>
-    <h1 id="title">Loading…</h1>
+    <h1><select id="song" aria-label="Song"></select></h1>
     <div class="controls">
       <button id="play" disabled>Play</button>
       <button id="stop" disabled>Stop</button>
@@ -20,6 +20,7 @@
         <input id="tempo" type="range" min="40" max="160" step="1">
         <output id="tempo-value" for="tempo"></output>
       </label>
+      <label class="check"><input id="metronome" type="checkbox"> Metronome</label>
       <span id="status">Loading piano…</span>
     </div>
     <table class="parts">
@@ -32,8 +33,10 @@
     <p class="hint">Click a bar to play from there. Space: play/pause. S: solo the parts shown.</p>
   </header>
   <main>
-    <div id="score">
+    <div id="score-wrap">
+      <!-- outside #score: OSMD empties its container when it loads a song -->
       <div id="highlight" hidden></div>
+      <div id="score"></div>
     </div>
   </main>
   <script src="app.js"></script>

@@ -1,0 +1,13 @@
+X:1
+T:Ave Verum Corpus K618 - Bass
+C:W. A. Mozart
+M:C|
+L:1/4
+Q:1/4=66
+K:D clef=bass
+z4 | z4 | D,2 D,2 | D,2 D,2 | C,2 C,2 | D,2 D,2 | A,,3 A,, |
+D, D, C, C, | D,3 D, | A,,4 | A,3 A, | A, B, B,2 | z2 E, E, | ^E, F, F,2 |
+z2 B,,2 | C,2 D, D, | E,3 E, | A,,4 | z4 | z4 | z4 | A,3 A, |
+A, G, G,2 | =C,3 =C, | =C, =F, =F,2 | =F,3 =F, | E, D, ^C, A,, | _B,,2 A,, ^G,, | A,,2 z2 | z4 |
+G,3 G, | G, F, E, A, | A,3 A, | A, G, F, B, | B,2 A, ^G, | A,2 A,,2 | B,,2 z2 | z2 A,2 |
+_B,2 A,2 | ^G,4 | =G,2 F, B,, | A,,3 A,, | D,4 | z4 | z4 | z4 |]

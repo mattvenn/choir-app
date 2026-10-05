@@ -25,6 +25,15 @@ header {
 }
 
 h1 { margin: 0 0 8px; font-size: 1.4rem; }
+h1 select {
+  font: inherit;
+  color: inherit;
+  padding: 2px 4px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
 
 .controls {
   display: flex;
@@ -36,6 +45,7 @@ h1 { margin: 0 0 8px; font-size: 1.4rem; }
 .tempo { display: flex; align-items: center; gap: 8px; }
 .tempo input { width: 180px; }
 .tempo output { min-width: 2em; font-variant-numeric: tabular-nums; }
+.check { display: flex; align-items: center; gap: 6px; cursor: pointer; user-select: none; }
 
 .parts { margin-top: 8px; border-collapse: collapse; }
 .parts th, .parts td { padding: 2px 14px 2px 0; }
@@ -64,8 +74,13 @@ button:disabled { opacity: 0.4; cursor: default; }
 
 main { padding: 0 24px 48px; }
 
-#score {
+#score-wrap {
   position: relative;
+  /* a tap on a bar should play it, not select or zoom the notation */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
   max-width: 1200px;
   margin: 0 auto;
   background: #fff;
@@ -78,4 +93,19 @@ main { padding: 0 24px 48px; }
   border-radius: 4px;
   pointer-events: none;
   transition: left 0.1s, top 0.1s;
+}
+
+/* while playing, only the transport row stays, to leave room for the music */
+body.playing h1,
+body.playing .parts,
+body.playing .hint { display: none; }
+
+@media (max-height: 500px) {
+  /* phone in landscape: the full controls scroll away, the collapsed row stays */
+  header { position: static; padding: 6px 12px; }
+  body.playing header { position: sticky; }
+  main { padding: 0 8px 24px; }
+  h1 { font-size: 1.1rem; margin-bottom: 4px; }
+  button { min-width: 0; padding: 4px 10px; }
+  .hint { display: none; }
 }

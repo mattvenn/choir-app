@@ -1,8 +1,5 @@
 // Score player: OpenSheetMusicDisplay draws the MusicXML, Tone.js plays the
 // note events from the matching JSON on a sampled grand piano.
-const SONG = "scores/foc";
-const DEFAULT_SHOWN = ["Baritone"];
-const DEFAULT_HEARD = ["Baritone"];
 const PIANO_URL = "https://tonejs.github.io/audio/salamander/";
 // Salamander has a sample every minor third; the sampler repitches between them
 const PIANO_SAMPLES = Object.fromEntries(
@@ -14,8 +11,13 @@ const $ = id => document.getElementById(id);
 const transport = Tone.getTransport();
 const piano = new Tone.Sampler({ urls: PIANO_SAMPLES, baseUrl: PIANO_URL, release: 1 })
   .toDestination();
+const click = new Tone.Synth({
+  oscillator: { type: "square" },
+  envelope: { attack: 0.001, decay: 0.04, sustain: 0, release: 0.01 },
+  volume: -12,
+}).toDestination();
 
-let song;          // foc.json
+let song;          // scores/<id>.json
 let osmd;
 let shown = [];   // per part
 let heard = [];
@@ -26,24 +28,46 @@ let currentBar = 0;
 // change takes effect immediately, even mid-playback
 const ticks = quarters => `${Math.round(quarters * transport.PPQ)}i`;
 
-async function init() {
-  song = await (await fetch(`${SONG}.json`)).json();
-  $("title").textContent = song.title;
-  document.title = `${song.title} · Choir Practice`;
+const getJSON = async url => (await fetch(url)).json();
 
+async function init() {
   osmd = new opensheetmusicdisplay.OpenSheetMusicDisplay($("score"), {
     autoResize: false,  // we re-render ourselves so the highlight can follow
     backend: "svg",
     drawTitle: true,
     drawSubtitle: false,
     drawPartNames: true,
+    // one drawn bar per score bar, so highlighting and clicking line up
+    autoGenerateMultipleRestMeasuresFromRestMeasures: false,
   });
-  await osmd.load(`${SONG}.musicxml`);
 
-  // one column per part, a row each for Show and Hear
+  const songs = await getJSON("scores/index.json");
+  for (const { id, title } of songs) $("song").add(new Option(title, id));
+  // the URL remembers the song, so a reload or a shared link opens it
+  const wanted = location.hash.slice(1);
+  $("song").value = songs.some(s => s.id === wanted) ? wanted : songs[0].id;
+  await loadSong($("song").value);
+
+  await Tone.loaded();
+  $("status").textContent = "";
+  $("play").disabled = $("stop").disabled = false;
+}
+
+async function loadSong(id) {
+  if (song) stop();
+  song = await getJSON(`scores/${id}.json`);
+  document.title = `${song.title} · Choir Practice`;
+  history.replaceState(null, "", `#${id}`);
+  await osmd.load(`scores/${id}.musicxml`);
+
+  // one column per part, a row each for Show and Hear; your part is on to start
+  for (const row of ["part-names", "show-row", "hear-row"]) {
+    $(row).replaceChildren($(row).firstElementChild);
+  }
+  shown = song.parts.map(p => p.name === song.myPart);
+  heard = [...shown];
+  endSolo();
   song.parts.forEach((part, i) => {
-    shown[i] = DEFAULT_SHOWN.includes(part.name);
-    heard[i] = DEFAULT_HEARD.includes(part.name);
     const name = document.createElement("th");
     name.scope = "col";
     name.textContent = part.name;
@@ -56,13 +80,9 @@ async function init() {
   $("tempo").value = song.tempo;
   $("tempo-value").textContent = song.tempo;
 
+  currentBar = 0;
   render();
   schedule();
-  showBar(0);
-
-  await Tone.loaded();
-  $("status").textContent = "";
-  $("play").disabled = $("stop").disabled = false;
 }
 
 // A checkbox bound to flags[i]; onChange runs after the flag is updated.
@@ -156,6 +176,7 @@ function barAt(x, y) {
 
 // Every note of every part is scheduled once; muted parts are skipped as they come up.
 function schedule() {
+  transport.cancel();
   song.parts.forEach((part, i) => {
     for (const [midi, start, dur] of part.notes) {
       const pitch = Tone.Frequency(midi, "midi").toNote();
@@ -168,6 +189,11 @@ function schedule() {
   });
   song.measures.forEach((start, i) => {
     transport.schedule(time => Tone.getDraw().schedule(() => showBar(i), time), ticks(start));
+    for (let beat = 0; beat < song.beatsPerBar; beat++) {
+      transport.schedule(time => {
+        if ($("metronome").checked) click.triggerAttackRelease(beat ? "G5" : "C6", 0.03, time);
+      }, ticks(start + beat * song.beat));
+    }
   });
   // one extra beat so the last note can ring
   transport.schedule(time => Tone.getDraw().schedule(stop, time), ticks(song.length + 1));
@@ -177,18 +203,21 @@ async function play() {
   await Tone.start();  // browsers only allow audio after a click
   transport.start();
   $("play").textContent = "Pause";
+  document.body.classList.add("playing");  // collapses the controls
 }
 
 function pause() {
   transport.pause();
   piano.releaseAll();
   $("play").textContent = "Play";
+  document.body.classList.remove("playing");
 }
 
 function stop() {
   transport.stop();
   piano.releaseAll();
   $("play").textContent = "Play";
+  document.body.classList.remove("playing");
   showBar(0);
 }
 
@@ -232,12 +261,17 @@ document.addEventListener("keydown", e => {
 });
 document.addEventListener("keydown", e => {
   if (e.key.toLowerCase() !== "s" || e.repeat || e.metaKey || e.ctrlKey || e.altKey) return;
+  e.preventDefault();  // not type-ahead in the song list
   toggleSolo();
 });
 $("solo").addEventListener("click", toggleSolo);
 // buttons and checkboxes act on Space's keyup, so swallow that too
 document.addEventListener("keyup", e => { if (e.code === "Space") e.preventDefault(); });
 $("stop").addEventListener("click", stop);
+$("song").addEventListener("change", e => {
+  e.target.blur();  // so Space goes back to play/pause
+  loadSong(e.target.value).catch(showError);
+});
 $("tempo").addEventListener("input", e => {
   transport.bpm.value = Number(e.target.value);
   $("tempo-value").textContent = e.target.value;
@@ -254,7 +288,9 @@ window.addEventListener("resize", () => {
   resizeTimer = setTimeout(render, 200);
 });
 
-init().catch(err => {
+function showError(err) {
   $("status").textContent = `Error: ${err.message}`;
   console.error(err);
-});
+}
+
+init().catch(showError);

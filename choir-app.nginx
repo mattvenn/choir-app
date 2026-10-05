@@ -1,0 +1,14 @@
+server {
+    listen 80;
+    server_name choir.example.com;  # change to your domain
+
+    # the player is static files; built scores live in player/static/scores
+    root /opt/choir-app/player/static;
+    index index.html;
+
+    location / {
+        # check for a newer copy on every load, so a git pull shows up straight away
+        add_header Cache-Control no-cache;
+        try_files $uri $uri/ =404;
+    }
+}
