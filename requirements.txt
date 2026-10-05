@@ -1,0 +1,12 @@
+# oemer 0.1.8 declares onnxruntime-gpu (not available on macOS); install it with
+#   pip install --no-deps oemer==0.1.8
+# after installing the rest of this file.
+onnxruntime
+opencv-python-headless>=4.5,<5   # OpenCV 5 changed HoughLinesP output shape, breaking oemer
+music21
+numpy
+scipy
+scikit-learn
+matplotlib
+pillow
+typing-extensions
