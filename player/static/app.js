@@ -12,7 +12,7 @@ const PIANO_SAMPLES = Object.fromEntries(
 const STRINGS = {
   en: {
     appName: "Choir Practice",
-    song: "Song",
+    songs: "Songs",
     play: "Play",
     pause: "Pause",
     stop: "Stop",
@@ -22,7 +22,6 @@ const STRINGS = {
     tap: "Tap",
     tapTitle: "Tap along with the beat to set the tempo",
     noRepeats: "No repeats",
-    metronome: "Metronome",
     clickVolume: "Metronome volume",
     loading: "Loading piano…",
     show: "Show",
@@ -34,7 +33,7 @@ const STRINGS = {
   },
   es: {
     appName: "Ensayo de coro",
-    song: "Canción",
+    songs: "Canciones",
     play: "Reproducir",
     pause: "Pausa",
     stop: "Parar",
@@ -44,7 +43,6 @@ const STRINGS = {
     tap: "Marcar",
     tapTitle: "Toca al ritmo del pulso para fijar el tempo",
     noRepeats: "Sin repeticiones",
-    metronome: "Metrónomo",
     clickVolume: "Volumen del metrónomo",
     loading: "Cargando piano…",
     show: "Ver",
@@ -69,7 +67,8 @@ function applyLanguage() {
   for (const el of document.querySelectorAll("[data-i18n-aria-label]")) {
     el.setAttribute("aria-label", t(el.dataset.i18nAriaLabel));
   }
-  document.title = song ? `${song.title} · ${t("appName")}` : t("appName");
+  setPlayLabel();
+  document.title = song && !$("player").hidden ? `${song.title} · ${t("appName")}` : t("appName");
 }
 
 const $ = id => document.getElementById(id);
@@ -113,15 +112,49 @@ async function init() {
   });
 
   songs = await getJSON("scores/index.json");
-  for (const { id, title } of songs) $("song").add(new Option(title, id));
-  // the URL remembers the song, so a reload or a shared link opens it
-  const wanted = location.hash.slice(1);
-  $("song").value = songs.some(s => s.id === wanted) ? wanted : songs[0].id;
-  await loadSong($("song").value);
+  for (const { id, title } of songs) {
+    const link = document.createElement("a");
+    link.href = `#${id}`;
+    link.textContent = title;
+    const item = document.createElement("li");
+    item.append(link);
+    $("song-list").append(item);
+  }
+  await route();
 
   await Tone.loaded();
   $("status").textContent = "";
   $("play").disabled = $("stop").disabled = false;
+}
+
+// ---- pages ---------------------------------------------------------------
+
+// The URL says which page is open: #<song id> for a song, nothing for the
+// chooser. So a reload or a shared link opens the song, and Back goes home.
+async function route() {
+  const id = location.hash.slice(1);
+  if (songs.some(s => s.id === id)) await showSong(id);
+  else showHome();
+}
+
+function showHome() {
+  if (song) stop();
+  $("player").hidden = true;
+  $("home").hidden = false;
+  document.title = t("appName");
+}
+
+async function showSong(id) {
+  // the score needs to be on screen to be laid out
+  $("home").hidden = true;
+  $("player").hidden = false;
+  window.scrollTo(0, 0);
+  if (id === songId) {
+    document.title = `${song.title} · ${t("appName")}`;
+    render();
+  } else {
+    await loadSong(id);
+  }
 }
 
 // Load song `id`, written out or, if "no repeats" is ticked and the song has
@@ -270,7 +303,7 @@ function schedule() {
     transport.schedule(time => Tone.getDraw().schedule(() => showBar(i), time), ticks(start));
     for (let beat = 0; beat < song.beatsPerBar; beat++) {
       transport.schedule(time => {
-        if ($("metronome").checked) click.triggerAttackRelease(beat ? "G5" : "C6", 0.03, time);
+        if (Number($("click-volume").value)) click.triggerAttackRelease(beat ? "G5" : "C6", 0.03, time);
       }, ticks(start + beat * song.beat));
     }
   });
@@ -278,25 +311,32 @@ function schedule() {
   transport.schedule(time => Tone.getDraw().schedule(stop, time), ticks(song.length + 1));
 }
 
+// the play button shows a pause icon while playing (see style.css)
+function setPlayLabel() {
+  const label = t(document.body.classList.contains("playing") ? "pause" : "play");
+  $("play").title = label;
+  $("play").setAttribute("aria-label", label);
+}
+
 async function play() {
   await Tone.start();  // browsers only allow audio after a click
   transport.start();
-  $("play").textContent = t("pause");
   document.body.classList.add("playing");  // collapses the controls
+  setPlayLabel();
 }
 
 function pause() {
   transport.pause();
   piano.releaseAll();
-  $("play").textContent = t("play");
   document.body.classList.remove("playing");
+  setPlayLabel();
 }
 
 function stop() {
   transport.stop();
   piano.releaseAll();
-  $("play").textContent = t("play");
   document.body.classList.remove("playing");
+  setPlayLabel();
   showBar(0);
 }
 
@@ -358,26 +398,29 @@ const togglePlay = () => transport.state === "started" ? pause() : play();
 $("play").addEventListener("click", togglePlay);
 // Space is play/pause everywhere, instead of scrolling or pressing the focused control
 document.addEventListener("keydown", e => {
-  if (e.code !== "Space" || e.repeat || $("play").disabled) return;
+  if (e.code !== "Space" || e.repeat || $("play").disabled || $("player").hidden) return;
   e.preventDefault();
   togglePlay();
 });
 document.addEventListener("keydown", e => {
   if (e.key.toLowerCase() !== "s" || e.repeat || e.metaKey || e.ctrlKey || e.altKey) return;
-  e.preventDefault();  // not type-ahead in the song list
+  if ($("player").hidden) return;
+  e.preventDefault();
   toggleSolo();
 });
 $("solo").addEventListener("click", toggleSolo);
 // buttons and checkboxes act on Space's keyup, so swallow that too
 document.addEventListener("keyup", e => { if (e.code === "Space") e.preventDefault(); });
 $("stop").addEventListener("click", stop);
-$("song").addEventListener("change", e => {
-  e.target.blur();  // so Space goes back to play/pause
-  loadSong(e.target.value).catch(showError);
+$("home-button").addEventListener("click", () => {
+  history.pushState(null, "", location.pathname + location.search);
+  showHome();
 });
+// song links, and Back/Forward between a song and the chooser
+window.addEventListener("popstate", () => { route().catch(showError); });
 $("short").addEventListener("change", e => {
   e.target.blur();  // so Space goes back to play/pause
-  loadSong($("song").value).catch(showError);
+  loadSong(songId).catch(showError);
 });
 setClickVolume(Number($("click-volume").value));
 $("click-volume").addEventListener("input", e => setClickVolume(Number(e.target.value)));
@@ -392,7 +435,7 @@ $("score").addEventListener("click", e => {
 let resizeTimer;
 window.addEventListener("resize", () => {
   clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(render, 200);
+  resizeTimer = setTimeout(() => { if (song && !$("player").hidden) render(); }, 200);
 });
 
 function showError(err) {

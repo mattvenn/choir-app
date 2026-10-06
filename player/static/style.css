@@ -24,16 +24,26 @@ header {
   border-bottom: 1px solid #ddd;
 }
 
-h1 { margin: 0 0 8px; font-size: 1.4rem; }
-h1 select {
-  font: inherit;
-  color: inherit;
-  padding: 2px 4px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+[hidden] { display: none !important; }
+
+/* ---- song chooser ---- */
+
+#home { max-width: 480px; margin: 0 auto; padding: 32px 16px; }
+#home h1 { margin: 0 0 20px; font-size: 1.6rem; }
+#song-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+#song-list a {
+  display: block;
+  padding: 18px 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
   background: #fff;
-  cursor: pointer;
+  color: inherit;
+  font-size: 1.2rem;
+  text-decoration: none;
 }
+#song-list a:hover, #song-list a:focus-visible { border-color: var(--accent); color: var(--accent); }
+
+/* ---- player ---- */
 
 .controls {
   display: flex;
@@ -42,12 +52,14 @@ h1 select {
   gap: 12px;
 }
 
-.tempo { display: flex; align-items: center; gap: 8px; }
-.tempo input { width: 180px; }
+.tempo { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.tempo input { width: 110px; min-width: 50px; flex: 0 1 auto; }
+.tempo-name { white-space: nowrap; }
 .tempo output { min-width: 2em; font-variant-numeric: tabular-nums; }
-#click-volume { width: 90px; }
+.metronome { display: flex; align-items: center; gap: 4px; min-width: 0; color: var(--muted); }
+.metronome svg { flex: none; }
+#click-volume { width: 80px; min-width: 40px; flex: 0 1 auto; }
 .check { display: flex; align-items: center; gap: 6px; cursor: pointer; user-select: none; }
-.check[hidden] { display: none; }
 
 .parts { margin-top: 8px; border-collapse: collapse; }
 .parts th, .parts td { padding: 2px 14px 2px 0; }
@@ -57,8 +69,11 @@ h1 select {
 .parts input { cursor: pointer; }
 
 button {
-  min-width: 80px;
-  padding: 6px 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  padding: 6px 12px;
   font: inherit;
   border: 1px solid var(--accent);
   border-radius: 6px;
@@ -66,9 +81,9 @@ button {
   color: #fff;
   cursor: pointer;
 }
-/* wide enough for both labels, so the row doesn't jump between Play and Pause */
-button#play { min-width: 7.5em; }
-button#stop, button#solo, button#tap { background: #fff; color: var(--accent); }
+#play .icon-pause, body.playing #play .icon-play { display: none; }
+body.playing #play .icon-pause { display: inline; }
+button#home-button, button#stop, button#solo, button#tap { background: #fff; color: var(--accent); }
 /* quick taps on a phone shouldn't zoom the page */
 button#tap { touch-action: manipulation; }
 button#solo[aria-pressed="true"] { background: var(--accent); color: #fff; }
@@ -78,7 +93,7 @@ button:disabled { opacity: 0.4; cursor: default; }
 #status, .hint { color: var(--muted); }
 .hint { margin: 6px 0 0; font-size: 0.9rem; }
 
-main { padding: 0 24px 48px; }
+#player main { padding: 0 24px 48px; }
 
 #score-wrap {
   position: relative;
@@ -101,17 +116,38 @@ main { padding: 0 24px 48px; }
   transition: left 0.1s, top 0.1s;
 }
 
-/* while playing, only the transport row stays, to leave room for the music */
-body.playing h1,
+/* while playing, only the transport row stays, on one line, to leave room
+   for the music: the sliders shrink and what's only needed between runs goes */
+body.playing .controls { flex-wrap: nowrap; }
+body.playing .controls > * { flex-shrink: 0; }
+body.playing .controls > .tempo,
+body.playing .controls > .metronome { flex-shrink: 1; }
 body.playing .parts,
-body.playing .hint { display: none; }
+body.playing .hint,
+body.playing #tap,
+body.playing #short-option,
+body.playing #status { display: none; }
+
+@media (max-width: 600px) {
+  /* phone upright */
+  header { padding: 8px 12px; }
+  .controls { gap: 8px; }
+  button { min-width: 36px; padding: 4px 6px; }
+  #player main { padding: 0 8px 24px; }
+  body.playing #bar,
+  body.playing .tempo-name { display: none; }
+}
+
+@media (max-width: 360px) {
+  /* small phone: no room for the metronome too */
+  body.playing .metronome { display: none; }
+}
 
 @media (max-height: 500px) {
   /* phone in landscape: the full controls scroll away, the collapsed row stays */
   header { position: static; padding: 6px 12px; }
   body.playing header { position: sticky; }
-  main { padding: 0 8px 24px; }
-  h1 { font-size: 1.1rem; margin-bottom: 4px; }
-  button { min-width: 0; padding: 4px 10px; }
+  #player main { padding: 0 8px 24px; }
+  button { min-width: 40px; padding: 4px 8px; }
   .hint { display: none; }
 }

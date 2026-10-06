@@ -9,40 +9,60 @@
   <script src="https://cdn.jsdelivr.net/npm/tone@15.1.22/build/Tone.js"></script>
 </head>
 <body>
-  <header>
-    <h1><select id="song" data-i18n-aria-label="song"></select></h1>
-    <div class="controls">
-      <button id="play" disabled data-i18n="play"></button>
-      <button id="stop" disabled data-i18n="stop"></button>
-      <button id="solo" aria-pressed="false" data-i18n="solo" data-i18n-title="soloTitle"></button>
-      <span id="bar"></span>
-      <label class="tempo">♩ =
-        <input id="tempo" type="range" min="40" max="160" step="1">
-        <output id="tempo-value" for="tempo"></output>
-      </label>
-      <button id="tap" data-i18n="tap" data-i18n-title="tapTitle"></button>
-      <label class="check" id="short-option" hidden><input id="short" type="checkbox"> <span data-i18n="noRepeats"></span></label>
-      <label class="check"><input id="metronome" type="checkbox"> <span data-i18n="metronome"></span></label>
-      <input id="click-volume" type="range" min="0" max="100" value="25"
-             data-i18n-aria-label="clickVolume" data-i18n-title="clickVolume">
-      <span id="status" data-i18n="loading"></span>
-    </div>
-    <table class="parts">
-      <thead><tr id="part-names"><th></th></tr></thead>
-      <tbody>
-        <tr id="show-row"><th scope="row" data-i18n="show"></th></tr>
-        <tr id="hear-row"><th scope="row" data-i18n="hear"></th></tr>
-      </tbody>
-    </table>
-    <p class="hint" data-i18n="hint"></p>
-  </header>
-  <main>
-    <div id="score-wrap">
-      <!-- outside #score: OSMD empties its container when it loads a song -->
-      <div id="highlight" hidden></div>
-      <div id="score"></div>
-    </div>
+  <main id="home" hidden>
+    <h1 data-i18n="appName"></h1>
+    <ul id="song-list"></ul>
   </main>
+  <div id="player" hidden>
+    <header>
+      <div class="controls">
+        <button id="home-button" data-i18n-aria-label="songs" data-i18n-title="songs">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path d="M3 11 12 3l9 8M5 9.5V21h5v-6h4v6h5V9.5" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <button id="play" disabled>
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path class="icon-play" d="M7 4v16l13-8z" fill="currentColor"/><path class="icon-pause" d="M6 4h4v16H6zM14 4h4v16h-4z" fill="currentColor"/></svg>
+        </button>
+        <button id="stop" disabled data-i18n-aria-label="stop" data-i18n-title="stop">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="1" fill="currentColor"/></svg>
+        </button>
+        <button id="solo" aria-pressed="false" data-i18n-aria-label="solo" data-i18n-title="soloTitle">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 18v-6a8 8 0 0 1 16 0v6" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="5" height="7" rx="1.5" fill="currentColor"/><rect x="16" y="14" width="5" height="7" rx="1.5" fill="currentColor"/></svg>
+        </button>
+        <span id="bar"></span>
+        <label class="tempo"><span class="tempo-name">♩ =</span>
+          <input id="tempo" type="range" min="40" max="160" step="1">
+          <output id="tempo-value" for="tempo"></output>
+        </label>
+        <button id="tap" data-i18n-aria-label="tap" data-i18n-title="tapTitle">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="3.5" fill="currentColor"/><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="3 2.3"/></svg>
+        </button>
+        <label class="check" id="short-option" hidden><input id="short" type="checkbox"> <span data-i18n="noRepeats"></span></label>
+        <label class="metronome" data-i18n-title="clickVolume">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8.5 3h7L20 21H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 16l5-8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <input id="click-volume" type="range" min="0" max="100" value="0" data-i18n-aria-label="clickVolume">
+        </label>
+        <span id="status" data-i18n="loading"></span>
+      </div>
+      <table class="parts">
+        <thead><tr id="part-names"><th></th></tr></thead>
+        <tbody>
+          <tr id="show-row"><th scope="row" data-i18n="show"></th></tr>
+          <tr id="hear-row"><th scope="row" data-i18n="hear"></th></tr>
+        </tbody>
+      </table>
+      <p class="hint" data-i18n="hint"></p>
+    </header>
+    <main>
+      <div id="score-wrap">
+        <!-- outside #score: OSMD empties its container when it loads a song -->
+        <div id="highlight" hidden></div>
+        <div id="score"></div>
+      </div>
+    </main>
+  </div>
   <script src="app.js"></script>
 </body>
 </html>
