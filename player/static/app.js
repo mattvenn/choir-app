@@ -7,8 +7,8 @@ const PIANO_SAMPLES = Object.fromEntries(
    "C4", "Ds4", "Fs4", "A4", "C5", "Ds5", "Fs5", "A5", "C6", "Ds6", "Fs6", "A6",
    "C7", "Ds7", "Fs7", "A7", "C8"].map(n => [n.replace("s", "#"), `${n}.mp3`]));
 
-// Interface text. Spanish is the default; a language button can set `lang` and
-// call applyLanguage(). Part names come from the score, so aren't translated.
+// Interface text, in English if the browser is set to English and Spanish
+// otherwise. Part names come from the score, so aren't translated.
 const STRINGS = {
   en: {
     appName: "Choir Practice",
@@ -53,7 +53,7 @@ const STRINGS = {
     error: message => `Error: ${message}`,
   },
 };
-let lang = "es";
+const lang = navigator.language.toLowerCase().startsWith("en") ? "en" : "es";
 const t = (key, ...args) => {
   const s = STRINGS[lang][key];
   return typeof s === "function" ? s(...args) : s;
@@ -292,11 +292,10 @@ function indexNotes() {
   }
 }
 
-// Note names follow the computer's language, separately from the interface
-// (which is Spanish): letters for English, otherwise Do Re Mi.
-const NOTE_NAMES = navigator.language.toLowerCase().startsWith("en")
-  ? ["C", "D", "E", "F", "G", "A", "B"]
-  : ["Do", "Re", "Mi", "Fa", "Sol", "La", "Si"];
+const NOTE_NAMES = {
+  en: ["C", "D", "E", "F", "G", "A", "B"],
+  es: ["Do", "Re", "Mi", "Fa", "Sol", "La", "Si"],
+}[lang];
 
 // e.g. "Fa♯4": OSMD's pitch has the note as semitones above C, and octave 1
 // for the one from middle C, which is octave 4 by the usual numbering
