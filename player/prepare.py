@@ -3,7 +3,8 @@
 For each song writes
   player/static/scores/<id>.musicxml  (drawn by OpenSheetMusicDisplay)
   player/static/scores/<id>.json      (note events played by the browser piano)
-and player/static/scores/index.json listing the songs.
+plus <id>-short.musicxml/.json, each bar once, for songs whose repeats are
+written out, and player/static/scores/index.json listing the songs.
 
     .venv/bin/python player/prepare.py
 """
@@ -11,12 +12,12 @@ import json
 import re
 from pathlib import Path
 
-from music21 import converter
+from music21 import converter, stream
 
 from scorelib import check, events
-from songs import ave, foc
+from songs import ave, boga, foc, no
 
-SONGS = [foc, ave]
+SONGS = [foc, ave, no, boga]
 OUT = Path(__file__).resolve().parent / "static/scores"
 
 
@@ -39,21 +40,31 @@ def reproducible(musicxml: str) -> str:
     return re.sub(rf'<({tags}) id="([^"]+)"', renumber, musicxml)
 
 
+def write(song, name: str, score: stream.Score) -> None:
+    xml = OUT / f"{name}.musicxml"
+    score.write("musicxml", fp=str(xml))
+    xml.write_text(reproducible(xml.read_text()))
+    # re-read so bar offsets reflect any fixed durations
+    score = converter.parse(str(xml))
+    check(score)
+    data = {"title": song.TITLE, "tempo": song.TEMPO, "myPart": song.MY_PART,
+            **events(score)}
+    (OUT / f"{name}.json").write_text(json.dumps(data))
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     index = []
     for song in SONGS:
         print(song.TITLE)
-        xml = OUT / f"{song.ID}.musicxml"
-        song.build().write("musicxml", fp=str(xml))
-        xml.write_text(reproducible(xml.read_text()))
-        # re-read so bar offsets reflect any fixed durations
-        score = converter.parse(str(xml))
-        check(score)
-        data = {"title": song.TITLE, "tempo": song.TEMPO, "myPart": song.MY_PART,
-                **events(score)}
-        (OUT / f"{song.ID}.json").write_text(json.dumps(data))
-        index.append({"id": song.ID, "title": song.TITLE})
+        write(song, song.ID, song.build())
+        entry = {"id": song.ID, "title": song.TITLE}
+        # the player's "no repeats" checkbox switches to this version
+        if hasattr(song, "build_short"):
+            print("  without repeats:")
+            write(song, f"{song.ID}-short", song.build_short())
+            entry["short"] = True
+        index.append(entry)
     (OUT / "index.json").write_text(json.dumps(index))
     print(f"wrote {len(SONGS)} songs to {OUT}")
 

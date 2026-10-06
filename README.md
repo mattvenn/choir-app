@@ -37,10 +37,13 @@ for now the features these are the features
 
 # player (first version)
 
-A web page for practising Foc de Nadal and Ave Verum Corpus: the score is drawn
+A web page for practising Foc de Nadal, Ave Verum Corpus, No olvides and Boga, boga: the score is drawn
 in the browser from MusicXML (with lyrics), and played on a sampled grand piano.
-Tick the parts to show and hear, set the tempo, turn on a metronome, and click
-a bar to play from there. Space is play/pause and S solos the parts shown.
+Tick the parts to show and hear, set the tempo (or tap it in with "Marcar"),
+turn on a metronome, and click a bar to play from there. Space is play/pause
+and S solos the parts shown.
+Repeats are written out; for songs with a version that has each bar once (so
+far Boga, boga), "Sin repeticiones" switches to it.
 
     .venv/bin/python player/prepare.py                   # builds player/static/scores/
     .venv/bin/python -m http.server -d player/static 8765

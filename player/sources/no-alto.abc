@@ -1,0 +1,11 @@
+X:1
+T:No olvides, John - Alto
+%% bars as numbered in the PDF; prepare.py writes out the repeats
+M:4/4
+L:1/16
+K:C
+G,4 C3D E4 z2EE | F2F2F2F2 G4 z4 | G,4 C3D E4 z2EE |
+F2C2D2C2 B,4 z4 | G,4 C3D E2E2 z2EE | F2F2F2F2 G4 z2G2 | G3G G2G2 G2F2G2C2 |
+C4 B,4 C4 z4 | C4 B,4 C4 z2E2 | C2E2 z2E2 C2E2 z2EE | F2F2F2F2 E4 z2E2 | C2E2 z2E2 C2E2 z2EE |
+F2E2C2C2 B,4 z2E2 | C2E2 z2E2 C2E2 z2EE | F2F2F2F2 E4 z2G2 | G3G G2G2 G2F2G2C2 |
+C4 B,4 C4 z2E2 | C4 B,4 C4 z2G2 | G3G G2G2 G2F2G2C2 | C4 B,4 C8 |]

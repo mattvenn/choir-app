@@ -1,7 +1,8 @@
 """Helpers for building the player's scores with music21."""
+import copy
 from pathlib import Path
 
-from music21 import clef, converter, layout, metadata, note, stream, tempo, tie
+from music21 import clef, converter, key, layout, metadata, meter, note, stream, tempo, tie
 
 SOURCES = Path(__file__).resolve().parent / "sources"
 
@@ -22,6 +23,22 @@ def to_tenor_clef(part: stream.Part) -> None:
     part.transpose(-12, inPlace=True)
     for c in list(part.recurse().getElementsByClass(clef.Clef)):
         c.activeSite.replace(c, clef.Treble8vbClef())
+
+
+def write_out_repeats(part: stream.Part, order: list[int]) -> stream.Part:
+    """The player plays straight through, so repeats are written out: a new part
+    with the bars numbered `order` in that order, renumbered from 1."""
+    bars = {m.number: m for m in part.getElementsByClass(stream.Measure)}
+    out = stream.Part()
+    offset = 0.0
+    for number, n in enumerate(order, 1):
+        m = copy.deepcopy(bars[n])
+        m.number = number
+        if number > 1:  # a repeated first bar would show the clef, key and time again
+            m.removeByClass([clef.Clef, key.KeySignature, meter.TimeSignature])
+        out.insert(offset, m)
+        offset += m.duration.quarterLength
+    return out
 
 
 def make_score(parts: list[stream.Part], names: list[str], abbreviations: list[str],
@@ -61,10 +78,11 @@ def realign_bars(part: stream.Part) -> None:
         offset += m.duration.quarterLength
 
 
-def add_lyrics(part: stream.Part, text: str) -> None:
+def add_lyrics(part: stream.Part, text: str, verse: int = 1) -> None:
     """Lyrics are written one entry per bar, separated by "|". Each syllable goes
     on the next note that isn't the continuation of a tie: "na-" continues the
-    word on the next syllable, "_" holds the previous syllable over this note."""
+    word on the next syllable, "_" holds the previous syllable over this note.
+    Verse 2 and up go on further lines under verse 1."""
     bars = [b.split() for b in text.split("|")]
     measures = list(part.getElementsByClass(stream.Measure))
     if len(bars) != len(measures):
@@ -79,11 +97,11 @@ def add_lyrics(part: stream.Part, text: str) -> None:
             if syl == "_":
                 continue
             continues = syl.endswith("-")
-            lyric = note.Lyric(syl.rstrip("-"))
+            lyric = note.Lyric(syl.rstrip("-"), number=verse)
             lyric.syllabic = ({(False, False): "single", (False, True): "begin",
                                (True, True): "middle", (True, False): "end"}
                               [(in_word, continues)])
-            n.lyrics = [lyric]
+            n.lyrics = [lyric] if verse == 1 else n.lyrics + [lyric]
             in_word = continues
 
 

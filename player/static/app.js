@@ -19,6 +19,9 @@ const STRINGS = {
     solo: "Solo",
     soloTitle: "Hear only the parts shown (S)",
     bar: n => `Bar ${n}`,
+    tap: "Tap",
+    tapTitle: "Tap along with the beat to set the tempo",
+    noRepeats: "No repeats",
     metronome: "Metronome",
     clickVolume: "Metronome volume",
     loading: "Loading piano…",
@@ -38,6 +41,9 @@ const STRINGS = {
     solo: "Solo",
     soloTitle: "Oír solo las voces visibles (S)",
     bar: n => `Compás ${n}`,
+    tap: "Marcar",
+    tapTitle: "Toca al ritmo del pulso para fijar el tempo",
+    noRepeats: "Sin repeticiones",
     metronome: "Metrónomo",
     clickVolume: "Volumen del metrónomo",
     loading: "Cargando piano…",
@@ -80,7 +86,9 @@ const setClickVolume = percent => {
   click.volume.value = Tone.gainToDb(percent / 100 * CLICK_MAX_GAIN);
 };
 
+let songs;         // scores/index.json
 let song;          // scores/<id>.json
+let songId;        // which song is loaded (`song` may be its version without repeats)
 let osmd;
 let shown = [];   // per part
 let heard = [];
@@ -104,7 +112,7 @@ async function init() {
     autoGenerateMultipleRestMeasuresFromRestMeasures: false,
   });
 
-  const songs = await getJSON("scores/index.json");
+  songs = await getJSON("scores/index.json");
   for (const { id, title } of songs) $("song").add(new Option(title, id));
   // the URL remembers the song, so a reload or a shared link opens it
   const wanted = location.hash.slice(1);
@@ -116,19 +124,29 @@ async function init() {
   $("play").disabled = $("stop").disabled = false;
 }
 
+// Load song `id`, written out or, if "no repeats" is ticked and the song has
+// one, the version with each bar once. Switching between those two keeps the
+// parts and tempo chosen.
 async function loadSong(id) {
+  const sameSong = id === songId;
   if (song) stop();
-  song = await getJSON(`scores/${id}.json`);
+  const hasShort = songs.find(s => s.id === id).short;
+  $("short-option").hidden = !hasShort;
+  const file = hasShort && $("short").checked ? `${id}-short` : id;
+  song = await getJSON(`scores/${file}.json`);
   document.title = `${song.title} · ${t("appName")}`;
   history.replaceState(null, "", `#${id}`);
-  await osmd.load(`scores/${id}.musicxml`);
+  await osmd.load(`scores/${file}.musicxml`);
+  songId = id;
 
   // one column per part, a row each for Show and Hear; your part is on to start
   for (const row of ["part-names", "show-row", "hear-row"]) {
     $(row).replaceChildren($(row).firstElementChild);
   }
-  shown = song.parts.map(p => p.name === song.myPart);
-  heard = [...shown];
+  if (!sameSong) {
+    shown = song.parts.map(p => p.name === song.myPart);
+    heard = [...shown];
+  }
   endSolo();
   song.parts.forEach((part, i) => {
     const name = document.createElement("th");
@@ -139,9 +157,7 @@ async function loadSong(id) {
     $("hear-row").append(checkboxCell(heard, i, t("hearPart", part.name), endSolo));
   });
 
-  transport.bpm.value = song.tempo;
-  $("tempo").value = song.tempo;
-  $("tempo-value").textContent = song.tempo;
+  if (!sameSong) setTempo(song.tempo);
 
   currentBar = 0;
   render();
@@ -291,6 +307,30 @@ function seek(index) {
   if (transport.state !== "started") play();
 }
 
+// ---- tempo ---------------------------------------------------------------
+
+// Tempo in quarter notes per minute, as on the slider, kept within its range.
+function setTempo(bpm) {
+  bpm = Math.round(Math.min(Math.max(bpm, $("tempo").min), $("tempo").max));
+  transport.bpm.value = bpm;
+  $("tempo").value = bpm;
+  $("tempo-value").textContent = bpm;
+}
+
+// Tap the button along with the beat (the metronome's click) to set the tempo:
+// from the second tap on, it follows the average of the last few gaps. A pause
+// of 2 seconds starts a new count.
+let taps = [];
+function tap() {
+  const now = performance.now() / 1000;
+  if (taps.length && now - taps.at(-1) > 2) taps = [];
+  taps = [...taps, now].slice(-5);
+  if (taps.length < 2) return;
+  const gap = (taps.at(-1) - taps[0]) / (taps.length - 1);
+  // in cut time a beat is a half note, so the quarter-note tempo is twice the taps
+  setTempo(60 / gap * song.beat);
+}
+
 // ---- solo ----------------------------------------------------------------
 
 // Hear only the parts that are shown; again to go back to what was heard before.
@@ -335,12 +375,14 @@ $("song").addEventListener("change", e => {
   e.target.blur();  // so Space goes back to play/pause
   loadSong(e.target.value).catch(showError);
 });
+$("short").addEventListener("change", e => {
+  e.target.blur();  // so Space goes back to play/pause
+  loadSong($("song").value).catch(showError);
+});
 setClickVolume(Number($("click-volume").value));
 $("click-volume").addEventListener("input", e => setClickVolume(Number(e.target.value)));
-$("tempo").addEventListener("input", e => {
-  transport.bpm.value = Number(e.target.value);
-  $("tempo-value").textContent = e.target.value;
-});
+$("tempo").addEventListener("input", e => setTempo(Number(e.target.value)));
+$("tap").addEventListener("click", tap);
 $("score").addEventListener("click", e => {
   if ($("play").disabled) return;
   const r = $("score").getBoundingClientRect();

@@ -1,0 +1,11 @@
+X:1
+T:No olvides, John - Tenor
+%% bars as numbered in the PDF; prepare.py writes out the repeats
+M:4/4
+L:1/16
+K:C clef=bass
+E,4 G,3G, G,4 z2CC | C2C2D2D2 E4 z4 | E,4 G,3G, G,4 z2CC |
+C2C2B,2G,2 G,4 z4 | E,4 G,3G, G,2G,2 z2CC | C2C2D2D2 E4 z2E2 | D3C B,2D2 C2C2C2A,2 |
+G,4 G,4 E,4 z4 | G,4 G,4 E,4 z2C2 | G,2C2 z2C2 G,2C2 z2CC | C2C2D2D2 E4 z2C2 | G,2C2 z2C2 G,2C2 z2CC |
+C2C2B,2G,2 G,4 z2C2 | G,2C2 z2C2 G,2C2 z2CC | C2C2D2D2 E4 z2E2 | D3C B,2D2 C2C2C2A,2 |
+G,4 G,4 E,4 z2C2 | G,4 G,4 E,4 z2E2 | D3C B,2D2 C2C2C2A,2 | G,4 G,4 E,8 |]

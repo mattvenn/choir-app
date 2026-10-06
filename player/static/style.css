@@ -47,6 +47,7 @@ h1 select {
 .tempo output { min-width: 2em; font-variant-numeric: tabular-nums; }
 #click-volume { width: 90px; }
 .check { display: flex; align-items: center; gap: 6px; cursor: pointer; user-select: none; }
+.check[hidden] { display: none; }
 
 .parts { margin-top: 8px; border-collapse: collapse; }
 .parts th, .parts td { padding: 2px 14px 2px 0; }
@@ -67,7 +68,9 @@ button {
 }
 /* wide enough for both labels, so the row doesn't jump between Play and Pause */
 button#play { min-width: 7.5em; }
-button#stop, button#solo { background: #fff; color: var(--accent); }
+button#stop, button#solo, button#tap { background: #fff; color: var(--accent); }
+/* quick taps on a phone shouldn't zoom the page */
+button#tap { touch-action: manipulation; }
 button#solo[aria-pressed="true"] { background: var(--accent); color: #fff; }
 button:disabled { opacity: 0.4; cursor: default; }
 
