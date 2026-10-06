@@ -28,7 +28,7 @@ const STRINGS = {
     hear: "Hear",
     showPart: part => `Show ${part}`,
     hearPart: part => `Hear ${part}`,
-    hint: "Click a bar to play from there. Space: play/pause. S: solo the parts shown.",
+    hint: "Click a bar to play from there (while playing, it goes there at the next bar line). Space: play/pause. S: solo the parts shown.",
     error: message => `Error: ${message}`,
   },
   es: {
@@ -49,7 +49,7 @@ const STRINGS = {
     hear: "Oír",
     showPart: part => `Ver ${part}`,
     hearPart: part => `Oír ${part}`,
-    hint: "Pulsa un compás para reproducir desde ahí. Espacio: reproducir/pausa. S: solo de las voces visibles.",
+    hint: "Pulsa un compás para reproducir desde ahí (si ya suena, salta al acabar el compás). Espacio: reproducir/pausa. S: solo de las voces visibles.",
     error: message => `Error: ${message}`,
   },
 };
@@ -72,6 +72,17 @@ function applyLanguage() {
 }
 
 const $ = id => document.getElementById(id);
+
+// Settings kept in this browser between visits. Storage can be missing or
+// blocked (private windows), so reads fall back to null and writes are dropped.
+const store = {
+  get(key) {
+    try { return JSON.parse(localStorage.getItem(`choir.${key}`)); } catch { return null; }
+  },
+  set(key, value) {
+    try { localStorage.setItem(`choir.${key}`, JSON.stringify(value)); } catch {}
+  },
+};
 const transport = Tone.getTransport();
 const piano = new Tone.Sampler({ urls: PIANO_SAMPLES, baseUrl: PIANO_URL, release: 1 })
   .toDestination();
@@ -170,15 +181,23 @@ async function loadSong(id) {
   document.title = `${song.title} · ${t("appName")}`;
   history.replaceState(null, "", `#${id}`);
   await osmd.load(`scores/${file}.musicxml`);
+  fixLyricHyphens();
   songId = id;
 
-  // one column per part, a row each for Show and Hear; your part is on to start
+  // one column per part, a row each for Show and Hear: as last left on this
+  // song, or to start with just your part
   for (const row of ["part-names", "show-row", "hear-row"]) {
     $(row).replaceChildren($(row).firstElementChild);
   }
   if (!sameSong) {
-    shown = song.parts.map(p => p.name === song.myPart);
-    heard = [...shown];
+    const saved = store.get(`parts.${id}`);
+    const fits = flags => Array.isArray(flags) && flags.length === song.parts.length;
+    if (saved && fits(saved.shown) && fits(saved.heard) && saved.shown.some(Boolean)) {
+      ({ shown, heard } = saved);
+    } else {
+      shown = song.parts.map(p => p.name === song.myPart);
+      heard = [...shown];
+    }
   }
   endSolo();
   song.parts.forEach((part, i) => {
@@ -211,18 +230,101 @@ function checkboxCell(flags, i, label, onChange) {
       flags[i] = box.checked = true;
       return;
     }
+    saveParts();
     onChange();
   });
   cell.append(box);
   return cell;
 }
 
+const saveParts = () => store.set(`parts.${songId}`, { shown, heard });
+
 // ---- score drawing -------------------------------------------------------
 
 function render() {
   osmd.Sheet.Instruments.forEach((inst, i) => { inst.Visible = shown[i]; });
   osmd.render();
+  indexNotes();
   showBar(currentBar);
+  showPending();
+}
+
+// OSMD lays out each staff's lyrics and then its hyphens, a staff at a time,
+// so the hyphen that carries a word onto the next line ("mor- | tis") is
+// placed before that line's lyrics are, and can land up on the staff. Lay out
+// all the lyrics first, then all the hyphens. The calculator class isn't
+// exported, so this patches it from the first score's.
+let lyricsFixed = false;
+function fixLyricHyphens() {
+  if (lyricsFixed) return;
+  lyricsFixed = true;
+  Object.getPrototypeOf(osmd.graphic.calculator).calculateLyricsPosition = function () {
+    for (const inst of this.graphicalMusicSheet.ParentMusicSheet.Instruments) {
+      if (inst.HasLyrics) inst.LyricVersesNumbers.sort();
+    }
+    const entries = new Map();
+    for (const system of this.musicSystems) {
+      for (const line of system.StaffLines) {
+        entries.set(line, this.calculateSingleStaffLineLyricsPosition(
+          line, line.ParentStaff.ParentInstrument.LyricVersesNumbers));
+      }
+    }
+    for (const lineEntries of entries.values()) this.calculateLyricsExtendsAndDashes(lineEntries);
+  };
+}
+
+// ---- note names on hover ---------------------------------------------------
+
+let pitchOf = new Map();  // each drawn note's SVG group → its pitch
+function indexNotes() {
+  pitchOf = new Map();
+  for (const bar of osmd.GraphicSheet.MeasureList) {
+    for (const measure of bar) {
+      for (const entry of measure?.staffEntries ?? []) {
+        for (const voice of entry.graphicalVoiceEntries) {
+          for (const note of voice.notes) {
+            const g = note.getSVGGElement();
+            if (g && note.sourceNote.Pitch) pitchOf.set(g, note.sourceNote.Pitch);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Note names follow the computer's language, separately from the interface
+// (which is Spanish): letters for English, otherwise Do Re Mi.
+const NOTE_NAMES = navigator.language.toLowerCase().startsWith("en")
+  ? ["C", "D", "E", "F", "G", "A", "B"]
+  : ["Do", "Re", "Mi", "Fa", "Sol", "La", "Si"];
+
+// e.g. "Fa♯4": OSMD's pitch has the note as semitones above C, and octave 1
+// for the one from middle C, which is octave 4 by the usual numbering
+function noteName(pitch) {
+  const letter = NOTE_NAMES[[0, 2, 4, 5, 7, 9, 11].indexOf(pitch.FundamentalNote)];
+  const accidental = { "-2": "𝄫", "-1": "♭", 1: "♯", 2: "𝄪" }[pitch.AccidentalHalfTones] ?? "";
+  return { letter, accidental, octave: pitch.Octave + 3 };
+}
+
+// The label is only rewritten when the note changes: rewriting it on every
+// mouse move made Chrome redo the ♯ (which comes from another font) and flicker.
+let tipPitch = null;
+function showNoteName(e) {
+  const pitch = e.pointerType === "mouse" && pitchOf.get(e.target.closest(".vf-stavenote")) || null;
+  $("note-tip").hidden = !pitch;
+  if (pitch !== tipPitch) {
+    tipPitch = pitch;
+    if (pitch) {
+      const { letter, accidental, octave } = noteName(pitch);
+      const sign = document.createElement("span");
+      sign.className = "accidental";
+      sign.textContent = accidental;
+      $("note-tip").replaceChildren(letter, ...(accidental ? [sign] : []), String(octave));
+    }
+  }
+  if (!pitch) return;
+  const r = $("score").getBoundingClientRect();
+  Object.assign($("note-tip").style, { left: `${e.clientX - r.left}px`, top: `${e.clientY - r.top}px` });
 }
 
 // Bounding box in pixels (relative to #score) of bar `index` across all visible staves.
@@ -326,6 +428,7 @@ async function play() {
 }
 
 function pause() {
+  cancelJump();
   transport.pause();
   piano.releaseAll();
   document.body.classList.remove("playing");
@@ -333,6 +436,7 @@ function pause() {
 }
 
 function stop() {
+  cancelJump();
   transport.stop();
   piano.releaseAll();
   document.body.classList.remove("playing");
@@ -340,11 +444,63 @@ function stop() {
   showBar(0);
 }
 
+// Clicking a bar: stopped or paused, play from it now; playing, go to it when
+// the bar playing ends, so the beat carries on.
+function goToBar(index) {
+  if (transport.state === "started") queueJump(index);
+  else seek(index);
+}
+
 function seek(index) {
+  cancelJump();
   piano.releaseAll();
   transport.ticks = Math.round(song.measures[index] * transport.PPQ);
   showBar(index);
   if (transport.state !== "started") play();
+}
+
+// The transport's loop makes the jump on the exact tick: at the next bar line
+// it goes back (or forward) to the clicked bar, then the loop is switched off.
+// Until then the clicked bar is marked as waiting.
+let pendingBar = null;
+// Tone files events on whole ticks, rounding down, and the loop points have to
+// be on those same ticks or the bar's first notes get skipped
+const eventTick = quarters => Math.floor(transport.toTicks(ticks(quarters)));
+function queueJump(index) {
+  // transport.ticks is already a little ahead of what's heard
+  const barLine = [...song.measures, song.length].map(eventTick).find(t => t > transport.ticks);
+  pendingBar = index;
+  transport.setLoopPoints(Tone.Ticks(eventTick(song.measures[index])), Tone.Ticks(barLine));
+  transport.loop = true;
+  showPending();
+}
+
+transport.on("loop", time => {
+  transport.loop = false;
+  // unless another bar has been clicked in the moment before it's heard
+  const done = pendingBar;
+  Tone.getDraw().schedule(() => {
+    if (pendingBar !== done) return;
+    pendingBar = null;
+    showPending();
+  }, time);
+});
+
+function cancelJump() {
+  transport.loop = false;
+  pendingBar = null;
+  showPending();
+}
+
+function showPending() {
+  const box = pendingBar === null ? null : barBox(pendingBar);
+  $("pending").hidden = !box;
+  if (box) {
+    Object.assign($("pending").style, {
+      left: `${box.left}px`, top: `${box.top}px`,
+      width: `${box.width}px`, height: `${box.height}px`,
+    });
+  }
 }
 
 // ---- tempo ---------------------------------------------------------------
@@ -384,6 +540,7 @@ function toggleSolo() {
     $("solo").setAttribute("aria-pressed", "true");
   }
   $("hear-row").querySelectorAll("input").forEach((box, i) => { box.checked = heard[i]; });
+  saveParts();
 }
 
 // Ticking a Hear box by hand also ends solo, keeping what's ticked.
@@ -422,15 +579,25 @@ $("short").addEventListener("change", e => {
   e.target.blur();  // so Space goes back to play/pause
   loadSong(songId).catch(showError);
 });
+// the metronome volume is remembered; the tempo isn't, so each song starts at its own
+if (store.get("clickVolume") !== null) $("click-volume").value = store.get("clickVolume");
 setClickVolume(Number($("click-volume").value));
-$("click-volume").addEventListener("input", e => setClickVolume(Number(e.target.value)));
+$("click-volume").addEventListener("input", e => {
+  setClickVolume(Number(e.target.value));
+  store.set("clickVolume", Number(e.target.value));
+});
 $("tempo").addEventListener("input", e => setTempo(Number(e.target.value)));
 $("tap").addEventListener("click", tap);
 $("score").addEventListener("click", e => {
   if ($("play").disabled) return;
   const r = $("score").getBoundingClientRect();
   const bar = barAt(e.clientX - r.left, e.clientY - r.top);
-  if (bar >= 0) seek(bar);
+  if (bar >= 0) goToBar(bar);
+});
+$("score").addEventListener("pointermove", showNoteName);
+$("score").addEventListener("pointerleave", () => {
+  $("note-tip").hidden = true;
+  tipPitch = null;
 });
 let resizeTimer;
 window.addEventListener("resize", () => {

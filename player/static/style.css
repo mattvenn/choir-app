@@ -117,6 +117,37 @@ button:disabled { opacity: 0.4; cursor: default; }
   transition: left 0.1s, top 0.1s;
 }
 
+/* a bar clicked while playing, waiting for the bar playing now to end */
+#pending {
+  position: absolute;
+  border: 2px dashed var(--accent);
+  border-radius: 4px;
+  pointer-events: none;
+  animation: pending 0.6s ease-in-out infinite alternate;
+}
+/* the name of the note under the mouse, just above the pointer */
+#note-tip {
+  position: absolute;
+  z-index: 1;
+  transform: translate(-50%, calc(-100% - 12px));
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--fg);
+  color: #fff;
+  font-size: 14px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+/* the system fonts have no ♯ or ♭, so name fonts that do (Mac, Windows,
+   Android, Linux) rather than leave the browser to borrow one */
+#note-tip .accidental {
+  font-family: "Apple Symbols", "Segoe UI Symbol", "Noto Sans Symbols 2", "DejaVu Sans", serif;
+  margin: 0 0.08em;
+}
+
+@keyframes pending { from { opacity: 1; } to { opacity: 0.3; } }
+@media (prefers-reduced-motion: reduce) { #pending { animation: none; } }
+
 /* while playing, only the transport row stays, on one line, to leave room
    for the music: the sliders shrink and what's only needed between runs goes */
 body.playing .controls { flex-wrap: nowrap; }
