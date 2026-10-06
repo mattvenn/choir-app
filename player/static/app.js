@@ -209,7 +209,8 @@ async function loadSong(id) {
     $("hear-row").append(checkboxCell(heard, i, t("hearPart", part.name), endSolo));
   });
 
-  if (!sameSong) setTempo(song.tempo);
+  // as last left on this song, or the song's own
+  if (!sameSong) setTempo(store.get(`tempo.${id}`) ?? song.tempo);
 
   currentBar = 0;
   render();
@@ -237,6 +238,7 @@ function checkboxCell(flags, i, label, onChange) {
   return cell;
 }
 
+const saveTempo = () => store.set(`tempo.${songId}`, transport.bpm.value);
 const saveParts = () => store.set(`parts.${songId}`, { shown, heard });
 
 // ---- score drawing -------------------------------------------------------
@@ -524,6 +526,7 @@ function tap() {
   const gap = (taps.at(-1) - taps[0]) / (taps.length - 1);
   // in cut time a beat is a half note, so the quarter-note tempo is twice the taps
   setTempo(60 / gap * song.beat);
+  saveTempo();
 }
 
 // ---- solo ----------------------------------------------------------------
@@ -578,14 +581,17 @@ $("short").addEventListener("change", e => {
   e.target.blur();  // so Space goes back to play/pause
   loadSong(songId).catch(showError);
 });
-// the metronome volume is remembered; the tempo isn't, so each song starts at its own
+// the metronome volume is remembered across songs, the tempo for each song
 if (store.get("clickVolume") !== null) $("click-volume").value = store.get("clickVolume");
 setClickVolume(Number($("click-volume").value));
 $("click-volume").addEventListener("input", e => {
   setClickVolume(Number(e.target.value));
   store.set("clickVolume", Number(e.target.value));
 });
-$("tempo").addEventListener("input", e => setTempo(Number(e.target.value)));
+$("tempo").addEventListener("input", e => {
+  setTempo(Number(e.target.value));
+  saveTempo();
+});
 $("tap").addEventListener("click", tap);
 $("score").addEventListener("click", e => {
   if ($("play").disabled) return;
