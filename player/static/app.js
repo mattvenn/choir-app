@@ -389,9 +389,17 @@ function barAt(x, y) {
 
 // ---- playback ------------------------------------------------------------
 
+// Tone turns a tick position into seconds at the tempo of the moment and back,
+// and files the event on the whole tick below, so where an event lands can be a
+// tick out depending on the tempo it was scheduled at. Each bar line's tick is
+// noted when the song is scheduled, so jumps go to where its events really are.
+let barTicks = [];  // per bar, then the end of the song
+const eventTick = quarters => Math.floor(transport.toTicks(ticks(quarters)));
+
 // Every note of every part is scheduled once; muted parts are skipped as they come up.
 function schedule() {
   transport.cancel();
+  barTicks = [...song.measures, song.length].map(eventTick);
   song.parts.forEach((part, i) => {
     for (const [midi, start, dur] of part.notes) {
       const pitch = Tone.Frequency(midi, "midi").toNote();
@@ -455,7 +463,7 @@ function goToBar(index) {
 function seek(index) {
   cancelJump();
   piano.releaseAll();
-  transport.ticks = Math.round(song.measures[index] * transport.PPQ);
+  transport.ticks = barTicks[index];
   showBar(index);
   if (transport.state !== "started") play();
 }
@@ -464,14 +472,14 @@ function seek(index) {
 // it goes back (or forward) to the clicked bar, then the loop is switched off.
 // Until then the clicked bar is marked as waiting.
 let pendingBar = null;
-// Tone files events on whole ticks, rounding down, and the loop points have to
-// be on those same ticks or the bar's first notes get skipped
-const eventTick = quarters => Math.floor(transport.toTicks(ticks(quarters)));
 function queueJump(index) {
   // transport.ticks is already a little ahead of what's heard
-  const barLine = [...song.measures, song.length].map(eventTick).find(t => t > transport.ticks);
+  const barLine = barTicks.find(t => t > transport.ticks);
   pendingBar = index;
-  transport.setLoopPoints(Tone.Ticks(eventTick(song.measures[index])), Tone.Ticks(barLine));
+  // The loop points go through the same rounding, so each is set a tick early:
+  // the loop starts just before the clicked bar's first notes, and goes back
+  // just before the next bar's would sound. A tick is a few milliseconds.
+  transport.setLoopPoints(Tone.Ticks(Math.max(barTicks[index] - 1, 0)), Tone.Ticks(barLine - 1));
   transport.loop = true;
   showPending();
 }
