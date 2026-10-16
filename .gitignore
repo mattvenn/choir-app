@@ -6,5 +6,5 @@ out/
 .venv/
 __pycache__/
 .DS_Store
-# written at deploy time (see README)
+# written at deploy time (see .github/workflows/pages.yml)
 player/static/version.json

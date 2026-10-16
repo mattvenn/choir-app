@@ -29,7 +29,7 @@ for now the features these are the features
 
 # tech
 
-* should be easy to install on a digital ocean droplet
+* hosted as a static site on GitHub Pages
 * doesn't need to scale, just a proof of concept
 * start with the  audio recordings and the 3 pdfs in this directory
 	* the audio recordings are for the 2nd and 4th voices of boga boga
@@ -57,45 +57,3 @@ song, run `prepare.py` and commit what it writes (CI checks they match).
 
 Every push to `main` publishes `player/static` to
 https://mattvenn.github.io/choir-app/ (see `.github/workflows/pages.yml`).
-
-## Install on a droplet
-
-The player is a static site, so nginx serves it directly and there is no
-service to run. These steps assume nginx is already installed, as for
-online_questions. Replace `choir.example.com` with your domain, and point the
-domain's DNS A record at the droplet.
-
-1. Get the code (the built scores are included, so no Python is needed):
-
-   ```bash
-   sudo git clone https://github.com/mattvenn/choir-app.git /opt/choir-app
-   ```
-
-2. Set your domain in `choir-app.nginx` (the `server_name` line), then enable it:
-
-   ```bash
-   cd /opt/choir-app
-   sudo cp choir-app.nginx /etc/nginx/sites-available/choir-app
-   sudo ln -sf /etc/nginx/sites-available/choir-app /etc/nginx/sites-enabled/choir-app
-   sudo nginx -t && sudo systemctl reload nginx
-   ```
-
-3. Open http://choir.example.com.
-
-4. Optional, for https (if certbot is installed):
-
-   ```bash
-   sudo certbot --nginx -d choir.example.com
-   ```
-
-To update later:
-
-```bash
-cd /opt/choir-app && sudo git pull
-sudo sh -c "git log -1 --format='{\"commit\":\"%H\",\"date\":\"%cI\"}' > player/static/version.json"
-```
-
-The second line writes the "last updated" link on the home page (also run it
-after the first clone).
-
-No nginx reload is needed for updates.
