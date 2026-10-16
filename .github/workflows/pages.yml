@@ -33,6 +33,8 @@ jobs:
             echo "::error::Scores are out of date: run player/prepare.py and commit the result"
             exit 1
           fi
+      - name: Record which commit is published, for the home page
+        run: git log -1 --format='{"commit":"%H","date":"%cI"}' > player/static/version.json
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

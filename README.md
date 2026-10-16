@@ -92,6 +92,10 @@ To update later:
 
 ```bash
 cd /opt/choir-app && sudo git pull
+sudo sh -c "git log -1 --format='{\"commit\":\"%H\",\"date\":\"%cI\"}' > player/static/version.json"
 ```
+
+The second line writes the "last updated" link on the home page (also run it
+after the first clone).
 
 No nginx reload is needed for updates.

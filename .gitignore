@@ -6,3 +6,5 @@ out/
 .venv/
 __pycache__/
 .DS_Store
+# written at deploy time (see README)
+player/static/version.json

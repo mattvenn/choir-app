@@ -43,6 +43,8 @@ header {
   text-decoration: none;
 }
 #song-list a:hover, #song-list a:focus-visible { border-color: var(--accent); color: var(--accent); }
+#home .updated { margin: 24px 0 0; text-align: center; font-size: 0.8rem; }
+#home .updated a { color: #888; }
 
 /* ---- player ---- */
 

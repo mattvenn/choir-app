@@ -30,6 +30,7 @@ const STRINGS = {
     hearPart: part => `Hear ${part}`,
     hint: "Click a bar to play from there (while playing, it goes there at the next bar line). Space: play/pause. S: solo the parts shown.",
     error: message => `Error: ${message}`,
+    updated: date => `Last updated ${date}`,
   },
   es: {
     appName: "Ensayo de coro",
@@ -51,6 +52,7 @@ const STRINGS = {
     hearPart: part => `Oír ${part}`,
     hint: "Pulsa un compás para reproducir desde ahí (si ya suena, salta al acabar el compás). Espacio: reproducir/pausa. S: solo de las voces visibles.",
     error: message => `Error: ${message}`,
+    updated: date => `Actualizado el ${date}`,
   },
 };
 const lang = navigator.language.toLowerCase().startsWith("en") ? "en" : "es";
@@ -132,10 +134,23 @@ async function init() {
     $("song-list").append(item);
   }
   await route();
+  showVersion();
 
   await Tone.loaded();
   $("status").textContent = "";
   $("play").disabled = $("stop").disabled = false;
+}
+
+// "Last updated <date>" on the chooser, linking to the published commit.
+// version.json is written at deploy time, so it's missing when run locally.
+async function showVersion() {
+  try {
+    const { commit, date } = await getJSON("version.json");
+    const day = new Date(date).toLocaleDateString(lang, { day: "numeric", month: "long", year: "numeric" });
+    $("updated").href = `https://github.com/mattvenn/choir-app/commit/${commit}`;
+    $("updated").textContent = t("updated", day);
+    $("updated").hidden = false;
+  } catch {}
 }
 
 // ---- pages ---------------------------------------------------------------
