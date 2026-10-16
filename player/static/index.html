@@ -32,19 +32,26 @@
         <button id="solo" aria-pressed="false" data-i18n-aria-label="solo" data-i18n-title="soloTitle">
           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 18v-6a8 8 0 0 1 16 0v6" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="5" height="7" rx="1.5" fill="currentColor"/><rect x="16" y="14" width="5" height="7" rx="1.5" fill="currentColor"/></svg>
         </button>
-        <span id="bar"></span>
-        <label class="tempo"><span class="tempo-name">♩ =</span>
-          <input id="tempo" type="range" min="40" max="160" step="1">
-          <output id="tempo-value" for="tempo"></output>
-        </label>
-        <button id="tap" data-i18n-aria-label="tap" data-i18n-title="tapTitle">
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="3.5" fill="currentColor"/><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="3 2.3"/></svg>
-        </button>
+        <div class="tempo-group">
+          <label class="metronome" data-i18n-title="clickVolume">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8.5 3h7L20 21H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 16l5-8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input id="click-volume" type="range" min="0" max="100" value="0" data-i18n-aria-label="clickVolume">
+          </label>
+          <button id="tap" data-i18n-aria-label="tap" data-i18n-title="tapTitle">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="3.5" fill="currentColor"/><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="3 2.3"/></svg>
+          </button>
+          <div class="tempo">
+            <label class="tempo-name" for="tempo">♩ =</label>
+            <span class="tempo-track">
+              <!-- marks the score's own tempo on the slider -->
+              <span id="tempo-tick" aria-hidden="true"></span>
+              <input id="tempo" type="range" min="40" max="160" step="1">
+            </span>
+            <!-- shows the tempo; when it isn't the score's, a click goes back to it -->
+            <button id="tempo-value" type="button" aria-live="polite"></button>
+          </div>
+        </div>
         <label class="check" id="short-option" hidden><input id="short" type="checkbox"> <span data-i18n="noRepeats"></span></label>
-        <label class="metronome" data-i18n-title="clickVolume">
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8.5 3h7L20 21H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 16l5-8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          <input id="click-volume" type="range" min="0" max="100" value="0" data-i18n-aria-label="clickVolume">
-        </label>
         <span id="status" data-i18n="loading"></span>
       </div>
       <table class="parts">

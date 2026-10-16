@@ -18,9 +18,9 @@ const STRINGS = {
     stop: "Stop",
     solo: "Solo",
     soloTitle: "Hear only the parts shown (S)",
-    bar: n => `Bar ${n}`,
     tap: "Tap",
     tapTitle: "Tap along with the beat to set the tempo",
+    resetTempo: bpm => `Back to the score's tempo (${bpm})`,
     noRepeats: "No repeats",
     clickVolume: "Metronome volume",
     loading: "Loading piano…",
@@ -40,9 +40,9 @@ const STRINGS = {
     stop: "Parar",
     solo: "Solo",
     soloTitle: "Oír solo las voces visibles (S)",
-    bar: n => `Compás ${n}`,
     tap: "Marcar",
     tapTitle: "Toca al ritmo del pulso para fijar el tempo",
+    resetTempo: bpm => `Volver al tempo de la partitura (${bpm})`,
     noRepeats: "Sin repeticiones",
     clickVolume: "Volumen del metrónomo",
     loading: "Cargando piano…",
@@ -373,7 +373,6 @@ function barBox(index) {
 
 function showBar(index) {
   currentBar = index;
-  $("bar").textContent = t("bar", index + 1);
   const box = barBox(index);
   const hl = $("highlight");
   hl.hidden = !box;
@@ -530,11 +529,28 @@ function showPending() {
 // ---- tempo ---------------------------------------------------------------
 
 // Tempo in quarter notes per minute, as on the slider, kept within its range.
+const clampTempo = bpm => Math.round(Math.min(Math.max(bpm, $("tempo").min), $("tempo").max));
+
+// Sets the tempo, and shows how it compares with the score's: a tick on the
+// slider where the score's is, and the number becomes a button back to it.
 function setTempo(bpm) {
-  bpm = Math.round(Math.min(Math.max(bpm, $("tempo").min), $("tempo").max));
+  bpm = clampTempo(bpm);
   transport.bpm.value = bpm;
   $("tempo").value = bpm;
-  $("tempo-value").textContent = bpm;
+  const own = clampTempo(song.tempo);
+  const { min, max } = $("tempo");
+  $("tempo-tick").style.setProperty("--at", (own - min) / (max - min));
+  const button = $("tempo-value");
+  button.textContent = bpm;
+  button.disabled = bpm === own;
+  button.title = button.disabled ? "" : t("resetTempo", own);
+  if (button.disabled) button.removeAttribute("aria-label");
+  else button.setAttribute("aria-label", `${bpm}. ${t("resetTempo", own)}`);
+}
+
+function resetTempo() {
+  setTempo(song.tempo);
+  saveTempo();
 }
 
 // Tap the button along with the beat (the metronome's click) to set the tempo:
@@ -616,6 +632,7 @@ $("tempo").addEventListener("input", e => {
   saveTempo();
 });
 $("tap").addEventListener("click", tap);
+$("tempo-value").addEventListener("click", resetTempo);
 $("score").addEventListener("click", e => {
   if ($("play").disabled) return;
   const r = $("score").getBoundingClientRect();
