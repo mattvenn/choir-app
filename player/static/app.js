@@ -85,6 +85,27 @@ const store = {
     try { localStorage.setItem(`choir.${key}`, JSON.stringify(value)); } catch {}
   },
 };
+
+// Google Analytics: which songs get opened and played. Only on the published
+// site, so local testing isn't counted. Page views are sent by hand, since a
+// song is only a #fragment of the URL.
+const GA_ID = location.hostname === "mattvenn.github.io" ? "G-VEP6N5WR4B" : "";
+window.dataLayer = window.dataLayer || [];
+function gtag() { dataLayer.push(arguments); }
+if (GA_ID) {
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+  document.head.append(script);
+  gtag("js", new Date());
+  gtag("config", GA_ID, { send_page_view: false });
+}
+const track = (event, params) => { if (GA_ID) gtag("event", event, params); };
+const trackPage = (path, title) => track("page_view", {
+  page_location: location.origin + location.pathname.replace(/\/$/, "") + path,
+  page_title: title,
+});
+
 const transport = Tone.getTransport();
 const piano = new Tone.Sampler({ urls: PIANO_SAMPLES, baseUrl: PIANO_URL, release: 1 })
   .toDestination();
@@ -168,6 +189,7 @@ function showHome() {
   $("player").hidden = true;
   $("home").hidden = false;
   document.title = t("appName");
+  trackPage("/", t("appName"));
 }
 
 async function showSong(id) {
@@ -181,6 +203,7 @@ async function showSong(id) {
   } else {
     await loadSong(id);
   }
+  trackPage(`/${id}`, song.title);
 }
 
 // Load song `id`, written out or, if "no repeats" is ticked and the song has
@@ -445,6 +468,8 @@ function setPlayLabel() {
 
 async function play() {
   await Tone.start();  // browsers only allow audio after a click
+  // counted from a stop, not on every resume after a pause
+  if (transport.state === "stopped") track("play", { song: songId });
   transport.start();
   document.body.classList.add("playing");  // collapses the controls
   setPlayLabel();
