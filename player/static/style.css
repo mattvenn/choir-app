@@ -5,6 +5,7 @@
   --accent: #2f6fdf;
   --highlight: rgba(47, 111, 223, 0.15);
   --group: #e9f0fc;
+  --heat: rgba(235, 125, 20, 0.3);
 }
 
 * { box-sizing: border-box; }
@@ -44,6 +45,7 @@ header {
   text-decoration: none;
 }
 #song-list a:hover, #song-list a:focus-visible { border-color: var(--accent); color: var(--accent); }
+#song-list .stats { display: block; margin-top: 4px; color: var(--muted); font-size: 0.85rem; }
 #home .updated { margin: 24px 0 0; text-align: center; font-size: 0.8rem; }
 #home .updated a { color: #888; }
 
@@ -156,6 +158,14 @@ button:disabled { opacity: 0.4; cursor: default; }
   border-radius: 4px;
   pointer-events: none;
   transition: left 0.1s, top 0.1s;
+}
+
+/* how hard each bar is, from the practice record: opacity is the hardness */
+#heat > div {
+  position: absolute;
+  background: var(--heat);
+  border-radius: 4px;
+  pointer-events: none;
 }
 
 /* a bar clicked while playing, waiting for the bar playing now to end */

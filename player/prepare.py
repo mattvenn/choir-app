@@ -49,6 +49,10 @@ def write(song, name: str, score: stream.Score) -> None:
     check(score)
     data = {"title": song.TITLE, "tempo": song.TEMPO, "myPart": song.MY_PART,
             **events(score)}
+    # with the repeats written out, which printed bar each bar is, so practice
+    # on a bar counts for it in both versions; otherwise bar i is printed bar i
+    if name == song.ID and hasattr(song, "ORDER"):
+        data["printedBars"] = song.ORDER
     (OUT / f"{name}.json").write_text(json.dumps(data))
 
 

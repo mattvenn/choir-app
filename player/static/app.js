@@ -28,9 +28,12 @@ const STRINGS = {
     hear: "Hear",
     showPart: part => `Show ${part}`,
     hearPart: part => `Hear ${part}`,
-    hint: "Click a bar to play from there (while playing, it goes there at the next bar line). Space: play/pause. S: solo the parts shown.",
+    hint: "Click a bar to play from there (while playing, it goes there at the next bar line). Space: play/pause. S: solo the parts shown. The bars you go back to most are shaded orange.",
     error: message => `Error: ${message}`,
     updated: date => `Last updated ${date}`,
+    minutes: n => `${n} min`,
+    hardBars: (n, weekAgo) => `${n} hard bar${n === 1 ? "" : "s"}` +
+      (weekAgo === undefined ? "" : ` (${weekAgo} a week ago)`),
   },
   es: {
     appName: "Ensayo de coro",
@@ -50,9 +53,12 @@ const STRINGS = {
     hear: "Oír",
     showPart: part => `Ver ${part}`,
     hearPart: part => `Oír ${part}`,
-    hint: "Pulsa un compás para reproducir desde ahí (si ya suena, salta al acabar el compás). Espacio: reproducir/pausa. S: solo de las voces visibles.",
+    hint: "Pulsa un compás para reproducir desde ahí (si ya suena, salta al acabar el compás). Espacio: reproducir/pausa. S: solo de las voces visibles. Los compases a los que más vuelves se marcan en naranja.",
     error: message => `Error: ${message}`,
     updated: date => `Actualizado el ${date}`,
+    minutes: n => `${n} min`,
+    hardBars: (n, weekAgo) => `${n} ${n === 1 ? "compás difícil" : "compases difíciles"}` +
+      (weekAgo === undefined ? "" : ` (${weekAgo} hace una semana)`),
   },
 };
 const lang = navigator.language.toLowerCase().startsWith("en") ? "en" : "es";
@@ -149,7 +155,10 @@ async function init() {
   for (const { id, title } of songs) {
     const link = document.createElement("a");
     link.href = `#${id}`;
-    link.textContent = title;
+    link.dataset.song = id;
+    const stats = document.createElement("span");
+    stats.className = "stats";
+    link.append(title, stats);
     const item = document.createElement("li");
     item.append(link);
     $("song-list").append(item);
@@ -189,6 +198,7 @@ function showHome() {
   $("player").hidden = true;
   $("home").hidden = false;
   document.title = t("appName");
+  showPracticeStats();
   trackPage("/", t("appName"));
 }
 
@@ -287,6 +297,7 @@ function render() {
   indexNotes();
   showBar(currentBar);
   showPending();
+  drawHeat();
 }
 
 // OSMD lays out each staff's lyrics and then its hyphens, a staff at a time,
@@ -424,6 +435,102 @@ function barAt(x, y) {
   return -1;
 }
 
+// ---- practice record -----------------------------------------------------
+
+// Kept per song in this browser: for each printed bar, how many times you went
+// back over it and how many times it was played to its end, and the time spent
+// playing. The counts halve every two weeks, so they follow how you play now.
+// A bar's hardness is how often you go back over it for each time it's played:
+// a bar fades as you play on past it, while a song left alone keeps its map.
+const HALF_LIFE = 14 * 24 * 3600e3;
+const DAY = 24 * 3600e3;
+const HARD = 0.5;  // from this hardness a bar counts as hard on the song list
+
+const printedBar = i => song.printedBars?.[i] ?? i + 1;
+const barRange = (from, to) => Array.from({ length: to - from + 1 }, (_, k) => from + k);
+// the +1 keeps a single slip from marking a bar as hard
+const hardness = ([back, played]) => back / (played + 1);
+const hardBars = practice => Object.values(practice.bars).filter(c => hardness(c) >= HARD).length;
+
+// A song's record, with its counts aged to now.
+function practiceOf(id) {
+  const practice = store.get(`practice.${id}`) ?? { bars: {}, seconds: 0, at: Date.now(), history: [] };
+  const now = Date.now();
+  const fade = 0.5 ** ((now - practice.at) / HALF_LIFE);
+  for (const counts of Object.values(practice.bars)) {
+    counts[0] *= fade;
+    counts[1] *= fade;
+  }
+  practice.at = now;
+  return practice;
+}
+
+// Adds practice on the open song: bars (as indexes of the version played) gone
+// back over and played to the end, and seconds played. The history is the
+// count of hard bars at the end of each day practised, to show progress.
+function recordPractice({ back = [], played = [], seconds = 0 }) {
+  const practice = practiceOf(songId);
+  const add = (i, k) => { (practice.bars[printedBar(i)] ??= [0, 0])[k]++; };
+  back.forEach(i => add(i, 0));
+  played.forEach(i => add(i, 1));
+  practice.seconds += seconds;
+  practice.last = Date.now();
+  const day = Math.floor(practice.last / DAY);
+  const hard = hardBars(practice);
+  if (practice.history.at(-1)?.[0] === day) practice.history.at(-1)[1] = hard;
+  else practice.history = [...practice.history, [day, hard]].slice(-60);
+  for (const counts of Object.values(practice.bars)) counts.forEach((n, k) => { counts[k] = Math.round(n * 1000) / 1000; });
+  store.set(`practice.${songId}`, practice);
+}
+
+// Bar `i` has played to its end. If a bar before it was clicked while playing,
+// that's going back over the bars from there to here.
+function barPlayed(i) {
+  const back = pendingBar !== null && pendingBar <= i ? barRange(pendingBar, i) : [];
+  const seconds = (barTicks[i + 1] - barTicks[i]) / transport.PPQ * 60 / transport.bpm.value;
+  recordPractice({ back, played: [i], seconds });
+}
+
+// Tints each bar by how hard it is, under the highlight.
+function drawHeat() {
+  const { bars } = practiceOf(songId);
+  const marks = [];
+  song.measures.forEach((_, i) => {
+    const level = Math.min(hardness(bars[printedBar(i)] ?? [0, 0]), 1);
+    const box = level >= 0.15 && barBox(i);
+    if (!box) return;
+    const mark = document.createElement("div");
+    Object.assign(mark.style, {
+      left: `${box.left}px`, top: `${box.top}px`,
+      width: `${box.width}px`, height: `${box.height}px`,
+      opacity: level,
+    });
+    marks.push(mark);
+  });
+  $("heat").replaceChildren(...marks);
+}
+
+// Under each song on the list: time practised, when, and how many hard bars,
+// with how many there were a week before if that's changed.
+function showPracticeStats() {
+  const relative = new Intl.RelativeTimeFormat(lang, { numeric: "auto" });
+  for (const { id } of songs) {
+    const practice = practiceOf(id);
+    const stats = [];
+    if (practice.last) {
+      const today = Math.floor(Date.now() / DAY);
+      stats.push(t("minutes", Math.max(1, Math.round(practice.seconds / 60))),
+                 relative.format(Math.floor(practice.last / DAY) - today, "day"));
+      const hard = hardBars(practice);
+      const weekAgo = practice.history.findLast(([day]) => day <= today - 7)?.[1];
+      if (hard || weekAgo) stats.push(t("hardBars", hard, weekAgo === hard ? undefined : weekAgo));
+    }
+    const line = document.querySelector(`#song-list [data-song="${id}"] .stats`);
+    line.textContent = stats.join(" · ");
+    line.hidden = !stats.length;
+  }
+}
+
 // ---- playback ------------------------------------------------------------
 
 // Tone turns a tick position into seconds at the tempo of the moment and back,
@@ -449,6 +556,9 @@ function schedule() {
   });
   song.measures.forEach((start, i) => {
     transport.schedule(time => Tone.getDraw().schedule(() => showBar(i), time), ticks(start));
+    // two ticks early, so it's before a jump at the bar line; not through Draw,
+    // which drops what it can't draw in time, as in a tab in the background
+    transport.schedule(() => barPlayed(i), `${barTicks[i + 1] - 2}i`);
     for (let beat = 0; beat < song.beatsPerBar; beat++) {
       transport.schedule(time => {
         if (Number($("click-volume").value)) click.triggerAttackRelease(beat ? "G5" : "C6", 0.03, time);
@@ -481,6 +591,7 @@ function pause() {
   piano.releaseAll();
   document.body.classList.remove("playing");
   setPlayLabel();
+  drawHeat();
 }
 
 function stop() {
@@ -490,6 +601,7 @@ function stop() {
   document.body.classList.remove("playing");
   setPlayLabel();
   showBar(0);
+  drawHeat();
 }
 
 // Clicking a bar: stopped or paused, play from it now; playing, go to it when
@@ -500,6 +612,10 @@ function goToBar(index) {
 }
 
 function seek(index) {
+  // paused, clicking the bar you stopped in or one before it is going back over them
+  if (transport.state === "paused" && index <= currentBar) {
+    recordPractice({ back: barRange(index, currentBar) });
+  }
   cancelJump();
   piano.releaseAll();
   transport.ticks = barTicks[index];
