@@ -116,6 +116,10 @@ const trackPage = (path, title) => track("page_view", {
   page_title: title,
 });
 
+// Tone asks for the shortest audio buffer it can get, as for a live instrument;
+// on phones, with Bluetooth especially, that crackles. Everything here is
+// scheduled ahead, so a longer one costs nothing.
+Tone.setContext(new Tone.Context({ latencyHint: "playback" }));
 const transport = Tone.getTransport();
 // Two pianos on the same samples, each through its own panner: one plays the
 // parts shown, the other the rest, so each can go to its own ear. Panned to
