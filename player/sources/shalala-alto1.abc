@@ -1,0 +1,11 @@
+X:1
+T:Shalala-Bon nadal - Alto 1
+C:D. Basomba
+%% bars as numbered in the PDF; prepare.py writes out the repeat
+M:4/4
+L:1/16
+K:F
+A A2 A- A4 A A2 A- A4 | B B2 B- B4 B4 A4 | G G2 G- G G3 G G2 G- G4 |
+G G2 G G4 G G G G G4 | F F2 F- F4 F F2 F F4 | F F2 F- F F2 F F F2 F- F4 |
+F F2 F- F4 E E2 E- E2 E2 | C4 C C2 C- C8 | A A2 A- A4 A A2 A- A4 |
+B B2 B B2 B2 B B B B B2 B2 | F F2 F F4 F F2 F F2 F2 | E E2 E- E4 z8 | c c2 A- A4 c c2 A- A4 |]

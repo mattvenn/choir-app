@@ -15,9 +15,9 @@ from pathlib import Path
 from music21 import converter, stream
 
 from scorelib import check, events
-from songs import ave, boga, foc, no
+from songs import ave, boga, foc, no, shalala
 
-SONGS = [foc, ave, no, boga]
+SONGS = [foc, ave, no, boga, shalala]
 OUT = Path(__file__).resolve().parent / "static/scores"
 
 
