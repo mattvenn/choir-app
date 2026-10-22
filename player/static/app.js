@@ -28,7 +28,9 @@ const STRINGS = {
     hear: "Hear",
     showPart: part => `Show ${part}`,
     hearPart: part => `Hear ${part}`,
-    hint: "Click a bar to play from there (while playing, it goes there at the next bar line). Space: play/pause. S: solo the parts shown. The bars you go back to most are shaded orange.",
+    ears: "Ears",
+    earsTitle: "Move the parts shown to one ear and the others to the other. In the middle, both ears hear everything.",
+    hint: "Click a bar to play from there (while playing, it goes there at the next bar line). Space: play/pause. S: solo the parts shown. Ears: move your part to one ear and the others to the other. The bars you go back to most are shaded orange.",
     error: message => `Error: ${message}`,
     updated: date => `Last updated ${date}`,
     minutes: n => `${n} min`,
@@ -53,7 +55,9 @@ const STRINGS = {
     hear: "Oír",
     showPart: part => `Ver ${part}`,
     hearPart: part => `Oír ${part}`,
-    hint: "Pulsa un compás para reproducir desde ahí (si ya suena, salta al acabar el compás). Espacio: reproducir/pausa. S: solo de las voces visibles. Los compases a los que más vuelves se marcan en naranja.",
+    ears: "Oídos",
+    earsTitle: "Lleva las voces visibles a un oído y las demás al otro. En el centro, se oye todo en los dos.",
+    hint: "Pulsa un compás para reproducir desde ahí (si ya suena, salta al acabar el compás). Espacio: reproducir/pausa. S: solo de las voces visibles. Oídos: lleva tu voz a un oído y las demás al otro. Los compases a los que más vuelves se marcan en naranja.",
     error: message => `Error: ${message}`,
     updated: date => `Actualizado el ${date}`,
     minutes: n => `${n} min`,
@@ -113,8 +117,26 @@ const trackPage = (path, title) => track("page_view", {
 });
 
 const transport = Tone.getTransport();
-const piano = new Tone.Sampler({ urls: PIANO_SAMPLES, baseUrl: PIANO_URL, release: 1 })
-  .toDestination();
+// Two pianos on the same samples, each through its own panner: one plays the
+// parts shown, the other the rest, so each can go to its own ear. Panned to
+// the middle, the stereo samples pass through as they are.
+// A sampler only shares a buffer that has already loaded, so the pianos are
+// made once the samples are in (see init).
+const samples = new Tone.ToneAudioBuffers({ urls: PIANO_SAMPLES, baseUrl: PIANO_URL });
+const myPan = new Tone.Panner(0).toDestination();
+const othersPan = new Tone.Panner(0).toDestination();
+let myPiano, othersPiano;
+function makePianos() {
+  const urls = Object.fromEntries(Object.keys(PIANO_SAMPLES).map(note => [note, samples.get(note)]));
+  myPiano = new Tone.Sampler({ urls, release: 1 }).connect(myPan);
+  othersPiano = new Tone.Sampler({ urls, release: 1 }).connect(othersPan);
+}
+const releaseAll = () => { myPiano?.releaseAll(); othersPiano?.releaseAll(); };
+// the slider runs -100 (your part in the left ear) to 100 (in the right)
+const setEars = percent => {
+  myPan.pan.value = percent / 100;
+  othersPan.pan.value = -percent / 100;
+};
 const click = new Tone.Synth({
   oscillator: { type: "square" },
   envelope: { attack: 0.001, decay: 0.04, sustain: 0, release: 0.01 },
@@ -167,6 +189,7 @@ async function init() {
   showVersion();
 
   await Tone.loaded();
+  makePianos();
   $("status").textContent = "";
   $("play").disabled = $("stop").disabled = false;
 }
@@ -256,6 +279,7 @@ async function loadSong(id) {
     $("show-row").append(checkboxCell(shown, i, t("showPart", part.name), render));
     $("hear-row").append(checkboxCell(heard, i, t("hearPart", part.name), endSolo));
   });
+  $("ears-cell").colSpan = song.parts.length;
 
   // as last left on this song, or the song's own
   if (!sameSong) setTempo(store.get(`tempo.${id}`) ?? song.tempo);
@@ -550,7 +574,7 @@ function schedule() {
       transport.schedule(time => {
         if (!heard[i]) return;
         const seconds = dur * 60 / transport.bpm.value;
-        piano.triggerAttackRelease(pitch, seconds, time, 0.7);
+        (shown[i] ? myPiano : othersPiano).triggerAttackRelease(pitch, seconds, time, 0.7);
       }, ticks(start));
     }
   });
@@ -583,12 +607,16 @@ async function play() {
   transport.start();
   document.body.classList.add("playing");  // collapses the controls
   setPlayLabel();
+  // showBar only scrolls when the highlight moves, and after a stop it's already
+  // waiting on bar 1, maybe far off screen
+  const box = barBox(currentBar);
+  if (box) keepInView(box);
 }
 
 function pause() {
   cancelJump();
   transport.pause();
-  piano.releaseAll();
+  releaseAll();
   document.body.classList.remove("playing");
   setPlayLabel();
   drawHeat();
@@ -597,7 +625,7 @@ function pause() {
 function stop() {
   cancelJump();
   transport.stop();
-  piano.releaseAll();
+  releaseAll();
   document.body.classList.remove("playing");
   setPlayLabel();
   showBar(0);
@@ -617,7 +645,7 @@ function seek(index) {
     recordPractice({ back: barRange(index, currentBar) });
   }
   cancelJump();
-  piano.releaseAll();
+  releaseAll();
   transport.ticks = barTicks[index];
   showBar(index);
   if (transport.state !== "started") play();
@@ -767,6 +795,13 @@ setClickVolume(Number($("click-volume").value));
 $("click-volume").addEventListener("input", e => {
   setClickVolume(Number(e.target.value));
   store.set("clickVolume", Number(e.target.value));
+});
+// which ear your part goes to is remembered across songs too
+if (store.get("ears") !== null) $("ears").value = store.get("ears");
+setEars(Number($("ears").value));
+$("ears").addEventListener("input", e => {
+  setEars(Number(e.target.value));
+  store.set("ears", Number(e.target.value));
 });
 $("tempo").addEventListener("input", e => {
   setTempo(Number(e.target.value));

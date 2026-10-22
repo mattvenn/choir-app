@@ -112,6 +112,8 @@ button#tempo-value:not(:disabled)::after { content: "↺"; margin-left: 4px; }
 .parts th[scope="row"] { text-align: left; color: var(--muted); font-size: 0.9rem; }
 .parts td { text-align: center; }
 .parts input { cursor: pointer; }
+.ears { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 0.9rem; }
+#ears { flex: 1; min-width: 80px; margin: 0; }
 
 button {
   display: inline-flex;

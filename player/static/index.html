@@ -59,6 +59,13 @@
         <tbody>
           <tr id="show-row"><th scope="row" data-i18n="show"></th></tr>
           <tr id="hear-row"><th scope="row" data-i18n="hear"></th></tr>
+          <tr id="ears-row" data-i18n-title="earsTitle">
+            <th scope="row" data-i18n="ears"></th>
+            <td id="ears-cell">
+              <label class="ears">L <input id="ears" type="range" min="-100" max="100" step="10" value="0" list="ears-middle" data-i18n-aria-label="earsTitle"> R</label>
+              <datalist id="ears-middle"><option value="0"></option></datalist>
+            </td>
+          </tr>
         </tbody>
       </table>
       <p class="hint" data-i18n="hint"></p>
