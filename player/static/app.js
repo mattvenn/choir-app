@@ -32,7 +32,7 @@ const STRINGS = {
     earsTitle: "Move the parts shown to one ear and the others to the other. In the middle, both ears hear everything.",
     hint: "Click a bar to play from there (while playing, it goes there at the next bar line). Space: play/pause. S: solo the parts shown. Ears: move your part to one ear and the others to the other. The bars you go back to most are shaded orange.",
     error: message => `Error: ${message}`,
-    updated: date => `Last updated ${date}`,
+    updated: (date, time) => `Last updated ${date} at ${time}`,
     minutes: n => `${n} min`,
     hardBars: (n, weekAgo) => `${n} hard bar${n === 1 ? "" : "s"}` +
       (weekAgo === undefined ? "" : ` (${weekAgo} a week ago)`),
@@ -59,7 +59,7 @@ const STRINGS = {
     earsTitle: "Lleva las voces visibles a un oído y las demás al otro. En el centro, se oye todo en los dos.",
     hint: "Pulsa un compás para reproducir desde ahí (si ya suena, salta al acabar el compás). Espacio: reproducir/pausa. S: solo de las voces visibles. Oídos: lleva tu voz a un oído y las demás al otro. Los compases a los que más vuelves se marcan en naranja.",
     error: message => `Error: ${message}`,
-    updated: date => `Actualizado el ${date}`,
+    updated: (date, time) => `Actualizado el ${date} a las ${time}`,
     minutes: n => `${n} min`,
     hardBars: (n, weekAgo) => `${n} ${n === 1 ? "compás difícil" : "compases difíciles"}` +
       (weekAgo === undefined ? "" : ` (${weekAgo} hace una semana)`),
@@ -203,9 +203,11 @@ async function init() {
 async function showVersion() {
   try {
     const { commit, date } = await getJSON("version.json");
+    // in the viewer's own time zone
     const day = new Date(date).toLocaleDateString(lang, { day: "numeric", month: "long", year: "numeric" });
+    const time = new Date(date).toLocaleTimeString(lang, { hour: "2-digit", minute: "2-digit" });
     $("updated").href = `https://github.com/mattvenn/choir-app/commit/${commit}`;
-    $("updated").textContent = t("updated", day);
+    $("updated").textContent = t("updated", day, time);
     $("updated").hidden = false;
   } catch {}
 }
