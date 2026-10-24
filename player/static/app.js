@@ -121,6 +121,14 @@ const trackPage = (path, title) => track("page_view", {
 // scheduled ahead, so a longer one costs nothing.
 Tone.setContext(new Tone.Context({ latencyHint: "playback" }));
 const transport = Tone.getTransport();
+// Draw goes by the time the audio is worked out, but it's heard later: after
+// the output buffer (longer for the hint above) and, over Bluetooth, the
+// headphones' own delay. So what's drawn waits for what's heard.
+const outputDelay = () => {
+  const raw = Tone.getContext().rawContext;
+  return (raw.baseLatency || 0) + (raw.outputLatency || 0);
+};
+const drawWhenHeard = (callback, time) => Tone.getDraw().schedule(callback, time + outputDelay());
 // Two pianos on the same samples, each through its own panner: one plays the
 // parts shown, the other the rest, so each can go to its own ear. Panned to
 // the middle, the stereo samples pass through as they are.
@@ -585,7 +593,7 @@ function schedule() {
     }
   });
   song.measures.forEach((start, i) => {
-    transport.schedule(time => Tone.getDraw().schedule(() => showBar(i), time), ticks(start));
+    transport.schedule(time => drawWhenHeard(() => showBar(i), time), ticks(start));
     // two ticks early, so it's before a jump at the bar line; not through Draw,
     // which drops what it can't draw in time, as in a tab in the background
     transport.schedule(() => barPlayed(i), `${barTicks[i + 1] - 2}i`);
@@ -596,7 +604,7 @@ function schedule() {
     }
   });
   // one extra beat so the last note can ring
-  transport.schedule(time => Tone.getDraw().schedule(stop, time), ticks(song.length + 1));
+  transport.schedule(time => drawWhenHeard(stop, time), ticks(song.length + 1));
 }
 
 // the play button shows a pause icon while playing (see style.css)
@@ -677,7 +685,7 @@ transport.on("loop", time => {
   transport.loop = false;
   // unless another bar has been clicked in the moment before it's heard
   const done = pendingBar;
-  Tone.getDraw().schedule(() => {
+  drawWhenHeard(() => {
     if (pendingBar !== done) return;
     pendingBar = null;
     showPending();
