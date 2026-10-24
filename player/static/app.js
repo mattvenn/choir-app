@@ -32,6 +32,7 @@ const STRINGS = {
     everyone: "Everyone",
     othersTitle: "Fade the other voices in and out",
     yourVoice: voice => `Your voice: ${voice}`,
+    yourPart: "Your part",
     help: "Help",
     close: "Close",
     helpControls: {
@@ -47,6 +48,7 @@ const STRINGS = {
     helpNotes: [
       "Tap a bar to play from there. While it's playing, it goes there when the bar playing ends, so the beat carries on.",
       "The bars you go back to most are shaded orange. The song list shows how long you've practised each song and how many bars are still hard. It follows the last couple of weeks, so it changes as you get better.",
+      "Where a song splits your voice (Alto 1 and Alto 2), choose your line with A1 and A2 at the right of the toolbar.",
       "With a mouse, point at a note to see its name.",
       "Your voice, and the tempo and the other voices' volume for each song, are remembered on this device.",
       "On a phone, songs work best with the phone turned sideways.",
@@ -78,6 +80,7 @@ const STRINGS = {
     everyone: "Todos",
     othersTitle: "Sube y baja las otras voces",
     yourVoice: voice => `Tu voz: ${voice}`,
+    yourPart: "Tu parte",
     help: "Ayuda",
     close: "Cerrar",
     helpControls: {
@@ -93,6 +96,7 @@ const STRINGS = {
     helpNotes: [
       "Pulsa un compás para reproducir desde ahí. Si ya suena, salta al acabar el compás, para no perder el pulso.",
       "Los compases a los que más vuelves se marcan en naranja. La lista de canciones muestra cuánto has ensayado cada una y cuántos compases te siguen costando. Sigue las últimas dos semanas, así que cambia a medida que mejoras.",
+      "Si una canción divide tu voz (Alto 1 y Alto 2), elige tu línea con A1 y A2 a la derecha de la barra.",
       "Con ratón, señala una nota para ver su nombre.",
       "Tu voz, y el tempo y el volumen de las otras voces de cada canción, se guardan en este dispositivo.",
       "En el móvil, las canciones se ven mejor con el teléfono en horizontal.",
@@ -253,6 +257,43 @@ function voiceParts(voice) {
   return song.parts.map(p => p.name === song.myPart);
 }
 
+// Your parts in this song. Where your voice is split (Alto 1 and 2) it's the
+// one chosen on the song page, kept per song, or to start with the first.
+// `split` is the parts it could be, for the switch.
+function myParts() {
+  const flags = voiceParts(store.get("voice"));
+  const split = flags.flatMap((yours, i) => yours ? [i] : []);
+  if (split.length < 2) return { flags, split: [] };
+  const saved = store.get(`part.${songId}`);
+  const chosen = split.includes(saved) ? saved : split[0];
+  return { flags: flags.map((_, i) => i === chosen), split };
+}
+
+// "Alto 1" is A1 on the switch, as on the score's later lines
+const shortName = name => name.split(" ").map(word => /^\d+$/.test(word) ? word : word[0]).join("");
+
+function showPartSwitch(split) {
+  $("part-switch").hidden = !split.length;
+  $("part-switch").replaceChildren(...split.map(i => {
+    const button = document.createElement("button");
+    button.textContent = shortName(song.parts[i].name);
+    button.title = song.parts[i].name;
+    button.setAttribute("aria-label", song.parts[i].name);
+    button.setAttribute("aria-pressed", mine[i]);
+    button.addEventListener("click", () => choosePart(i));
+    return button;
+  }));
+}
+
+function choosePart(i) {
+  store.set(`part.${songId}`, i);
+  mine = song.parts.map((_, k) => k === i);
+  for (const button of $("part-switch").children) {
+    button.setAttribute("aria-pressed", button.title === song.parts[i].name);
+  }
+  keepingPlace(render);
+}
+
 // On a first visit, ask which voice they sing before anything else opens;
 // again from the chooser's "change" link.
 function askVoice() {
@@ -396,14 +437,16 @@ async function showSong(id) {
   trackPage(`/${id}`, song.title);
 }
 
-// The repeats button works on a song with a version without them, and only
-// while it isn't playing: switching redraws the score, which would stop it.
-function updateRepeats() {
+// The repeats button works on a song with a version without them, and it and
+// the part switch only while it isn't playing: each redraws the score, which
+// would hold up the music.
+function updateSwitches() {
   // songId is unset while the voice is being changed
   const hasShort = songs.find(s => s.id === songId)?.short;
   const playing = document.body.classList.contains("playing");
   $("repeats").disabled = !hasShort || playing;
   $("repeats").title = t(!hasShort ? "noRepeatsTitle" : playing ? "pauseForRepeats" : "repeatsTitle");
+  for (const button of $("part-switch").children) button.disabled = playing;
 }
 
 // Load song `id`, written out or, if repeats are switched off and the song has
@@ -421,9 +464,11 @@ async function loadSong(id) {
   await osmd.load(`scores/${file}.musicxml`);
   fixLyricHyphens();
   songId = id;
-  updateRepeats();
+  updateSwitches();
 
-  mine = voiceParts(store.get("voice"));
+  const parts = myParts();
+  mine = parts.flags;
+  showPartSwitch(parts.split);
 
   // as last left on this song, or the song's own tempo and just your part;
   // the tempo goes up to twice the song's own
@@ -733,7 +778,7 @@ async function play() {
   transport.start();
   document.body.classList.add("playing");  // the play button shows pause
   setPlayLabel();
-  updateRepeats();
+  updateSwitches();
   // showBar only scrolls when the highlight moves, and after a stop it's already
   // waiting on bar 1, maybe far off screen
   const box = barBox(currentBar);
@@ -747,7 +792,7 @@ function pause() {
   releaseAll();
   document.body.classList.remove("playing");
   setPlayLabel();
-  updateRepeats();
+  updateSwitches();
   drawHeat();
 }
 
@@ -758,7 +803,7 @@ function stop() {
   releaseAll();
   document.body.classList.remove("playing");
   setPlayLabel();
-  updateRepeats();
+  updateSwitches();
   showBar(0);
   drawHeat();
 }
@@ -892,24 +937,17 @@ $("home-button").addEventListener("click", () => {
 });
 // song links, and Back/Forward between a song and the chooser
 window.addEventListener("popstate", () => { route().catch(showError); });
-// Switching version stays on the same printed bar (its first time through,
-// going to the written-out one), so play carries on from there.
-$("repeats").addEventListener("click", async e => {
-  const button = e.currentTarget;
-  button.setAttribute("aria-pressed", button.getAttribute("aria-pressed") === "false");
-  const bar = printedBar(currentBar);
-  // the bar stays where it was on screen, though the other version is laid out
-  // differently: the page keeps its height while the score is redrawn, the
-  // highlight goes straight to the bar instead of sliding, then the page scrolls
+// Redraw the score with `change`, keeping the highlighted bar where it was on
+// screen though the score is laid out differently: the page keeps its height
+// while it's redrawn, the highlight goes straight to the bar instead of
+// sliding, then the page scrolls.
+async function keepingPlace(change) {
   const anchor = $("highlight").getBoundingClientRect().top;
   const wrap = $("score-wrap");
   wrap.style.minHeight = `${wrap.offsetHeight}px`;
   $("highlight").style.transition = "none";
   try {
-    await loadSong(songId);
-    const index = Math.max(song.measures.findIndex((_, i) => printedBar(i) === bar), 0);
-    transport.ticks = barTicks[index];
-    showBar(index);
+    await change();
     wrap.style.minHeight = "";
     window.scrollBy(0, $("highlight").getBoundingClientRect().top - anchor);
   } catch (err) {
@@ -919,6 +957,20 @@ $("repeats").addEventListener("click", async e => {
     $("highlight").getBoundingClientRect();  // so the jump is drawn before sliding comes back
     $("highlight").style.transition = "";
   }
+}
+
+// Switching version stays on the same printed bar (its first time through,
+// going to the written-out one), so play carries on from there.
+$("repeats").addEventListener("click", e => {
+  const button = e.currentTarget;
+  button.setAttribute("aria-pressed", button.getAttribute("aria-pressed") === "false");
+  const bar = printedBar(currentBar);
+  keepingPlace(async () => {
+    await loadSong(songId);
+    const index = Math.max(song.measures.findIndex((_, i) => printedBar(i) === bar), 0);
+    transport.ticks = barTicks[index];
+    showBar(index);
+  });
 });
 // the metronome volume is remembered across songs, the tempo for each song
 if (store.get("clickVolume") !== null) $("click-volume").value = store.get("clickVolume");

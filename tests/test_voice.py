@@ -12,7 +12,7 @@ from playwright.sync_api import sync_playwright
 # voice: its parts in an SATB song and in a S/A1/A2/Bar one
 CASES = {
     "Soprano": (["Soprano"], ["Soprano"]),
-    "Alto": (["Alto"], ["Alto 1", "Alto 2"]),
+    "Alto": (["Alto"], ["Alto 1"]),  # split, so the first to start with
     "Tenor": (["Tenor"], ["Baritone"]),
     "Bass": (["Bass"], ["Baritone"]),
 }
@@ -169,4 +169,38 @@ def test_the_address_can_choose_the_language(server, asked, help_text):
         page.wait_for_function("songId === 'ave'")
         page.click("#home-button")
         assert page.text_content("#help-button") == help_text
+        browser.close()
+
+
+def test_a_split_voice_chooses_its_line(server):
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page()
+        page.add_init_script(f"if (!localStorage.getItem('choir.voice')) {SET_VOICE}")
+        # not split here: no switch
+        open_song(page, server, "ave")
+        assert page.is_hidden("#part-switch")
+
+        open_song(page, server, "foc")
+        page.wait_for_selector("#play:not([disabled])", timeout=60_000)
+        assert page.locator("#part-switch button").all_text_contents() == ["A1", "A2"]
+        assert page.evaluate(MINE) == ["Alto 1"]
+        page.click("#part-switch button:text-is('A2')")
+        page.wait_for_function("mine[2]")
+        assert page.evaluate(MINE) == ["Alto 2"]
+        assert page.evaluate(DRAWN) == ["Alto 2"]
+        assert page.get_attribute("#part-switch button:text-is('A2')", "aria-pressed") == "true"
+
+        # kept for the song
+        page.reload()
+        page.wait_for_function("songId === 'foc'")
+        assert page.evaluate(MINE) == ["Alto 2"]
+
+        # redrawing would hold up the music, so not while playing
+        page.click("#play")
+        page.wait_for_function("transport.state === 'started'")
+        assert page.is_disabled("#part-switch button:text-is('A1')")
+        page.click("#play")
+        page.wait_for_function("transport.state === 'paused'")
+        assert page.is_enabled("#part-switch button:text-is('A1')")
         browser.close()

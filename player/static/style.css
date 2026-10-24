@@ -134,6 +134,15 @@ button#tempo-value:not(:disabled)::after { content: "↺"; margin-left: 4px; }
 #speaker .wave.off { opacity: 0.2; }
 #click-volume { width: 80px; min-width: 40px; flex: 0 1 auto; }  /* as long as the tempo slider */
 
+/* your line, where your voice is split: buttons joined into one */
+#part-switch { display: flex; margin-left: auto; }
+#part-switch:not([hidden]) + .others { margin-left: 0; }
+#part-switch button { min-width: 0; padding: 6px 10px; border-radius: 0; background: #fff; color: var(--accent); }
+#part-switch button:first-child { border-radius: 6px 0 0 6px; }
+#part-switch button:last-child { border-radius: 0 6px 6px 0; }
+#part-switch button + button { border-left: none; }
+#part-switch button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+
 /* how loud the other voices are, from just yours to everyone */
 .others { display: flex; align-items: center; gap: 8px; min-width: 0; margin-left: auto; color: var(--muted); font-size: 0.9rem; }
 .others svg { flex: none; }
@@ -235,7 +244,9 @@ button:disabled { opacity: 0.4; cursor: default; }
   /* too narrow for one row: the buttons and the voices on the first, the
      tempo box across the second; the same playing or not */
   .controls { flex-wrap: wrap; }
-  .controls > .others { flex: 1 1 0; margin-left: 0; }
+  .controls > .others { flex: 1 1 0; gap: 4px; margin-left: 0; }
+  #others { min-width: 40px; }
+  #part-switch button { padding: 4px 6px; }
   #others { flex: 1 1 0; width: auto; }
   .controls > .tempo-group { order: 1; flex: 1 1 100%; }
   /* the two sliders in the tempo box share what's left equally */
