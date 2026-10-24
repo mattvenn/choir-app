@@ -58,3 +58,12 @@ song, run `prepare.py` and commit what it writes (CI checks they match).
 
 Every push to `main` publishes `player/static` to
 https://mattvenn.github.io/choir-app/ (see `.github/workflows/pages.yml`).
+
+## Tests
+
+    .venv/bin/pip install -r tests/requirements.txt
+    .venv/bin/playwright install chromium
+    .venv/bin/pytest tests
+
+These play a song in headless Chrome, with a phone's output delay faked, to
+check the highlighted bar moves when the bar is heard. CI runs them too.
