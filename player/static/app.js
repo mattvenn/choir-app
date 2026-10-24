@@ -167,6 +167,11 @@ const trackPage = (path, title) => track("page_view", {
 // Made here rather than by Tone, whose own wraps it and hides outputLatency.
 const audioContext = new AudioContext({ latencyHint: "playback" });
 Tone.setContext(audioContext);
+// Notes and ticks are handed to the audio this far ahead (Tone's own is 0.1s).
+// When a phone is busy for longer than that, a tick is handed over after its
+// time: its 30ms click is cut short or lost, though the longer piano notes
+// survive. Pressing play takes this long to start, which isn't noticed.
+Tone.getContext().lookAhead = 0.25;
 const transport = Tone.getTransport();
 // Draw goes by the time the audio is worked out, but it's heard later: after
 // the output buffer (longer for the hint above) and, over Bluetooth, the
