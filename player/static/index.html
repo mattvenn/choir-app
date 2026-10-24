@@ -11,7 +11,23 @@
 <body>
   <main id="home" hidden>
     <img class="logo" src="logo.jpg" alt="Coro Anna Magdalena" width="800" height="706">
+    <section id="voice-picker" hidden>
+      <h2 data-i18n="chooseVoice"></h2>
+      <div id="voice-list"></div>
+      <p data-i18n="chooseVoiceHint"></p>
+    </section>
     <ul id="song-list"></ul>
+    <div class="home-buttons" id="voice-line">
+      <button id="change-voice" type="button"></button>
+      <button id="help-button" type="button" data-i18n="help"></button>
+    </div>
+    <dialog id="help">
+      <h2 data-i18n="help"></h2>
+      <!-- filled in by showHelp, with the toolbar's own icons -->
+      <ul id="help-controls"></ul>
+      <div id="help-notes"></div>
+      <form method="dialog"><button data-i18n="close"></button></form>
+    </dialog>
     <p class="updated"><a id="updated" target="_blank" rel="noopener" hidden></a></p>
   </main>
   <div id="player" hidden>
@@ -29,46 +45,40 @@
         <button id="stop" disabled data-i18n-aria-label="stop" data-i18n-title="stop">
           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="1" fill="currentColor"/></svg>
         </button>
-        <button id="solo" aria-pressed="false" data-i18n-aria-label="solo" data-i18n-title="soloTitle">
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 18v-6a8 8 0 0 1 16 0v6" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="5" height="7" rx="1.5" fill="currentColor"/><rect x="16" y="14" width="5" height="7" rx="1.5" fill="currentColor"/></svg>
-        </button>
         <div class="tempo-group">
-          <label class="metronome" data-i18n-title="clickVolume">
-            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8.5 3h7L20 21H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 16l5-8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            <input id="click-volume" type="range" min="0" max="100" value="0" data-i18n-aria-label="clickVolume">
-          </label>
           <button id="tap" data-i18n-aria-label="tap" data-i18n-title="tapTitle">
-            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="3.5" fill="currentColor"/><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="3 2.3"/></svg>
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8.5 3h7L20 21H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 16l5-8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </button>
           <div class="tempo">
-            <label class="tempo-name" for="tempo">♩ =</label>
             <span class="tempo-track">
               <!-- marks the score's own tempo on the slider -->
               <span id="tempo-tick" aria-hidden="true"></span>
-              <input id="tempo" type="range" min="40" max="160" step="1">
+              <input id="tempo" type="range" min="40" max="160" step="1" data-i18n-aria-label="tempo" data-i18n-title="tempo">
             </span>
             <!-- shows the tempo; when it isn't the score's, a click goes back to it -->
             <button id="tempo-value" type="button" aria-live="polite"></button>
           </div>
+          <label class="metronome" data-i18n-title="clickVolume">
+            <input id="click-volume" type="range" min="0" max="100" value="0" data-i18n-aria-label="clickVolume">
+          </label>
+          <!-- a wave lights up for each third of the metronome volume -->
+          <svg id="speaker" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9h4l5-4v14l-5-4H3z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path class="wave" d="M15 9.5a3.5 3.5 0 0 1 0 5"/><path class="wave" d="M17.5 7a7 7 0 0 1 0 10"/><path class="wave" d="M20 4.5a10.5 10.5 0 0 1 0 15"/></g></svg>
         </div>
-        <label class="check" id="short-option" hidden><input id="short" type="checkbox"> <span data-i18n="noRepeats"></span></label>
-        <span id="status" data-i18n="loading"></span>
+        <!-- pressed: the song as written out, repeats and all; not: each bar once.
+             Greyed out for a song with no version without repeats -->
+        <button id="repeats" aria-pressed="true" disabled data-i18n-aria-label="repeats" data-i18n-title="repeatsTitle">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="7" cy="9" r="1.6" fill="currentColor"/><circle cx="7" cy="15" r="1.6" fill="currentColor"/><path d="M11 4v16" stroke="currentColor" stroke-width="1.5"/><path d="M15.5 4v16" stroke="currentColor" stroke-width="3.5"/><g class="icon-off" stroke-linecap="round"><path d="M3 21 21 3" stroke="#fff" stroke-width="5"/><path d="M3 21 21 3" stroke="currentColor" stroke-width="2"/></g></svg>
+        </button>
+        <!-- only for errors; while the piano loads, play is greyed out -->
+        <span id="status"></span>
+        <label class="others" data-i18n-title="othersTitle">
+          <!-- one singer: just your part -->
+          <svg viewBox="0 0 24 24" width="20" height="20" role="img" data-i18n-aria-label="me"><circle cx="12" cy="5.6" r="4" fill="currentColor"/><path d="M4 22a8 8 0 0 1 16 0z" fill="currentColor"/></svg>
+          <input id="others" type="range" min="0" max="100" step="5" value="0" data-i18n-aria-label="othersTitle">
+          <!-- four singers: everyone; drawn top to bottom the same as the one singer -->
+          <svg class="choir" viewBox="0 0 24 24" width="20" height="20" role="img" data-i18n-aria-label="everyone"><g fill="currentColor"><circle cx="7" cy="4" r="2.4"/><path d="M2.5 11a4.5 4.5 0 0 1 9 0z"/><circle cx="17" cy="4" r="2.4"/><path d="M12.5 11a4.5 4.5 0 0 1 9 0z"/><circle cx="7" cy="15" r="2.4"/><path d="M2.5 22a4.5 4.5 0 0 1 9 0z"/><circle cx="17" cy="15" r="2.4"/><path d="M12.5 22a4.5 4.5 0 0 1 9 0z"/></g></svg>
+        </label>
       </div>
-      <table class="parts">
-        <thead><tr id="part-names"><th></th></tr></thead>
-        <tbody>
-          <tr id="show-row"><th scope="row" data-i18n="show"></th></tr>
-          <tr id="hear-row"><th scope="row" data-i18n="hear"></th></tr>
-          <tr id="ears-row" data-i18n-title="earsTitle">
-            <th scope="row" data-i18n="ears"></th>
-            <td id="ears-cell">
-              <label class="ears">L <input id="ears" type="range" min="-100" max="100" step="10" value="0" list="ears-middle" data-i18n-aria-label="earsTitle"> R</label>
-              <datalist id="ears-middle"><option value="0"></option></datalist>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <p class="hint" data-i18n="hint"></p>
     </header>
     <main>
       <div id="score-wrap">

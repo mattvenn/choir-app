@@ -12,25 +12,44 @@ const PIANO_SAMPLES = Object.fromEntries(
 const STRINGS = {
   en: {
     appName: "Choir Practice",
+    chooseVoice: "Which voice do you sing?",
+    chooseVoiceHint: "Each song will show and play your part. You can change your voice later on this page.",
     songs: "Songs",
     play: "Play",
     pause: "Pause",
+    tempo: "Tempo (quarter notes a minute)",
     stop: "Stop",
-    solo: "Solo",
-    soloTitle: "Hear only the parts shown (S)",
     tap: "Tap",
     tapTitle: "Tap along with the beat to set the tempo",
     resetTempo: bpm => `Back to the score's tempo (${bpm})`,
-    noRepeats: "No repeats",
+    repeats: "Repeats",
+    repeatsTitle: "Play the repeats, or each bar once",
+    noRepeatsTitle: "This song has no version without repeats",
+    pauseForRepeats: "Pause to switch the repeats on or off",
     clickVolume: "Metronome volume",
-    loading: "Loading piano…",
-    show: "Show",
-    hear: "Hear",
-    showPart: part => `Show ${part}`,
-    hearPart: part => `Hear ${part}`,
-    ears: "Ears",
-    earsTitle: "Move the parts shown to one ear and the others to the other. In the middle, both ears hear everything.",
-    hint: "Click a bar to play from there (while playing, it goes there at the next bar line). Space: play/pause. S: solo the parts shown. Ears: move your part to one ear and the others to the other. The bars you go back to most are shaded orange.",
+    me: "Me",
+    everyone: "Everyone",
+    othersTitle: "Fade the other voices in and out",
+    yourVoice: voice => `Your voice: ${voice}`,
+    help: "Help",
+    close: "Close",
+    helpControls: {
+      "home-button": "Back to the song list.",
+      play: "Play and pause. On a keyboard, Space does the same.",
+      stop: "Stop, and go back to the start.",
+      repeats: "Repeats. Switch them off to hear each bar once. Greyed out when a song has no version without them.",
+      tap: "Tap along with the beat to set the tempo.",
+      tempo: "The tempo. The mark is the score's own; away from it, tap the number to go back to it.",
+      speaker: "The metronome's volume. All the way left, it's off.",
+      others: "From just your part, slide towards the group to bring the other voices in.",
+    },
+    helpNotes: [
+      "Tap a bar to play from there. While it's playing, it goes there when the bar playing ends, so the beat carries on.",
+      "The bars you go back to most are shaded orange. The song list shows how long you've practised each song and how many bars are still hard. It follows the last couple of weeks, so it changes as you get better.",
+      "With a mouse, point at a note to see its name.",
+      "Your voice, and the tempo and the other voices' volume for each song, are remembered on this device.",
+      "On a phone, songs work best with the phone turned sideways.",
+    ],
     error: message => `Error: ${message}`,
     updated: (date, time) => `Last updated ${date} at ${time}`,
     minutes: n => `${n} min`,
@@ -39,25 +58,44 @@ const STRINGS = {
   },
   es: {
     appName: "Ensayo de coro",
+    chooseVoice: "¿Qué voz cantas?",
+    chooseVoiceHint: "Cada canción mostrará y tocará tu voz. Puedes cambiarla luego en esta página.",
     songs: "Canciones",
     play: "Reproducir",
     pause: "Pausa",
+    tempo: "Tempo (negras por minuto)",
     stop: "Parar",
-    solo: "Solo",
-    soloTitle: "Oír solo las voces visibles (S)",
     tap: "Marcar",
     tapTitle: "Toca al ritmo del pulso para fijar el tempo",
     resetTempo: bpm => `Volver al tempo de la partitura (${bpm})`,
-    noRepeats: "Sin repeticiones",
+    repeats: "Repeticiones",
+    repeatsTitle: "Tocar las repeticiones, o cada compás una vez",
+    noRepeatsTitle: "Esta canción no tiene versión sin repeticiones",
+    pauseForRepeats: "Pausa para activar o desactivar las repeticiones",
     clickVolume: "Volumen del metrónomo",
-    loading: "Cargando piano…",
-    show: "Ver",
-    hear: "Oír",
-    showPart: part => `Ver ${part}`,
-    hearPart: part => `Oír ${part}`,
-    ears: "Oídos",
-    earsTitle: "Lleva las voces visibles a un oído y las demás al otro. En el centro, se oye todo en los dos.",
-    hint: "Pulsa un compás para reproducir desde ahí (si ya suena, salta al acabar el compás). Espacio: reproducir/pausa. S: solo de las voces visibles. Oídos: lleva tu voz a un oído y las demás al otro. Los compases a los que más vuelves se marcan en naranja.",
+    me: "Mi voz",
+    everyone: "Todos",
+    othersTitle: "Sube y baja las otras voces",
+    yourVoice: voice => `Tu voz: ${voice}`,
+    help: "Ayuda",
+    close: "Cerrar",
+    helpControls: {
+      "home-button": "Volver a la lista de canciones.",
+      play: "Reproducir y pausar. Con teclado, la barra espaciadora hace lo mismo.",
+      stop: "Parar y volver al principio.",
+      repeats: "Repeticiones. Desactívalas para oír cada compás una vez. En gris si la canción no tiene versión sin ellas.",
+      tap: "Toca al ritmo del pulso para fijar el tempo.",
+      tempo: "El tempo. La marca es el de la partitura; si te alejas, toca el número para volver a él.",
+      speaker: "El volumen del metrónomo. Del todo a la izquierda, no suena.",
+      others: "Desde solo tu voz, desliza hacia el grupo para oír las otras voces.",
+    },
+    helpNotes: [
+      "Pulsa un compás para reproducir desde ahí. Si ya suena, salta al acabar el compás, para no perder el pulso.",
+      "Los compases a los que más vuelves se marcan en naranja. La lista de canciones muestra cuánto has ensayado cada una y cuántos compases te siguen costando. Sigue las últimas dos semanas, así que cambia a medida que mejoras.",
+      "Con ratón, señala una nota para ver su nombre.",
+      "Tu voz, y el tempo y el volumen de las otras voces de cada canción, se guardan en este dispositivo.",
+      "En el móvil, las canciones se ven mejor con el teléfono en horizontal.",
+    ],
     error: message => `Error: ${message}`,
     updated: (date, time) => `Actualizado el ${date} a las ${time}`,
     minutes: n => `${n} min`,
@@ -126,45 +164,65 @@ const transport = Tone.getTransport();
 // Draw goes by the time the audio is worked out, but it's heard later: after
 // the output buffer (longer for the hint above) and, over Bluetooth, the
 // headphones' own delay. So what's drawn waits for what's heard.
-const outputDelay = () => (audioContext.baseLatency || 0) + (audioContext.outputLatency || 0);
+// The output timestamp says which moment of the audio is coming out now, so
+// the gap to the one being worked out is the whole delay in one. Adding up the
+// two latencies instead came out 13-19ms more on every device tried, as if
+// some of it were counted in both. They're the fallback: before the audio
+// starts, where there's no timestamp, or where it's far out (older iPhones
+// gave nonsense).
+const outputDelay = () => {
+  const stamp = audioContext.getOutputTimestamp?.();
+  if (stamp?.performanceTime > 0) {
+    const heardNow = stamp.contextTime + (performance.now() - stamp.performanceTime) / 1000;
+    const delay = audioContext.currentTime - heardNow;
+    if (delay >= 0 && delay < 1) return delay;
+  }
+  return (audioContext.baseLatency || 0) + (audioContext.outputLatency || 0);
+};
 const drawWhenHeard = (callback, time) => Tone.getDraw().schedule(callback, time + outputDelay());
-// Two pianos on the same samples, each through its own panner: one plays the
-// parts shown, the other the rest, so each can go to its own ear. Panned to
-// the middle, the stereo samples pass through as they are.
+// What's waiting to be drawn belongs to the music as it was going; after a
+// pause, stop or jump it would move the highlight away from where it now is.
+const cancelDraws = () => Tone.getDraw().cancel(0);
+// Two pianos on the same samples: one plays your part, the other the rest,
+// through a gain the slider fades from silent (your part alone) to full
+// (the whole choir).
 // A sampler only shares a buffer that has already loaded, so the pianos are
 // made once the samples are in (see init).
 const samples = new Tone.ToneAudioBuffers({ urls: PIANO_SAMPLES, baseUrl: PIANO_URL });
-const myPan = new Tone.Panner(0).toDestination();
-const othersPan = new Tone.Panner(0).toDestination();
+const othersGain = new Tone.Gain(0).toDestination();
 let myPiano, othersPiano;
 function makePianos() {
   const urls = Object.fromEntries(Object.keys(PIANO_SAMPLES).map(note => [note, samples.get(note)]));
-  myPiano = new Tone.Sampler({ urls, release: 1 }).connect(myPan);
-  othersPiano = new Tone.Sampler({ urls, release: 1 }).connect(othersPan);
+  myPiano = new Tone.Sampler({ urls, release: 1 }).toDestination();
+  othersPiano = new Tone.Sampler({ urls, release: 1 }).connect(othersGain);
 }
 const releaseAll = () => { myPiano?.releaseAll(); othersPiano?.releaseAll(); };
-// the slider runs -100 (your part in the left ear) to 100 (in the right)
-const setEars = percent => {
-  myPan.pan.value = percent / 100;
-  othersPan.pan.value = -percent / 100;
+// the slider runs 0 (your part alone) to 100 (everyone); a short ramp, so
+// dragging it doesn't click
+const setOthers = percent => {
+  $("others").value = percent;
+  othersGain.gain.rampTo(percent / 100, 0.05);
 };
 const click = new Tone.Synth({
   oscillator: { type: "square" },
   envelope: { attack: 0.001, decay: 0.04, sustain: 0, release: 0.01 },
 }).toDestination();
-// the slider runs 0-100; 100 is as loud as the first version, which was too loud
-const CLICK_MAX_GAIN = 0.25;
+// the slider runs 0-100; 100 is three quarters of what it was before, which
+// could still be set too loud
+const CLICK_MAX_GAIN = 0.1875;
 const setClickVolume = percent => {
   click.volume.value = Tone.gainToDb(percent / 100 * CLICK_MAX_GAIN);
+  // silent: no waves; then one more for each third of the way up
+  document.querySelectorAll("#speaker .wave").forEach((wave, i) => {
+    wave.classList.toggle("off", percent <= i * 100 / 3);
+  });
 };
 
 let songs;         // scores/index.json
 let song;          // scores/<id>.json
 let songId;        // which song is loaded (`song` may be its version without repeats)
 let osmd;
-let shown = [];   // per part
-let heard = [];
-let beforeSolo = null;  // what was heard before solo was switched on
+let mine = [];     // per part: whether it's your voice's
 let currentBar = 0;
 
 // note times are in quarters; scheduling in transport ticks means a tempo
@@ -172,6 +230,48 @@ let currentBar = 0;
 const ticks = quarters => `${Math.round(quarters * transport.PPQ)}i`;
 
 const getJSON = async url => (await fetch(url)).json();
+
+// The choir's four voices, and the part names each looks for in a song, in
+// order: songs for three upper voices have one Baritone part for the men.
+// "Alto" also matches "Alto 1" and "Alto 2".
+const VOICE_PARTS = {
+  Soprano: ["Soprano"],
+  Alto: ["Alto"],
+  Tenor: ["Tenor", "Baritone"],
+  Bass: ["Bass", "Baritone"],
+};
+
+// Which parts of this song are the voice's; if none, the song's own part.
+function voiceParts(voice) {
+  for (const name of VOICE_PARTS[voice] ?? []) {
+    const flags = song.parts.map(p => p.name === name || p.name.startsWith(`${name} `));
+    if (flags.some(Boolean)) return flags;
+  }
+  return song.parts.map(p => p.name === song.myPart);
+}
+
+// On a first visit, ask which voice they sing before anything else opens;
+// again from the chooser's "change" link.
+function askVoice() {
+  $("home").hidden = false;
+  $("song-list").hidden = $("voice-line").hidden = true;
+  $("voice-picker").hidden = false;
+  $("voice-list").replaceChildren();
+  return new Promise(resolve => {
+    for (const voice of Object.keys(VOICE_PARTS)) {
+      const button = document.createElement("button");
+      button.textContent = voice;
+      button.addEventListener("click", () => {
+        store.set("voice", voice);
+        track("choose_voice", { voice });
+        $("voice-picker").hidden = true;
+        $("song-list").hidden = $("voice-line").hidden = false;
+        resolve();
+      });
+      $("voice-list").append(button);
+    }
+  });
+}
 
 async function init() {
   osmd = new opensheetmusicdisplay.OpenSheetMusicDisplay($("score"), {
@@ -196,12 +296,12 @@ async function init() {
     item.append(link);
     $("song-list").append(item);
   }
+  if (!store.get("voice")) await askVoice();
   await route();
   showVersion();
 
   await Tone.loaded();
   makePianos();
-  $("status").textContent = "";
   $("play").disabled = $("stop").disabled = false;
 }
 
@@ -219,6 +319,45 @@ async function showVersion() {
   } catch {}
 }
 
+// What each control does, beside a copy of its icons from the toolbar, then
+// the rest of how it works.
+const HELP_ICONS = {
+  "home-button": "#home-button svg",
+  play: "#play svg",
+  stop: "#stop svg",
+  repeats: "#repeats svg",
+  tap: "#tap svg",
+  tempo: null,  // a slider with no icon of its own
+  speaker: "#speaker",
+  others: ".others svg",
+};
+function showHelp() {
+  $("help-controls").replaceChildren(...Object.entries(t("helpControls")).map(([id, text]) => {
+    const icons = document.createElement("span");
+    icons.className = "help-icons";
+    if (HELP_ICONS[id]) {
+      icons.append(...[...document.querySelectorAll(HELP_ICONS[id])].map(svg => svg.cloneNode(true)));
+    } else {
+      icons.textContent = "♩";
+    }
+    // shown as they are at their fullest: play, repeats on, every wave
+    icons.querySelectorAll(".icon-pause, .icon-off").forEach(el => el.remove());
+    icons.querySelectorAll(".off").forEach(el => el.classList.remove("off"));
+    icons.querySelectorAll("[id]").forEach(el => el.removeAttribute("id"));
+    const item = document.createElement("li");
+    item.append(icons, text);
+    return item;
+  }));
+  $("help-notes").replaceChildren(...t("helpNotes").map(text => {
+    const p = document.createElement("p");
+    p.textContent = text;
+    return p;
+  }));
+  $("help").showModal();
+  // opening puts the focus on Close, which scrolls a long help to the bottom
+  $("help").scrollTop = 0;
+}
+
 // ---- pages ---------------------------------------------------------------
 
 // The URL says which page is open: #<song id> for a song, nothing for the
@@ -234,6 +373,8 @@ function showHome() {
   $("player").hidden = true;
   $("home").hidden = false;
   document.title = t("appName");
+  const voice = store.get("voice");
+  $("change-voice").textContent = voice ? t("yourVoice", voice) : t("chooseVoice");
   showPracticeStats();
   trackPage("/", t("appName"));
 }
@@ -252,84 +393,54 @@ async function showSong(id) {
   trackPage(`/${id}`, song.title);
 }
 
-// Load song `id`, written out or, if "no repeats" is ticked and the song has
+// The repeats button works on a song with a version without them, and only
+// while it isn't playing: switching redraws the score, which would stop it.
+function updateRepeats() {
+  // songId is unset while the voice is being changed
+  const hasShort = songs.find(s => s.id === songId)?.short;
+  const playing = document.body.classList.contains("playing");
+  $("repeats").disabled = !hasShort || playing;
+  $("repeats").title = t(!hasShort ? "noRepeatsTitle" : playing ? "pauseForRepeats" : "repeatsTitle");
+}
+
+// Load song `id`, written out or, if repeats are switched off and the song has
 // one, the version with each bar once. Switching between those two keeps the
-// parts and tempo chosen.
+// tempo and how loud the others are.
 async function loadSong(id) {
   const sameSong = id === songId;
   if (song) stop();
   const hasShort = songs.find(s => s.id === id).short;
-  $("short-option").hidden = !hasShort;
-  const file = hasShort && $("short").checked ? `${id}-short` : id;
+  const noRepeats = $("repeats").getAttribute("aria-pressed") === "false";
+  const file = hasShort && noRepeats ? `${id}-short` : id;
   song = await getJSON(`scores/${file}.json`);
   document.title = `${song.title} · ${t("appName")}`;
   history.replaceState(null, "", `#${id}`);
   await osmd.load(`scores/${file}.musicxml`);
   fixLyricHyphens();
   songId = id;
+  updateRepeats();
 
-  // one column per part, a row each for Show and Hear: as last left on this
-  // song, or to start with just your part
-  for (const row of ["part-names", "show-row", "hear-row"]) {
-    $(row).replaceChildren($(row).firstElementChild);
-  }
+  mine = voiceParts(store.get("voice"));
+
+  // as last left on this song, or the song's own tempo and just your part;
+  // the tempo goes up to twice the song's own
   if (!sameSong) {
-    const saved = store.get(`parts.${id}`);
-    const fits = flags => Array.isArray(flags) && flags.length === song.parts.length;
-    if (saved && fits(saved.shown) && fits(saved.heard) && saved.shown.some(Boolean)) {
-      ({ shown, heard } = saved);
-    } else {
-      shown = song.parts.map(p => p.name === song.myPart);
-      heard = [...shown];
-    }
+    $("tempo").max = Math.round(song.tempo * 2);
+    setTempo(store.get(`tempo.${id}`) ?? song.tempo);
+    setOthers(store.get(`others.${id}`) ?? 0);
   }
-  endSolo();
-  song.parts.forEach((part, i) => {
-    const name = document.createElement("th");
-    name.scope = "col";
-    name.textContent = part.name;
-    $("part-names").append(name);
-    $("show-row").append(checkboxCell(shown, i, t("showPart", part.name), render));
-    $("hear-row").append(checkboxCell(heard, i, t("hearPart", part.name), endSolo));
-  });
-  $("ears-cell").colSpan = song.parts.length;
-
-  // as last left on this song, or the song's own
-  if (!sameSong) setTempo(store.get(`tempo.${id}`) ?? song.tempo);
 
   currentBar = 0;
   render();
   schedule();
 }
 
-// A checkbox bound to flags[i]; onChange runs after the flag is updated.
-function checkboxCell(flags, i, label, onChange) {
-  const cell = document.createElement("td");
-  const box = document.createElement("input");
-  box.type = "checkbox";
-  box.checked = flags[i];
-  box.setAttribute("aria-label", label);
-  box.addEventListener("change", () => {
-    flags[i] = box.checked;
-    // OSMD can't draw a score with no parts
-    if (flags === shown && !shown.some(Boolean)) {
-      flags[i] = box.checked = true;
-      return;
-    }
-    saveParts();
-    onChange();
-  });
-  cell.append(box);
-  return cell;
-}
-
 const saveTempo = () => store.set(`tempo.${songId}`, transport.bpm.value);
-const saveParts = () => store.set(`parts.${songId}`, { shown, heard });
 
 // ---- score drawing -------------------------------------------------------
 
 function render() {
-  osmd.Sheet.Instruments.forEach((inst, i) => { inst.Visible = shown[i]; });
+  osmd.Sheet.Instruments.forEach((inst, i) => { inst.Visible = mine[i]; });
   osmd.render();
   indexNotes();
   showBar(currentBar);
@@ -577,7 +688,7 @@ function showPracticeStats() {
 let barTicks = [];  // per bar, then the end of the song
 const eventTick = quarters => Math.floor(transport.toTicks(ticks(quarters)));
 
-// Every note of every part is scheduled once; muted parts are skipped as they come up.
+// Every note of every part is scheduled once, yours on one piano and the rest on the other.
 function schedule() {
   transport.cancel();
   barTicks = [...song.measures, song.length].map(eventTick);
@@ -585,9 +696,8 @@ function schedule() {
     for (const [midi, start, dur] of part.notes) {
       const pitch = Tone.Frequency(midi, "midi").toNote();
       transport.schedule(time => {
-        if (!heard[i]) return;
         const seconds = dur * 60 / transport.bpm.value;
-        (shown[i] ? myPiano : othersPiano).triggerAttackRelease(pitch, seconds, time, 0.7);
+        (mine[i] ? myPiano : othersPiano).triggerAttackRelease(pitch, seconds, time, 0.7);
       }, ticks(start));
     }
   });
@@ -618,8 +728,9 @@ async function play() {
   // counted from a stop, not on every resume after a pause
   if (transport.state === "stopped") track("play", { song: songId });
   transport.start();
-  document.body.classList.add("playing");  // collapses the controls
+  document.body.classList.add("playing");  // the play button shows pause
   setPlayLabel();
+  updateRepeats();
   // showBar only scrolls when the highlight moves, and after a stop it's already
   // waiting on bar 1, maybe far off screen
   const box = barBox(currentBar);
@@ -628,19 +739,23 @@ async function play() {
 
 function pause() {
   cancelJump();
+  cancelDraws();
   transport.pause();
   releaseAll();
   document.body.classList.remove("playing");
   setPlayLabel();
+  updateRepeats();
   drawHeat();
 }
 
 function stop() {
   cancelJump();
+  cancelDraws();
   transport.stop();
   releaseAll();
   document.body.classList.remove("playing");
   setPlayLabel();
+  updateRepeats();
   showBar(0);
   drawHeat();
 }
@@ -658,6 +773,7 @@ function seek(index) {
     recordPractice({ back: barRange(index, currentBar) });
   }
   cancelJump();
+  cancelDraws();
   releaseAll();
   transport.ticks = barTicks[index];
   showBar(index);
@@ -750,28 +866,6 @@ function tap() {
   saveTempo();
 }
 
-// ---- solo ----------------------------------------------------------------
-
-// Hear only the parts that are shown; again to go back to what was heard before.
-function toggleSolo() {
-  if (beforeSolo) {
-    heard.splice(0, heard.length, ...beforeSolo);
-    endSolo();
-  } else {
-    beforeSolo = [...heard];
-    heard.splice(0, heard.length, ...shown);
-    $("solo").setAttribute("aria-pressed", "true");
-  }
-  $("hear-row").querySelectorAll("input").forEach((box, i) => { box.checked = heard[i]; });
-  saveParts();
-}
-
-// Ticking a Hear box by hand also ends solo, keeping what's ticked.
-function endSolo() {
-  beforeSolo = null;
-  $("solo").setAttribute("aria-pressed", "false");
-}
-
 // ---- wiring --------------------------------------------------------------
 
 const togglePlay = () => transport.state === "started" ? pause() : play();
@@ -782,25 +876,46 @@ document.addEventListener("keydown", e => {
   e.preventDefault();
   togglePlay();
 });
-document.addEventListener("keydown", e => {
-  if (e.key.toLowerCase() !== "s" || e.repeat || e.metaKey || e.ctrlKey || e.altKey) return;
-  if ($("player").hidden) return;
-  e.preventDefault();
-  toggleSolo();
-});
-$("solo").addEventListener("click", toggleSolo);
 // buttons and checkboxes act on Space's keyup, so swallow that too
 document.addEventListener("keyup", e => { if (e.code === "Space") e.preventDefault(); });
-$("stop").addEventListener("click", stop);
+// back to the start, and up to the top of the score to see it
+$("stop").addEventListener("click", () => {
+  stop();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
 $("home-button").addEventListener("click", () => {
   history.pushState(null, "", location.pathname + location.search);
   showHome();
 });
 // song links, and Back/Forward between a song and the chooser
 window.addEventListener("popstate", () => { route().catch(showError); });
-$("short").addEventListener("change", e => {
-  e.target.blur();  // so Space goes back to play/pause
-  loadSong(songId).catch(showError);
+// Switching version stays on the same printed bar (its first time through,
+// going to the written-out one), so play carries on from there.
+$("repeats").addEventListener("click", async e => {
+  const button = e.currentTarget;
+  button.setAttribute("aria-pressed", button.getAttribute("aria-pressed") === "false");
+  const bar = printedBar(currentBar);
+  // the bar stays where it was on screen, though the other version is laid out
+  // differently: the page keeps its height while the score is redrawn, the
+  // highlight goes straight to the bar instead of sliding, then the page scrolls
+  const anchor = $("highlight").getBoundingClientRect().top;
+  const wrap = $("score-wrap");
+  wrap.style.minHeight = `${wrap.offsetHeight}px`;
+  $("highlight").style.transition = "none";
+  try {
+    await loadSong(songId);
+    const index = Math.max(song.measures.findIndex((_, i) => printedBar(i) === bar), 0);
+    transport.ticks = barTicks[index];
+    showBar(index);
+    wrap.style.minHeight = "";
+    window.scrollBy(0, $("highlight").getBoundingClientRect().top - anchor);
+  } catch (err) {
+    showError(err);
+  } finally {
+    wrap.style.minHeight = "";
+    $("highlight").getBoundingClientRect();  // so the jump is drawn before sliding comes back
+    $("highlight").style.transition = "";
+  }
 });
 // the metronome volume is remembered across songs, the tempo for each song
 if (store.get("clickVolume") !== null) $("click-volume").value = store.get("clickVolume");
@@ -809,12 +924,15 @@ $("click-volume").addEventListener("input", e => {
   setClickVolume(Number(e.target.value));
   store.set("clickVolume", Number(e.target.value));
 });
-// which ear your part goes to is remembered across songs too
-if (store.get("ears") !== null) $("ears").value = store.get("ears");
-setEars(Number($("ears").value));
-$("ears").addEventListener("input", e => {
-  setEars(Number(e.target.value));
-  store.set("ears", Number(e.target.value));
+$("others").addEventListener("input", e => {
+  setOthers(Number(e.target.value));
+  store.set(`others.${songId}`, Number(e.target.value));
+});
+$("help-button").addEventListener("click", showHelp);
+$("change-voice").addEventListener("click", async () => {
+  await askVoice();
+  songId = null;  // so the song open before is loaded again with the new voice
+  showHome();
 });
 $("tempo").addEventListener("input", e => {
   setTempo(Number(e.target.value));

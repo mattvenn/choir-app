@@ -46,17 +46,46 @@ header {
 }
 #song-list a:hover, #song-list a:focus-visible { border-color: var(--accent); color: var(--accent); }
 #song-list .stats { display: block; margin-top: 4px; color: var(--muted); font-size: 0.85rem; }
+/* first visit: which voice they sing */
+#voice-picker { text-align: center; }
+#voice-picker h2 { margin: 0 0 16px; font-size: 1.3rem; font-weight: normal; }
+#voice-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+#voice-list button { padding: 18px 20px; border-radius: 10px; font-size: 1.2rem; }
+#voice-picker p { margin: 16px 0 0; color: var(--muted); font-size: 0.9rem; }
+/* your voice and help, side by side under the songs, styled like them */
+.home-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
+.home-buttons button { padding: 14px 16px; border: 1px solid #ddd; border-radius: 10px; background: #fff; color: inherit; font-size: 1rem; }
+.home-buttons button:hover, .home-buttons button:focus-visible { border-color: var(--accent); color: var(--accent); }
+
+#help {
+  width: min(520px, calc(100% - 32px));
+  max-height: calc(100% - 32px);
+  padding: 20px 24px;
+  border: none;
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--fg);
+}
+#help::backdrop { background: rgba(0, 0, 0, 0.4); }
+#help h2 { margin: 0 0 12px; font-size: 1.3rem; font-weight: normal; }
+#help-controls { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+#help-controls li { display: flex; align-items: center; gap: 12px; }
+.help-icons { display: flex; flex: none; justify-content: center; gap: 4px; width: 48px; color: var(--accent); font-size: 1.4rem; }
+#help-notes p { margin: 12px 0 0; color: var(--muted); font-size: 0.95rem; }
+#help form { margin: 16px 0 0; text-align: right; }
 #home .updated { margin: 24px 0 0; text-align: center; font-size: 0.8rem; }
 #home .updated a { color: #888; }
 
 /* ---- player ---- */
 
+/* one row, the same playing or not; the sliders shrink to fit */
 .controls {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: 12px;
 }
+.controls > * { flex-shrink: 0; }
+.controls > .tempo-group, .controls > .others { flex-shrink: 1; }
 
 /* tempo, tap and metronome volume, in a tinted box of their own */
 .tempo-group {
@@ -69,9 +98,8 @@ header {
   background: var(--group);
 }
 .tempo { display: flex; align-items: center; gap: 8px; min-width: 0; }
-.tempo-name { white-space: nowrap; }
 .tempo-track { position: relative; display: flex; align-items: center; min-width: 50px; flex: 0 1 auto; }
-.tempo-track input { position: relative; width: 110px; min-width: 50px; margin: 0; }
+.tempo-track input { position: relative; width: 80px; min-width: 40px; margin: 0; }
 /* --at is how far along the slider the score's tempo is (0 to 1); the
    thumb's centre travels a thumb's width less than the track */
 #tempo-tick {
@@ -102,18 +130,14 @@ button#tempo-value {
 button#tempo-value:not(:disabled) { border-color: var(--accent); background: #fff; color: var(--accent); cursor: pointer; }
 button#tempo-value:not(:disabled)::after { content: "↺"; margin-left: 4px; }
 .metronome { display: flex; align-items: center; gap: 4px; min-width: 0; color: var(--muted); }
-.metronome svg { flex: none; }
-#click-volume { width: 80px; min-width: 40px; flex: 0 1 auto; }
-.check { display: flex; align-items: center; gap: 6px; cursor: pointer; user-select: none; }
+#speaker { flex: none; margin-left: -4px; color: var(--muted); }
+#speaker .wave.off { opacity: 0.2; }
+#click-volume { width: 80px; min-width: 40px; flex: 0 1 auto; }  /* as long as the tempo slider */
 
-.parts { margin-top: 8px; border-collapse: collapse; }
-.parts th, .parts td { padding: 2px 14px 2px 0; }
-.parts th { font-weight: normal; }
-.parts th[scope="row"] { text-align: left; color: var(--muted); font-size: 0.9rem; }
-.parts td { text-align: center; }
-.parts input { cursor: pointer; }
-.ears { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 0.9rem; }
-#ears { flex: 1; min-width: 80px; margin: 0; }
+/* how loud the other voices are, from just yours to everyone */
+.others { display: flex; align-items: center; gap: 8px; min-width: 0; margin-left: auto; color: var(--muted); font-size: 0.9rem; }
+.others svg { flex: none; }
+#others { width: 140px; min-width: 60px; flex: 0 1 auto; margin: 0; }
 
 button {
   display: inline-flex;
@@ -129,15 +153,15 @@ button {
   cursor: pointer;
 }
 #play .icon-pause, body.playing #play .icon-play { display: none; }
+/* repeats off: struck through */
+#repeats[aria-pressed="true"] .icon-off, #repeats:disabled .icon-off { display: none; }
 body.playing #play .icon-pause { display: inline; }
-button#home-button, button#stop, button#solo, button#tap { background: #fff; color: var(--accent); }
+button#home-button, button#stop, button#tap, button#repeats { background: #fff; color: var(--accent); }
 /* quick taps on a phone shouldn't zoom the page */
 button#tap { touch-action: manipulation; }
-button#solo[aria-pressed="true"] { background: var(--accent); color: #fff; }
 button:disabled { opacity: 0.4; cursor: default; }
 
-#status, .hint { color: var(--muted); }
-.hint { margin: 6px 0 0; font-size: 0.9rem; }
+#status { color: var(--muted); }
 
 #player main { padding: 0 24px 48px; }
 
@@ -201,19 +225,6 @@ button:disabled { opacity: 0.4; cursor: default; }
 @keyframes pending { from { opacity: 1; } to { opacity: 0.3; } }
 @media (prefers-reduced-motion: reduce) { #pending { animation: none; } }
 
-/* while playing, only the transport row stays, on one line, to leave room
-   for the music: the sliders shrink and what's only needed between runs goes */
-body.playing .controls { flex-wrap: nowrap; }
-body.playing .controls > * { flex-shrink: 0; }
-body.playing .controls > .tempo-group,
-body.playing .tempo-group > .tempo,
-body.playing .tempo-group > .metronome { flex-shrink: 1; }
-body.playing .parts,
-body.playing .hint,
-body.playing #tap,
-body.playing #short-option,
-body.playing #status { display: none; }
-
 @media (max-width: 600px) {
   /* phone upright */
   header { padding: 8px 12px; }
@@ -221,19 +232,21 @@ body.playing #status { display: none; }
   .tempo-group { padding: 4px 8px; }
   button { min-width: 36px; padding: 4px 6px; }
   #player main { padding: 0 8px 24px; }
-  body.playing .tempo-name { display: none; }
-}
-
-@media (max-width: 360px) {
-  /* small phone: no room for the metronome too */
-  body.playing .metronome { display: none; }
+  /* too narrow for one row: the buttons and the voices on the first, the
+     tempo box across the second; the same playing or not */
+  .controls { flex-wrap: wrap; }
+  .controls > .others { flex: 1 1 0; margin-left: 0; }
+  #others { flex: 1 1 0; width: auto; }
+  .controls > .tempo-group { order: 1; flex: 1 1 100%; }
+  /* the two sliders in the tempo box share what's left equally */
+  .tempo { display: contents; }
+  .tempo-track, .metronome { flex: 1 1 0; }
+  .tempo-track input, #click-volume { flex: 1 1 0; width: auto; }
 }
 
 @media (max-height: 500px) {
-  /* phone in landscape: the full controls scroll away, the collapsed row stays */
-  header { position: static; padding: 6px 12px; }
-  body.playing header { position: sticky; }
+  /* phone in landscape */
+  header { padding: 6px 12px; }
   #player main { padding: 0 8px 24px; }
   button { min-width: 40px; padding: 4px 8px; }
-  .hint { display: none; }
 }
