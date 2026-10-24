@@ -204,3 +204,28 @@ def test_a_split_voice_chooses_its_line(server):
         page.wait_for_function("transport.state === 'paused'")
         assert page.is_enabled("#part-switch button:text-is('A1')")
         browser.close()
+
+
+@pytest.mark.parametrize("meanwhile", [
+    "window.dispatchEvent(new Event('resize'))",  # a phone's address bar sliding away
+    "document.getElementById('score').dispatchEvent("
+    "new MouseEvent('click', {clientX: 150, clientY: 300, bubbles: true}))",
+    "document.getElementById('repeats').click()",
+], ids=["resize", "tap on the score", "repeats again"])
+def test_nothing_reads_a_score_still_loading(server, meanwhile):
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page(viewport={"width": 390, "height": 700})
+        page.add_init_script(SET_VOICE)
+        errors = []
+        page.on("pageerror", lambda e: errors.append(str(e)))
+        page.goto(f"{server}/#boga")
+        page.wait_for_selector("#play:not([disabled])", timeout=60_000)
+        # the new score takes a moment to come, as on a phone
+        page.route("**/*.musicxml", lambda route: (page.wait_for_timeout(300), route.continue_()))
+        page.evaluate(f"document.getElementById('repeats').click(); setTimeout(() => {{ {meanwhile} }}, 30)")
+        page.wait_for_function("!song.printedBars && !loading")
+        page.wait_for_timeout(500)
+        assert errors == []
+        assert page.is_visible("#highlight")
+        browser.close()

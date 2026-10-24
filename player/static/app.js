@@ -233,6 +233,10 @@ const setClickVolume = percent => {
 let songs;         // scores/index.json
 let song;          // scores/<id>.json
 let songId;        // which song is loaded (`song` may be its version without repeats)
+// While a score loads, the old one is gone and the new one isn't drawn yet, so
+// what reads the drawing (redrawing on a resize, a tap on a bar, the
+// highlight, the switches and play) waits; on a phone that can take a while.
+let loading = false;
 let osmd;
 let mine = [];     // per part: whether it's your voice's
 let currentBar = 0;
@@ -449,15 +453,26 @@ function updateSwitches() {
   // songId is unset while the voice is being changed
   const hasShort = songs.find(s => s.id === songId)?.short;
   const playing = document.body.classList.contains("playing");
-  $("repeats").disabled = !hasShort || playing;
+  $("repeats").disabled = !hasShort || playing || loading;
   $("repeats").title = t(!hasShort ? "noRepeatsTitle" : playing ? "pauseForRepeats" : "repeatsTitle");
-  for (const button of $("part-switch").children) button.disabled = playing;
+  for (const button of $("part-switch").children) button.disabled = playing || loading;
 }
 
 // Load song `id`, written out or, if repeats are switched off and the song has
 // one, the version with each bar once. Switching between those two keeps the
 // tempo and how loud the others are.
 async function loadSong(id) {
+  loading = true;
+  updateSwitches();
+  try {
+    await loadScore(id);
+  } finally {
+    loading = false;
+    updateSwitches();
+  }
+}
+
+async function loadScore(id) {
   const sameSong = id === songId;
   if (song) stop();
   const hasShort = songs.find(s => s.id === id).short;
@@ -484,6 +499,7 @@ async function loadSong(id) {
   }
 
   currentBar = 0;
+  loading = false;  // from here on there's a drawing to read
   render();
   schedule();
 }
@@ -580,6 +596,7 @@ function showNoteName(e) {
 
 // Bounding box in pixels (relative to #score) of bar `index` across all visible staves.
 function barBox(index) {
+  if (loading) return null;
   const unit = 10 * osmd.zoom;
   const svg = $("score").querySelector("svg");
   const offX = svg.getBoundingClientRect().left - $("score").getBoundingClientRect().left;
@@ -921,7 +938,10 @@ function tap() {
 
 // ---- wiring --------------------------------------------------------------
 
-const togglePlay = () => transport.state === "started" ? pause() : play();
+const togglePlay = () => {
+  if (loading) return;
+  transport.state === "started" ? pause() : play();
+};
 $("play").addEventListener("click", togglePlay);
 // Space is play/pause everywhere, instead of scrolling or pressing the focused control
 document.addEventListener("keydown", e => {
@@ -1001,7 +1021,7 @@ $("tempo").addEventListener("input", e => {
 $("tap").addEventListener("click", tap);
 $("tempo-value").addEventListener("click", resetTempo);
 $("score").addEventListener("click", e => {
-  if ($("play").disabled) return;
+  if ($("play").disabled || loading) return;
   const r = $("score").getBoundingClientRect();
   const bar = barAt(e.clientX - r.left, e.clientY - r.top);
   if (bar >= 0) goToBar(bar);
@@ -1014,7 +1034,8 @@ $("score").addEventListener("pointerleave", () => {
 let resizeTimer;
 window.addEventListener("resize", () => {
   clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(() => { if (song && !$("player").hidden) render(); }, 200);
+  // a score still loading is drawn at the new size once it's in
+  resizeTimer = setTimeout(() => { if (song && !loading && !$("player").hidden) render(); }, 200);
 });
 
 function showError(err) {
