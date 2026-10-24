@@ -38,6 +38,10 @@ jobs:
           pip install -r tests/requirements.txt
           playwright install --with-deps chromium
           pytest tests
+      # Pages lets browsers keep files for 10 minutes; a reload fetches the page
+      # itself again, and a new address for the code makes it fetch that too
+      - name: Point the page at this commit's code
+        run: sed -i -E "s/(app\.js|style\.css)\"/\1?v=${GITHUB_SHA::7}\"/" player/static/index.html
       - name: Record which commit is published, for the home page
         run: git log -1 --format='{"commit":"%H","date":"%cI"}' > player/static/version.json
       - uses: actions/configure-pages@v5
