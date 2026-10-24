@@ -119,15 +119,14 @@ const trackPage = (path, title) => track("page_view", {
 // Tone asks for the shortest audio buffer it can get, as for a live instrument;
 // on phones, with Bluetooth especially, that crackles. Everything here is
 // scheduled ahead, so a longer one costs nothing.
-Tone.setContext(new Tone.Context({ latencyHint: "playback" }));
+// Made here rather than by Tone, whose own wraps it and hides outputLatency.
+const audioContext = new AudioContext({ latencyHint: "playback" });
+Tone.setContext(audioContext);
 const transport = Tone.getTransport();
 // Draw goes by the time the audio is worked out, but it's heard later: after
 // the output buffer (longer for the hint above) and, over Bluetooth, the
 // headphones' own delay. So what's drawn waits for what's heard.
-const outputDelay = () => {
-  const raw = Tone.getContext().rawContext;
-  return (raw.baseLatency || 0) + (raw.outputLatency || 0);
-};
+const outputDelay = () => (audioContext.baseLatency || 0) + (audioContext.outputLatency || 0);
 const drawWhenHeard = (callback, time) => Tone.getDraw().schedule(callback, time + outputDelay());
 // Two pianos on the same samples, each through its own panner: one plays the
 // parts shown, the other the rest, so each can go to its own ear. Panned to
