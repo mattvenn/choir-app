@@ -152,3 +152,21 @@ def test_repeats_wait_for_a_pause_and_keep_the_bar(server):
         page.wait_for_function("transport.state === 'started'")
         assert page.evaluate("transport.ticks >= barTicks[song.printedBars.indexOf(12)]")
         browser.close()
+
+
+@pytest.mark.parametrize("asked, help_text", [("en", "Help"), ("es", "Ayuda"), ("fr", "Help")])
+def test_the_address_can_choose_the_language(server, asked, help_text):
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page(locale="en-GB")
+        page.add_init_script(SET_VOICE)
+        # one there isn't, like fr, goes by the browser as before
+        page.goto(f"{server}/?lang={asked}")
+        page.wait_for_selector("#song-list a")
+        assert page.text_content("#help-button") == help_text
+        # and it stays in a song and back
+        page.click("#song-list a[data-song='ave']")
+        page.wait_for_function("songId === 'ave'")
+        page.click("#home-button")
+        assert page.text_content("#help-button") == help_text
+        browser.close()

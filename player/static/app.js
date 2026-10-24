@@ -8,7 +8,8 @@ const PIANO_SAMPLES = Object.fromEntries(
    "C7", "Ds7", "Fs7", "A7", "C8"].map(n => [n.replace("s", "#"), `${n}.mp3`]));
 
 // Interface text, in English if the browser is set to English and Spanish
-// otherwise. Part names come from the score, so aren't translated.
+// otherwise, unless the address says which (?lang=en or ?lang=es, to check
+// the other). Part names come from the score, so aren't translated.
 const STRINGS = {
   en: {
     appName: "Choir Practice",
@@ -103,7 +104,9 @@ const STRINGS = {
       (weekAgo === undefined ? "" : ` (${weekAgo} hace una semana)`),
   },
 };
-const lang = navigator.language.toLowerCase().startsWith("en") ? "en" : "es";
+const askedLang = new URLSearchParams(location.search).get("lang");
+const lang = askedLang in STRINGS ? askedLang
+  : navigator.language.toLowerCase().startsWith("en") ? "en" : "es";
 const t = (key, ...args) => {
   const s = STRINGS[lang][key];
   return typeof s === "function" ? s(...args) : s;
