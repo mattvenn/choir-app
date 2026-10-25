@@ -6,8 +6,10 @@ The notes are from the director's MusicXML, exported from Finale
 transcribed from the PDF instead, except the baritone's last two bars: "al cel"
 as in the director's file, where the PDF holds "cel" over both. The player
 ignores the dynamics, hairpins and "molto ritardando".
+
+The director has corrected the score since: the soprano's C in bar 30 is natural.
 """
-from music21 import stream
+from music21 import pitch, stream
 
 from scorelib import add_lyrics, load_finale, make_score
 
@@ -57,6 +59,9 @@ LYRICS = {
 
 def build() -> stream.Score:
     parts = load_finale("foc.musicxml")
+    natural = parts[0].measure(30).notes[1].pitch
+    natural.accidental = pitch.Accidental("natural")
+    natural.accidental.displayStatus = True
     score = make_score(parts, NAMES, ABBREVIATIONS, TITLE, COMPOSER)
     for part in parts:
         for n in part.recurse().notes:

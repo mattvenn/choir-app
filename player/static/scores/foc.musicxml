@@ -1215,11 +1215,12 @@
       <note default-x="79">
         <pitch>
           <step>C</step>
-          <alter>1</alter>
+          <alter>0</alter>
           <octave>5</octave>
         </pitch>
         <duration>5040</duration>
         <type>eighth</type>
+        <accidental>natural</accidental>
         <stem default-y="-50.5">down</stem>
         <lyric name="1" number="1">
           <syllabic>single</syllabic>
