@@ -154,6 +154,28 @@ def test_repeats_wait_for_a_pause_and_keep_the_bar(server):
         browser.close()
 
 
+def test_repeats_are_remembered_across_songs_and_visits(server):
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page()
+        page.add_init_script(SET_VOICE)
+        page.goto(f"{server}/#boga")
+        page.wait_for_function("songId === 'boga' && !loading")
+        assert page.get_attribute("#repeats", "aria-pressed") == "true"
+        page.click("#repeats")
+        page.wait_for_function("!song.printedBars && !loading")
+
+        # another song, and coming back another day, start without them too
+        page.goto(f"{server}/#shalala")
+        page.wait_for_function("songId === 'shalala' && !loading")
+        assert page.get_attribute("#repeats", "aria-pressed") == "false"
+        assert page.evaluate("song.measures.length") == 13
+        page.reload()
+        page.wait_for_function("songId === 'shalala' && !loading")
+        assert page.evaluate("song.measures.length") == 13
+        browser.close()
+
+
 @pytest.mark.parametrize("asked, help_text", [("en", "Help"), ("es", "Ayuda"), ("fr", "Help")])
 def test_the_address_can_choose_the_language(server, asked, help_text):
     with sync_playwright() as p:

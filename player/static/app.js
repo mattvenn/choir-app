@@ -57,7 +57,7 @@ const STRINGS = {
       "The bars you go back to most are shaded orange. The song list shows how long you've practised each song and how many bars are still hard. It follows the last couple of weeks, so it changes as you get better.",
       "Where a song splits your voice (Alto 1 and Alto 2), choose your line with A1 and A2 at the right of the toolbar.",
       "With a mouse, point at a note to see its name.",
-      "Your voice, and the tempo and the other voices' volume for each song, are remembered on this device.",
+      "Your voice, the repeats and the metronome, and the tempo and the other voices' volume for each song, are remembered on this device.",
       "On a phone, songs work best with the phone turned sideways.",
     ],
     directorNote: "Director's view: every voice is shown and played equally loud, and songs start without repeats so the bar numbers match the score. Tap a note to report a mistake in it on WhatsApp or by email: the message says which song, bar, voice and note, and you add what's wrong and choose who to send it to. To go back to one voice, open the address with ?director=no.",
@@ -113,7 +113,7 @@ const STRINGS = {
       "Los compases a los que más vuelves se marcan en naranja. La lista de canciones muestra cuánto has ensayado cada una y cuántos compases te siguen costando. Sigue las últimas dos semanas, así que cambia a medida que mejoras.",
       "Si una canción divide tu voz (Alto 1 y Alto 2), elige tu línea con A1 y A2 a la derecha de la barra.",
       "Con ratón, señala una nota para ver su nombre.",
-      "Tu voz, y el tempo y el volumen de las otras voces de cada canción, se guardan en este dispositivo.",
+      "Tu voz, las repeticiones y el metrónomo, y el tempo y el volumen de las otras voces de cada canción, se guardan en este dispositivo.",
       "En el móvil, las canciones se ven mejor con el teléfono en horizontal.",
     ],
     directorNote: "Vista del director: se muestran todas las voces y suenan igual de fuerte, y las canciones empiezan sin repeticiones para que los números de compás coincidan con la partitura. Pulsa una nota para avisar de un error por WhatsApp o por correo: el mensaje dice la canción, el compás, la voz y la nota, y tú añades qué está mal y eliges a quién enviarlo. Para volver a una sola voz, abre la dirección con ?director=no.",
@@ -1096,7 +1096,9 @@ async function keepingPlace(change) {
 // going to the written-out one), so play carries on from there.
 $("repeats").addEventListener("click", e => {
   const button = e.currentTarget;
-  button.setAttribute("aria-pressed", button.getAttribute("aria-pressed") === "false");
+  const repeats = button.getAttribute("aria-pressed") === "false";
+  button.setAttribute("aria-pressed", repeats);
+  store.set("repeats", repeats);
   const bar = printedBar(currentBar);
   keepingPlace(async () => {
     await loadSong(songId);
@@ -1105,8 +1107,9 @@ $("repeats").addEventListener("click", e => {
     showBar(index);
   });
 });
-// the director checks each bar once, against the score's bar numbers
-if (director) $("repeats").setAttribute("aria-pressed", "false");
+// repeats on or off is remembered across songs; to start with, on, except for
+// the director, who checks each bar once, against the score's bar numbers
+$("repeats").setAttribute("aria-pressed", store.get("repeats") ?? !director);
 // the metronome volume is remembered across songs, the tempo for each song
 if (store.get("clickVolume") !== null) $("click-volume").value = store.get("clickVolume");
 setClickVolume(Number($("click-volume").value));
