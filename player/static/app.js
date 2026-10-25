@@ -478,7 +478,13 @@ async function showSong(id) {
     document.title = `${song.title} · ${t("appName")}`;
     render();
   } else {
-    await loadSong(id);
+    // not the last song's score while this one comes
+    $("score-wrap").style.visibility = "hidden";
+    try {
+      await loadSong(id);
+    } finally {
+      $("score-wrap").style.visibility = "";
+    }
   }
   trackPage(`/${id}`, song.title);
 }

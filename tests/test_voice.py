@@ -100,6 +100,24 @@ def test_slider_fades_the_others_in_and_is_kept_per_song(server):
         browser.close()
 
 
+def test_another_song_doesnt_show_the_last_ones_score_while_it_comes(server):
+    shown = "getComputedStyle(document.getElementById('score-wrap')).visibility"
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page()
+        page.add_init_script(SET_VOICE)
+        open_song(page, server, "ave")
+        page.click("#home-button")
+        # the new score takes a moment to come, as on a phone
+        page.route("**/*.musicxml", lambda route: (page.wait_for_timeout(300), route.continue_()))
+        page.click("#song-list a[data-song='foc']")
+        page.wait_for_function("loading")
+        assert page.evaluate(shown) == "hidden"
+        page.wait_for_function("songId === 'foc' && !loading")
+        assert page.evaluate(shown) == "visible"
+        browser.close()
+
+
 def test_help_opens_and_closes(server):
     with sync_playwright() as p:
         browser = p.chromium.launch()
