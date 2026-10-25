@@ -1,8 +1,11 @@
 """Helpers for building the player's scores with music21."""
+import bisect
 import copy
+import re
 from pathlib import Path
 
-from music21 import clef, converter, key, layout, metadata, meter, note, stream, tempo, tie
+from music21 import (bar, clef, converter, dynamics, expressions, key, layout, metadata, meter,
+                     note, stream, tempo)
 
 SOURCES = Path(__file__).resolve().parent / "sources"
 
@@ -18,6 +21,32 @@ def load_abc(name: str) -> stream.Part:
     return part
 
 
+def load_finale(name: str, tempo_changes: bool = False) -> list[stream.Part]:
+    """The parts of a MusicXML file the director exported from Finale, in
+    player/sources/, without what the player ignores: tempo (the song sets it),
+    dynamics, hairpins and text like "cresc.". With `tempo_changes` the tempo
+    marks stay, and the player follows them relative to the first (see events)."""
+    parts = list(converter.parse(str(SOURCES / name)).parts)
+    for part in parts:
+        ignored = [dynamics.Dynamic, expressions.TextExpression]
+        if not tempo_changes:
+            ignored.append(tempo.MetronomeMark)
+        part.remove(list(part.recurse().getElementsByClass(ignored)), recurse=True)
+        part.remove([sp for sp in part.spanners if isinstance(sp, dynamics.DynamicWedge)])
+        for n in part.recurse().notes:
+            # Finale marks where a held syllable ends with a lyric of its own,
+            # which comes in with no text, and sometimes writes a lyric twice
+            lyrics = []
+            for lyric in n.lyrics:
+                if lyric.text and not any(l.text == lyric.text for l in lyrics):
+                    lyrics.append(lyric)
+            # the tie of an elision ("su‿os") comes out as a capital I
+            for lyric in lyrics:
+                lyric.text = re.sub(r"(?<=[a-zñáéíóú])I(?=[a-zñáéíóú])", "‿", lyric.text)
+            n.lyrics = lyrics
+    return parts
+
+
 def to_tenor_clef(part: stream.Part) -> None:
     """Transcribed at written pitch in treble clef: sound an octave lower, show treble-8vb."""
     part.transpose(-12, inPlace=True)
@@ -31,11 +60,18 @@ def write_out_repeats(part: stream.Part, order: list[int]) -> stream.Part:
     bars = {m.number: m for m in part.getElementsByClass(stream.Measure)}
     out = stream.Part()
     offset = 0.0
+    shown = {}  # the clef, key, time and tempo in force, by kind
     for number, n in enumerate(order, 1):
         m = copy.deepcopy(bars[n])
         m.number = number
-        if number > 1:  # a repeated first bar would show the clef, key and time again
-            m.removeByClass([clef.Clef, key.KeySignature, meter.TimeSignature])
+        # a repeated bar would show the clef, key, time and tempo again; only a change shows
+        for kind in (clef.Clef, key.KeySignature, meter.TimeSignature, tempo.MetronomeMark):
+            for el in list(m.getElementsByClass(kind)):
+                if repr(el) == shown.get(kind):
+                    m.remove(el)
+                shown[kind] = repr(el)
+        # written out, the repeat signs are wrong
+        m.removeByClass(bar.Repeat)
         out.insert(offset, m)
         offset += m.duration.quarterLength
     return out
@@ -53,29 +89,6 @@ def make_score(parts: list[stream.Part], names: list[str], abbreviations: list[s
     score.insert(0, metadata.Metadata(title=title, composer=composer, movementName=title))
     return score
 
-
-def set_rhythm(m: stream.Measure, lengths: list[float]) -> None:
-    """Give the notes/rests of bar `m` these lengths, back to back."""
-    offset = 0.0
-    for n, ql in zip(m.notesAndRests, lengths, strict=True):
-        n.quarterLength = ql
-        m.setElementOffset(n, offset)
-        offset += ql
-    m.duration = None
-
-
-def tie_over(part: stream.Part, bar: int) -> None:
-    """Tie the last note of `bar` to the first note of the next bar."""
-    part.measure(bar).notes[-1].tie = tie.Tie("start")
-    part.measure(bar + 1).notes[0].tie = tie.Tie("stop")
-
-
-def realign_bars(part: stream.Part) -> None:
-    """Bars after one whose length changed keep their old offsets otherwise."""
-    offset = 0.0
-    for m in part.getElementsByClass(stream.Measure):
-        part.setElementOffset(m, offset)
-        offset += m.duration.quarterLength
 
 
 def add_lyrics(part: stream.Part, text: str, verse: int = 1) -> None:
@@ -109,25 +122,51 @@ def check(score: stream.Score) -> None:
     """Every part has the same bar count and every bar is full."""
     for part in score.parts:
         bars = part.getElementsByClass(stream.Measure)
-        bar_q = bars[0].barDuration.quarterLength
-        bad = [m.number for m in bars if m.duration.quarterLength != bar_q]
+        bad = [m.number for m in bars if m.duration.quarterLength != m.barDuration.quarterLength]
         print(f"  {part.partName}: {len(bars)} bars" + (f", wrong length: {bad}" if bad else ""))
 
 
 def events(score: stream.Score) -> dict:
-    """Note events per part, in quarter notes, for the browser to play."""
-    bars = score.parts[0].getElementsByClass(stream.Measure)
-    time_sig = bars[0].timeSignature
+    """Note events per part, in quarter notes at the song's tempo, for the
+    browser to play. Where the score has tempo marks, a bar after a change is
+    stretched or squeezed to play at its tempo relative to the first mark's."""
+    bars = list(score.parts[0].getElementsByClass(stream.Measure))
+    starts = [float(m.offset) for m in bars]
+    speeds, beats = [], []  # per bar: its tempo relative to the first, and its beat
+    first = qpm = None
+    time_sig = None
+    for m in bars:
+        for mark in m.getElementsByClass(tempo.MetronomeMark):
+            qpm = mark.getQuarterBPM()
+            first = first or qpm
+        time_sig = m.timeSignature or time_sig
+        speeds.append(qpm / first if qpm else 1.0)
+        # for the metronome: 3/4 is 3 beats of 1 quarter, cut time 2 beats of 2,
+        # 12/8 4 beats of a dotted quarter
+        beats.append([float(time_sig.beatDuration.quarterLength) / speeds[-1], time_sig.beatCount])
+    played = [0.0]  # where each bar starts when played, then the end
+    for m, speed in zip(bars, speeds):
+        played.append(played[-1] + float(m.duration.quarterLength) / speed)
+
+    def when(offset: float) -> float:
+        i = max(bisect.bisect_right(starts, offset) - 1, 0)
+        return played[i] + (offset - starts[i]) / speeds[i]
+
     parts = []
     for part in score.parts:
-        notes = [[p.midi, float(n.offset), float(n.quarterLength)]
-                 for n in part.stripTies().flatten().notes for p in n.pitches]
+        notes = []
+        for n in part.stripTies().flatten().notes:
+            start, end = float(n.offset), float(n.offset + n.quarterLength)
+            notes += [[p.midi, when(start), when(end) - when(start)] for p in n.pitches]
         parts.append({"name": part.partName, "notes": notes})
-    return {
-        "measures": [float(m.offset) for m in bars],
-        # for the metronome: 3/4 is 3 beats of 1 quarter, cut time 2 beats of 2
-        "beat": float(time_sig.beatDuration.quarterLength),
-        "beatsPerBar": time_sig.beatCount,
-        "length": float(bars[-1].offset + bars[-1].duration.quarterLength),
+    data = {
+        "measures": played[:-1],
+        "beat": beats[0][0],
+        "beatsPerBar": beats[0][1],
+        "length": played[-1],
         "parts": parts,
     }
+    # where the metre or tempo changes, each bar's beat length and count
+    if any(b != beats[0] for b in beats):
+        data["bars"] = beats
+    return data

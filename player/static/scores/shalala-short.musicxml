@@ -623,11 +623,6 @@
           <text>sha</text>
         </lyric>
       </note>
-      <direction placement="below">
-        <direction-type>
-          <wedge number="1" spread="0" type="crescendo" />
-        </direction-type>
-      </direction>
       <note default-x="55">
         <pitch>
           <step>A</step>
@@ -767,11 +762,6 @@
           <text>na</text>
         </lyric>
       </note>
-      <direction placement="below">
-        <direction-type>
-          <wedge number="1" spread="15" type="stop" />
-        </direction-type>
-      </direction>
       <note default-x="127">
         <pitch>
           <step>A</step>
@@ -899,11 +889,6 @@
     </measure>
     <!--========================= Measure 7 ==========================-->
     <measure implicit="no" number="7" width="576">
-      <direction placement="below">
-        <direction-type>
-          <wedge number="2" spread="15" type="diminuendo" />
-        </direction-type>
-      </direction>
       <note default-x="77">
         <pitch>
           <step>G</step>
@@ -1041,11 +1026,6 @@
           <text>Fe</text>
         </lyric>
       </note>
-      <direction placement="below">
-        <direction-type>
-          <wedge number="2" spread="0" type="stop" />
-        </direction-type>
-      </direction>
     </measure>
     <!--========================= Measure 8 ==========================-->
     <measure implicit="no" number="8" width="359">
@@ -1471,11 +1451,6 @@
           <text>on</text>
         </lyric>
       </note>
-      <direction placement="below">
-        <direction-type>
-          <wedge number="3" spread="15" type="diminuendo" />
-        </direction-type>
-      </direction>
       <note default-x="195">
         <pitch>
           <step>G</step>
@@ -1612,11 +1587,6 @@
           <tied type="stop" />
         </notations>
       </note>
-      <direction placement="below">
-        <direction-type>
-          <wedge number="3" spread="0" type="stop" />
-        </direction-type>
-      </direction>
       <note default-x="156">
         <rest />
         <duration>20160</duration>

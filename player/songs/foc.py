@@ -1,13 +1,14 @@
 """Foc de Nadal (D. Basomba), arranged for S, A1, A2 and Baritone.
 
-Soprano and altos come from Audiveris (run without text recognition), with the
-misreads fixed by hand against the PDF; the baritone is a hand transcription.
+The notes are from the director's MusicXML, exported from Finale
+(sources/foc.musicxml). Its lyrics leave out every elided syllable ("na‿els",
+"i‿el", ...) and get the hyphens wrong around them, so the lyrics are
+transcribed from the PDF instead. The player ignores the dynamics, hairpins and
+"molto ritardando".
 """
-import copy
+from music21 import stream
 
-from music21 import converter, dynamics, spanner, stream
-
-from scorelib import SOURCES, add_lyrics, load_abc, make_score, realign_bars, set_rhythm, tie_over
+from scorelib import add_lyrics, load_finale, make_score
 
 ID = "foc"
 TITLE = "Foc de Nadal"
@@ -54,37 +55,10 @@ LYRICS = {
 
 
 def build() -> stream.Score:
-    audiveris = converter.parse(str(SOURCES / "foc-audiveris.mxl"))
-    parts = list(audiveris.parts[:3]) + [load_abc("foc-baritone.abc")]
-    fix_audiveris(*parts[:3])
+    parts = load_finale("foc.musicxml")
     score = make_score(parts, NAMES, ABBREVIATIONS, TITLE, COMPOSER)
     for part in parts:
+        for n in part.recurse().notes:
+            n.lyrics = []
         add_lyrics(part, LYRICS[part.partName])
     return score
-
-
-def fix_audiveris(soprano: stream.Part, alto1: stream.Part, alto2: stream.Part) -> None:
-    """Corrections checked against the PDF."""
-    # Audiveris turns lyric fragments and dots into staccatos, trills, dynamics
-    # and slurs that aren't in the score; the PDF has no articulations at all
-    for part in (soprano, alto1, alto2):
-        for n in part.recurse().notes:
-            n.articulations, n.expressions = [], []
-        junk = list(part.recurse().getElementsByClass(dynamics.Dynamic))
-        junk += [sp for sp in part.spanners if isinstance(sp, spanner.Slur)]
-        part.remove(junk, recurse=True)
-    # dotted quarter + eighth + quarter, Audiveris read the eighth as a quarter
-    for bar in (14, 28, 32):
-        set_rhythm(soprano.measure(bar), [1.5, 0.5, 1])
-    # three quarters ("cri cri cri"), Audiveris found two dotted quarters
-    m = alto2.measure(23)
-    m.append(copy.deepcopy(m.notes[-1]))
-    set_rhythm(m, [1, 1, 1])
-    # the PDF has an extender under "se" here, not a tie
-    for n in alto2.measure(15).notes:
-        n.tie = None
-    # "crac" is tied into bar 25 in every part
-    for part in (soprano, alto1, alto2):
-        tie_over(part, 24)
-    realign_bars(soprano)
-    realign_bars(alto2)

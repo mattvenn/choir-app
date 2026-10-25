@@ -37,14 +37,22 @@ for now the features these are the features
 
 # player (first version)
 
-A web page for practising Foc de Nadal, Ave Verum Corpus, No olvides, Boga, boga and
-Shalala-Bon nadal: the score is drawn
+A web page for practising Foc de Nadal, Ave Verum Corpus, No olvides, Boga, boga,
+Shalala-Bon nadal and Triste reloj: the score is drawn
 in the browser from MusicXML (with lyrics), and played on a sampled grand piano.
 Tick the parts to show and hear, set the tempo (or tap it in with "Marcar"),
 turn on a metronome, and click a bar to play from there. Space is play/pause
 and S solos the parts shown.
 Repeats are written out; for songs with a version that has each bar once (so
-far Boga, boga and Shalala), "Sin repeticiones" switches to it.
+far Boga, boga, Shalala and Triste reloj), "Sin repeticiones" switches to it.
+Where a score changes tempo (Triste reloj), playback and the metronome follow it,
+in proportion to the tempo set.
+
+For the director to check the scores, `?director` (e.g.
+https://mattvenn.github.io/choir-app/?director) shows and plays every part,
+starts songs without repeats so the bar numbers are the score's, and a tap on a
+note opens a WhatsApp message saying which song, bar, voice and note it is. It
+stays on in that browser until `?director=no`.
 
     .venv/bin/python player/prepare.py                   # builds player/static/scores/
     .venv/bin/python -m http.server -d player/static 8765

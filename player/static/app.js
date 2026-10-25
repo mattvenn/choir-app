@@ -32,6 +32,11 @@ const STRINGS = {
     everyone: "Everyone",
     othersTitle: "Fade the other voices in and out",
     yourVoice: voice => `Your voice: ${voice}`,
+    directorMode: "Director's view: every voice",
+    reportNote: (song, bar, part, n, note, lyric) =>
+      `${song}, bar ${bar}, ${part}: note ${n} (${note}${lyric ? `, "${lyric}"` : ""})`,
+    reportSend: "Report on WhatsApp",
+    playFromHere: "Play from this bar",
     yourPart: "Your part",
     help: "Help",
     close: "Close",
@@ -53,6 +58,7 @@ const STRINGS = {
       "Your voice, and the tempo and the other voices' volume for each song, are remembered on this device.",
       "On a phone, songs work best with the phone turned sideways.",
     ],
+    directorNote: "Director's view: every voice is shown and played equally loud, and songs start without repeats so the bar numbers match the score. Tap a note to report a mistake in it on WhatsApp: the message says which song, bar, voice and note, and you add what's wrong and choose who to send it to. To go back to one voice, open the address with ?director=no.",
     error: message => `Error: ${message}`,
     updated: (date, time) => `Last updated ${date} at ${time}`,
     minutes: n => `${n} min`,
@@ -80,6 +86,11 @@ const STRINGS = {
     everyone: "Todos",
     othersTitle: "Sube y baja las otras voces",
     yourVoice: voice => `Tu voz: ${voice}`,
+    directorMode: "Vista del director: todas las voces",
+    reportNote: (song, bar, part, n, note, lyric) =>
+      `${song}, compás ${bar}, ${part}: nota ${n} (${note}${lyric ? `, «${lyric}»` : ""})`,
+    reportSend: "Avisar por WhatsApp",
+    playFromHere: "Tocar desde este compás",
     yourPart: "Tu parte",
     help: "Ayuda",
     close: "Cerrar",
@@ -101,6 +112,7 @@ const STRINGS = {
       "Tu voz, y el tempo y el volumen de las otras voces de cada canción, se guardan en este dispositivo.",
       "En el móvil, las canciones se ven mejor con el teléfono en horizontal.",
     ],
+    directorNote: "Vista del director: se muestran todas las voces y suenan igual de fuerte, y las canciones empiezan sin repeticiones para que los números de compás coincidan con la partitura. Pulsa una nota para avisar de un error por WhatsApp: el mensaje dice la canción, el compás, la voz y la nota, y tú añades qué está mal y eliges a quién enviarlo. Para volver a una sola voz, abre la dirección con ?director=no.",
     error: message => `Error: ${message}`,
     updated: (date, time) => `Actualizado el ${date} a las ${time}`,
     minutes: n => `${n} min`,
@@ -140,6 +152,14 @@ const store = {
     try { localStorage.setItem(`choir.${key}`, JSON.stringify(value)); } catch {}
   },
 };
+
+// The director's view, for checking the scores: every part shown and played
+// alike, each bar once. Not offered on the page: ?director turns it on for
+// this browser and ?director=no off again.
+const askedDirector = new URLSearchParams(location.search).get("director");
+if (askedDirector !== null) store.set("director", askedDirector !== "no");
+const director = Boolean(store.get("director"));
+document.body.classList.toggle("director", director);
 
 // Google Analytics: which songs get opened and played. Only on the published
 // site, so local testing isn't counted. Page views are sent by hand, since a
@@ -270,6 +290,8 @@ function voiceParts(voice) {
 // one chosen on the song page, kept per song, or to start with the first.
 // `split` is the parts it could be, for the switch.
 function myParts() {
+  // the director's are all of them, on the same piano at the same volume
+  if (director) return { flags: song.parts.map(() => true), split: [] };
   const flags = voiceParts(store.get("voice"));
   const split = flags.flatMap((yours, i) => yours ? [i] : []);
   if (split.length < 2) return { flags, split: [] };
@@ -349,7 +371,7 @@ async function init() {
     item.append(link);
     $("song-list").append(item);
   }
-  if (!store.get("voice")) await askVoice();
+  if (!store.get("voice") && !director) await askVoice();
   await route();
   showVersion();
 
@@ -401,7 +423,7 @@ function showHelp() {
     item.append(icons, text);
     return item;
   }));
-  $("help-notes").replaceChildren(...t("helpNotes").map(text => {
+  $("help-notes").replaceChildren(...[...t("helpNotes"), ...(director ? [t("directorNote")] : [])].map(text => {
     const p = document.createElement("p");
     p.textContent = text;
     return p;
@@ -427,7 +449,9 @@ function showHome() {
   $("home").hidden = false;
   document.title = t("appName");
   const voice = store.get("voice");
-  $("change-voice").textContent = voice ? t("yourVoice", voice) : t("chooseVoice");
+  $("change-voice").textContent = director ? t("directorMode")
+    : voice ? t("yourVoice", voice) : t("chooseVoice");
+  $("change-voice").disabled = director;
   showPracticeStats();
   trackPage("/", t("appName"));
 }
@@ -509,6 +533,7 @@ const saveTempo = () => store.set(`tempo.${songId}`, transport.bpm.value);
 // ---- score drawing -------------------------------------------------------
 
 function render() {
+  hideReport();  // its note may move
   osmd.Sheet.Instruments.forEach((inst, i) => { inst.Visible = mine[i]; });
   osmd.render();
   indexNotes();
@@ -544,20 +569,31 @@ function fixLyricHyphens() {
 // ---- note names on hover ---------------------------------------------------
 
 let pitchOf = new Map();  // each drawn note's SVG group → its pitch
+// for the director's reports, each drawn note's SVG group → its bar (as an
+// index), part, place among the part's notes in the bar, pitch and syllable
+let noteInfo = new Map();
 function indexNotes() {
   pitchOf = new Map();
-  for (const bar of osmd.GraphicSheet.MeasureList) {
+  noteInfo = new Map();
+  osmd.GraphicSheet.MeasureList.forEach((bar, index) => {
     for (const measure of bar) {
-      for (const entry of measure?.staffEntries ?? []) {
+      if (!measure?.ParentStaffLine) continue;  // a hidden part's
+      let place = 0;
+      for (const entry of measure.staffEntries) {
         for (const voice of entry.graphicalVoiceEntries) {
           for (const note of voice.notes) {
             const g = note.getSVGGElement();
-            if (g && note.sourceNote.Pitch) pitchOf.set(g, note.sourceNote.Pitch);
+            const { Pitch: pitch, ParentVoiceEntry: voiceEntry } = note.sourceNote;
+            if (!g || !pitch) continue;
+            pitchOf.set(g, pitch);
+            const lyric = voiceEntry.LyricsEntries.values().map(l => l.Text).join(" / ");
+            noteInfo.set(g, { index, part: measure.ParentStaff.ParentInstrument.Name,
+                              place: ++place, pitch, lyric });
           }
         }
       }
     }
-  }
+  });
 }
 
 const NOTE_NAMES = {
@@ -572,6 +608,11 @@ function noteName(pitch) {
   const accidental = { "-2": "𝄫", "-1": "♭", 1: "♯", 2: "𝄪" }[pitch.AccidentalHalfTones] ?? "";
   return { letter, accidental, octave: pitch.Octave + 3 };
 }
+
+const noteText = pitch => {
+  const { letter, accidental, octave } = noteName(pitch);
+  return `${letter}${accidental}${octave}`;
+};
 
 // The label is only rewritten when the note changes: rewriting it on every
 // mouse move made Chrome redo the ♯ (which comes from another font) and flicker.
@@ -653,6 +694,45 @@ function barAt(x, y) {
   return -1;
 }
 
+// ---- the director's reports ----------------------------------------------
+
+// The drawn note nearest a tap at x, y (relative to #score), if the tap is on
+// or close by one: a note head is small to hit on a phone.
+function noteNear(x, y) {
+  const r = $("score").getBoundingClientRect();
+  const reach = 12 * osmd.zoom;
+  let best = null, bestDistance = reach;
+  for (const g of noteInfo.keys()) {
+    const b = g.getBoundingClientRect();
+    const dx = Math.max(b.left - r.left - x, 0, x - (b.right - r.left));
+    const dy = Math.max(b.top - r.top - y, 0, y - (b.bottom - r.top));
+    const distance = Math.hypot(dx, dy);
+    if (distance <= bestDistance) [best, bestDistance] = [g, distance];
+  }
+  return best;
+}
+
+// Under the tapped note: which note it is, a link that opens WhatsApp with
+// that and a link to the song filled in, for the director to say what's wrong
+// and choose who to send it to, and a button to play from its bar.
+let reportBar = 0;
+function showReport(g) {
+  const { index, part, place, pitch, lyric } = noteInfo.get(g);
+  const what = t("reportNote", song.title, printedBar(index), part, place, noteText(pitch), lyric);
+  const link = `${location.origin}${location.pathname}#${songId}`;
+  $("report-what").textContent = what;
+  $("report-send").href = `https://wa.me/?text=${encodeURIComponent(`${what}\n${link}\n\n`)}`;
+  reportBar = index;
+  const s = $("score").getBoundingClientRect();
+  const b = g.getBoundingClientRect();
+  Object.assign($("report").style, {
+    left: `${Math.min(Math.max(b.left + b.width / 2 - s.left, 140), s.width - 140)}px`,
+    top: `${b.bottom - s.top + 8}px`,
+  });
+  $("report").hidden = false;
+}
+const hideReport = () => { $("report").hidden = true; };
+
 // ---- practice record -----------------------------------------------------
 
 // Kept per song in this browser: for each printed bar, how many times you went
@@ -687,6 +767,7 @@ function practiceOf(id) {
 // back over and played to the end, and seconds played. The history is the
 // count of hard bars at the end of each day practised, to show progress.
 function recordPractice({ back = [], played = [], seconds = 0 }) {
+  if (director) return;  // checking a score isn't practising it
   const practice = practiceOf(songId);
   const add = (i, k) => { (practice.bars[printedBar(i)] ??= [0, 0])[k]++; };
   back.forEach(i => add(i, 0));
@@ -711,6 +792,7 @@ function barPlayed(i) {
 
 // Tints each bar by how hard it is, under the highlight.
 function drawHeat() {
+  if (director) return;  // no practice record
   const { bars } = practiceOf(songId);
   const marks = [];
   song.measures.forEach((_, i) => {
@@ -776,10 +858,12 @@ function schedule() {
     // two ticks early, so it's before a jump at the bar line; not through Draw,
     // which drops what it can't draw in time, as in a tab in the background
     transport.schedule(() => barPlayed(i), `${barTicks[i + 1] - 2}i`);
-    for (let beat = 0; beat < song.beatsPerBar; beat++) {
+    // songs that change metre or tempo give each bar's beat
+    const [length, count] = song.bars?.[i] ?? [song.beat, song.beatsPerBar];
+    for (let beat = 0; beat < count; beat++) {
       transport.schedule(time => {
         if (Number($("click-volume").value)) click.triggerAttackRelease(beat ? "G5" : "C6", 0.03, time);
-      }, ticks(start + beat * song.beat));
+      }, ticks(start + beat * length));
     }
   });
   // one extra beat so the last note can ring
@@ -997,6 +1081,8 @@ $("repeats").addEventListener("click", e => {
     showBar(index);
   });
 });
+// the director checks each bar once, against the score's bar numbers
+if (director) $("repeats").setAttribute("aria-pressed", "false");
 // the metronome volume is remembered across songs, the tempo for each song
 if (store.get("clickVolume") !== null) $("click-volume").value = store.get("clickVolume");
 setClickVolume(Number($("click-volume").value));
@@ -1021,11 +1107,26 @@ $("tempo").addEventListener("input", e => {
 $("tap").addEventListener("click", tap);
 $("tempo-value").addEventListener("click", resetTempo);
 $("score").addEventListener("click", e => {
-  if ($("play").disabled || loading) return;
+  if (loading) return;
   const r = $("score").getBoundingClientRect();
-  const bar = barAt(e.clientX - r.left, e.clientY - r.top);
+  const [x, y] = [e.clientX - r.left, e.clientY - r.top];
+  // the director's tap on a note opens its report; elsewhere it plays the bar
+  const note = director && noteNear(x, y);
+  if (note) return showReport(note);
+  hideReport();
+  if ($("play").disabled) return;
+  const bar = barAt(x, y);
   if (bar >= 0) goToBar(bar);
 });
+$("report-send").addEventListener("click", () => {
+  track("report", { song: songId });
+  hideReport();
+});
+$("report-play").addEventListener("click", () => {
+  hideReport();
+  if (!$("play").disabled) goToBar(reportBar);
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape") hideReport(); });
 $("score").addEventListener("pointermove", showNoteName);
 $("score").addEventListener("pointerleave", () => {
   $("note-tip").hidden = true;

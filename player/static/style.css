@@ -146,6 +146,8 @@ button#tempo-value:not(:disabled)::after { content: "↺"; margin-left: 4px; }
 /* how loud the other voices are, from just yours to everyone */
 .others { display: flex; align-items: center; gap: 8px; min-width: 0; margin-left: auto; color: var(--muted); font-size: 0.9rem; }
 .others svg { flex: none; }
+/* the director hears every part alike, so there are no others to fade */
+.director .others { display: none; }
 #others { width: 140px; min-width: 60px; flex: 0 1 auto; margin: 0; }
 
 button {
@@ -230,6 +232,33 @@ button:disabled { opacity: 0.4; cursor: default; }
   font-family: "Apple Symbols", "Segoe UI Symbol", "Noto Sans Symbols 2", "DejaVu Sans", serif;
   margin: 0 0.08em;
 }
+
+/* the director's report on a tapped note, centred under it */
+#report {
+  position: absolute;
+  z-index: 2;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: min(280px, 90vw);
+  padding: 10px 12px;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  cursor: default;
+  user-select: text;
+  -webkit-user-select: text;
+}
+#report p { margin: 0 0 8px; font-size: 0.95rem; }
+.report-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+#report-send {
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+}
+button#report-play { background: #fff; color: var(--accent); }
 
 @keyframes pending { from { opacity: 1; } to { opacity: 0.3; } }
 @media (prefers-reduced-motion: reduce) { #pending { animation: none; } }

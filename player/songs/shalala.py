@@ -9,9 +9,9 @@ choir's.
 
 The altos' "Wei-nach-ten" is spelt "Weih-nach-ten", as in the soprano.
 """
-from music21 import converter, bar, dynamics, expressions, stream, tempo
+from music21 import stream
 
-from scorelib import SOURCES, make_score, write_out_repeats
+from scorelib import load_finale, make_score, write_out_repeats
 
 ID = "shalala"
 TITLE = "Shalala-Bon nadal"
@@ -24,15 +24,9 @@ ORDER = [*range(1, 14), *range(1, 14)]
 
 
 def load_parts() -> list[stream.Part]:
-    parts = list(converter.parse(str(SOURCES / "shalala.musicxml")).parts)
+    parts = load_finale("shalala.musicxml")
     for part in parts:
-        junk = part.recurse().getElementsByClass(
-            [tempo.MetronomeMark, dynamics.Dynamic, expressions.TextExpression])
-        part.remove(list(junk), recurse=True)
         for n in part.recurse().notes:
-            # Finale marks where a held syllable ends with a lyric of its own,
-            # which comes in with no text
-            n.lyrics = [lyric for lyric in n.lyrics if lyric.text]
             for lyric in n.lyrics:
                 if lyric.text == "Wei":
                     lyric.text = "Weih"
@@ -41,10 +35,6 @@ def load_parts() -> list[stream.Part]:
 
 def build() -> stream.Score:
     parts = [write_out_repeats(part, ORDER) for part in load_parts()]
-    # written out, the repeat sign at the end of the first time through is wrong
-    for part in parts:
-        signs = part.recurse().getElementsByClass(bar.Repeat)
-        part.remove(list(signs), recurse=True)
     return make_score(parts, NAMES, ABBREVIATIONS, TITLE, COMPOSER)
 
 

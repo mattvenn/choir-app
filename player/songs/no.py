@@ -1,11 +1,16 @@
 """No olvides, John (in C major), SATB.
 
-All four voices are hand transcriptions of the PDF. Its two repeats (each with
-first and second endings) are written out, so bar numbers don't match the PDF.
+The notes are from the director's MusicXML, exported from Finale
+(sources/no.musicxml). Its lyrics leave out most elided syllables ("de‿a",
+"no‿ol", ...) and get the hyphens wrong around them, so the lyrics are
+transcribed from the PDF instead. The player ignores the dynamics. build()
+writes out the two repeats (each with first and second endings), so bar
+numbers don't match the score; build_short() is the score as printed, each bar
+once.
 """
 from music21 import stream
 
-from scorelib import add_lyrics, load_abc, make_score, write_out_repeats
+from scorelib import add_lyrics, load_finale, make_score, write_out_repeats
 
 ID = "no"
 TITLE = "No olvides"
@@ -14,7 +19,7 @@ TEMPO = 100  # quarter notes per minute; the score has no marking
 MY_PART = "Bass"
 NAMES = ["Soprano", "Alto", "Tenor", "Bass"]
 ABBREVIATIONS = ["S", "A", "T", "B"]
-# PDF bars 1-7 with ending 8, again with ending 9, then 10-16 with ending 17,
+# score bars 1-7 with ending 8, again with ending 9, then 10-16 with ending 17,
 # again with ending 18, then 19-20
 ORDER = [*range(1, 8), 8, *range(1, 8), 9, *range(10, 17), 17, *range(10, 17), 18, 19, 20]
 # one entry per PDF bar, see scorelib.add_lyrics for the format; the parts only
@@ -29,16 +34,32 @@ LYRICS = """Si‿al gu- na vez cuan- do‿es- | tés le- jos de‿a quí |
     can- to‿a- le- gre de tu‿ho- gar no‿ol- | vi- des John"""
 
 
-def lyrics(voice: str) -> str:
+def lyrics(voice: str, order: list[int]) -> str:
     bars = LYRICS.split("|")
     if voice == "Tenor":
         bars[1] = "tés le- jos de‿a _"
-    return "|".join(bars[n - 1] for n in ORDER)
+    return "|".join(bars[n - 1] for n in order)
+
+
+def load_parts() -> list[stream.Part]:
+    parts = load_finale("no.musicxml")
+    for part in parts:
+        for n in part.recurse().notes:
+            n.lyrics = []
+    return parts
 
 
 def build() -> stream.Score:
-    parts = [write_out_repeats(load_abc(f"no-{voice.lower()}.abc"), ORDER) for voice in NAMES]
+    parts = [write_out_repeats(part, ORDER) for part in load_parts()]
     score = make_score(parts, NAMES, ABBREVIATIONS, TITLE, COMPOSER)
     for part in parts:
-        add_lyrics(part, lyrics(part.partName))
+        add_lyrics(part, lyrics(part.partName, ORDER))
+    return score
+
+
+def build_short() -> stream.Score:
+    parts = load_parts()
+    score = make_score(parts, NAMES, ABBREVIATIONS, TITLE, COMPOSER)
+    for part in parts:
+        add_lyrics(part, lyrics(part.partName, list(range(1, 21))))
     return score
