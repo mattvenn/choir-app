@@ -52,8 +52,8 @@ MISSING = {
     "Baritone": {
         (13, 8): "su‿hu-", (15, 4): "se‿a-",
         (32, 3): "ya‿han", (32, 9): "y‿el", (32, 12): "me‿es",
-        # "se‿s" as printed; the other parts sing "me‿es" here the first time
-        (34, 3): "ya‿han", (34, 9): "y‿el", (34, 12): "se‿s",
+        # printed "se‿s"; the director says "me‿es", as in bar 32
+        (34, 3): "ya‿han", (34, 9): "y‿el", (34, 12): "me‿es",
         (39, 3): "ta", (45, 3): "se‿y", (45, 4): "va‿a",
     },
 }

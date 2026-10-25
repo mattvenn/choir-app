@@ -5425,7 +5425,7 @@
         <stem default-y="0.5">up</stem>
         <lyric name="1" number="1">
           <syllabic>single</syllabic>
-          <text>cel</text>
+          <text>al</text>
         </lyric>
       </note>
     </measure>
@@ -5440,6 +5440,10 @@
         <type>half</type>
         <dot />
         <stem default-y="-55">down</stem>
+        <lyric name="1" number="1">
+          <syllabic>single</syllabic>
+          <text>cel</text>
+        </lyric>
       </note>
       <barline location="right">
         <bar-style>light-heavy</bar-style>

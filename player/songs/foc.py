@@ -3,8 +3,9 @@
 The notes are from the director's MusicXML, exported from Finale
 (sources/foc.musicxml). Its lyrics leave out every elided syllable ("na‿els",
 "i‿el", ...) and get the hyphens wrong around them, so the lyrics are
-transcribed from the PDF instead. The player ignores the dynamics, hairpins and
-"molto ritardando".
+transcribed from the PDF instead, except the baritone's last two bars: "al cel"
+as in the director's file, where the PDF holds "cel" over both. The player
+ignores the dynamics, hairpins and "molto ritardando".
 """
 from music21 import stream
 
@@ -50,7 +51,7 @@ LYRICS = {
         | Tots | a | bra- | çats | els |
         que no‿hi | són | són | La nit | de _ Na- | dal fred |
         i ca- | lor de- | sit- jos | de sit- | jos | nit de Na- |
-        dal | cel | _""",
+        dal | al | cel""",
 }
 
 
