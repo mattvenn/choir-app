@@ -20,6 +20,7 @@ from scorelib import load_finale, make_score, write_out_repeats
 
 ID = "triste"
 TITLE = "Triste reloj"
+GROUP = "Jóvenes"  # the junior choir's
 COMPOSER = "Diana Bengoechea"
 TEMPO = 88  # quarter notes per minute, as marked
 MY_PART = "Baritone"

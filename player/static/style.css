@@ -46,14 +46,18 @@ header {
 }
 #song-list a:hover, #song-list a:focus-visible { border-color: var(--accent); color: var(--accent); }
 #song-list .stats { display: block; margin-top: 4px; color: var(--muted); font-size: 0.85rem; }
+/* another group's songs: its name in the middle of a rule as wide as the songs */
+#song-list .group { display: flex; align-items: center; gap: 12px; margin: 8px 0; color: var(--muted); font-size: 1rem; }
+#song-list .group::before, #song-list .group::after { content: ""; flex: 1; border-top: 1px solid #ccc; }
 /* first visit: which voice they sing */
 #voice-picker { text-align: center; }
 #voice-picker h2 { margin: 0 0 16px; font-size: 1.3rem; font-weight: normal; }
 #voice-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 #voice-list button { padding: 18px 20px; border-radius: 10px; font-size: 1.2rem; }
 #voice-picker p { margin: 16px 0 0; color: var(--muted); font-size: 0.9rem; }
-/* your voice and help, side by side under the songs, styled like them */
-.home-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
+/* your voice and help, side by side under the songs, styled like them, with a
+   rule as wide as the songs halfway between */
+.home-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; padding-top: 20px; border-top: 1px solid #ccc; }
 .home-buttons button { padding: 14px 16px; border: 1px solid #ddd; border-radius: 10px; background: #fff; color: inherit; font-size: 1rem; }
 .home-buttons button:hover, .home-buttons button:focus-visible { border-color: var(--accent); color: var(--accent); }
 
@@ -187,6 +191,10 @@ button:disabled { opacity: 0.4; cursor: default; }
   margin: 0 auto;
   background: #fff;
   cursor: pointer;
+  /* the highlight, sliding from the end of one line to the start of the next,
+     is out past the edge for a moment; that mustn't widen the page, which a
+     phone zooms out to fit, and the score jumps */
+  overflow-x: clip;
 }
 
 #highlight {

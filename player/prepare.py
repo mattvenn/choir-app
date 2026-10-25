@@ -17,6 +17,7 @@ from music21 import converter, stream
 from scorelib import check, events
 from songs import ave, boga, foc, no, shalala, triste
 
+# in the order listed; the main choir's first, then each other group's
 SONGS = [foc, ave, no, boga, shalala, triste]
 OUT = Path(__file__).resolve().parent / "static/scores"
 
@@ -63,6 +64,9 @@ def main() -> None:
         print(song.TITLE)
         write(song, song.ID, song.build())
         entry = {"id": song.ID, "title": song.TITLE}
+        # songs for another group than the main choir are listed under its name
+        if hasattr(song, "GROUP"):
+            entry["group"] = song.GROUP
         # the player's "no repeats" checkbox switches to this version
         if hasattr(song, "build_short"):
             print("  without repeats:")

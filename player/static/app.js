@@ -364,7 +364,16 @@ async function init() {
   });
 
   songs = await getJSON("scores/index.json");
-  for (const { id, title } of songs) {
+  let group;
+  for (const { id, title, group: songGroup } of songs) {
+    // another group's songs (the junior choir's) come after a heading with its name
+    if (songGroup !== group) {
+      group = songGroup;
+      const heading = document.createElement("li");
+      heading.className = "group";
+      heading.textContent = group;
+      $("song-list").append(heading);
+    }
     const link = document.createElement("a");
     link.href = `#${id}`;
     link.dataset.song = id;
@@ -650,21 +659,25 @@ function barBox(index) {
   const staves = (osmd.GraphicSheet.MeasureList[index] || [])
     .filter(m => m && m.ParentStaffLine && m.ParentStaff.ParentInstrument.Visible);
   if (!staves.length) return null;
+  // Top to bottom, in staff spaces, it takes in all its line has drawn above and
+  // below the staves: ledger lines, and lyrics, which low notes push further
+  // down. Scrolling goes by it, so the words come into view with the bar.
   let left = Infinity, top = Infinity, right = -Infinity, bottom = -Infinity;
   for (const m of staves) {
     const ps = m.PositionAndShape;
+    const line = m.ParentStaffLine.PositionAndShape;
+    const y = line.AbsolutePosition.y;
     left = Math.min(left, ps.AbsolutePosition.x);
     right = Math.max(right, ps.AbsolutePosition.x + ps.Size.width);
-    top = Math.min(top, ps.AbsolutePosition.y);
-    bottom = Math.max(bottom, ps.AbsolutePosition.y + 4);  // a staff is 4 spaces tall
+    top = Math.min(top, y - 1, y + line.BorderMarginTop);
+    bottom = Math.max(bottom, y + 5, y + line.BorderMarginBottom);  // a staff is 4 spaces tall
   }
-  // in staff spaces: ledger lines above, ledger lines and lyrics below
-  const above = 2, below = 5;
+  const margin = 0.5;
   return {
     left: offX + left * unit,
-    top: offY + (top - above) * unit,
+    top: offY + (top - margin) * unit,
     width: (right - left) * unit,
-    height: (bottom - top + above + below) * unit,
+    height: (bottom - top + 2 * margin) * unit,
   };
 }
 
@@ -682,11 +695,15 @@ function showBar(index) {
   if (moved && transport.state === "started") keepInView(box);
 }
 
-// Scroll so the bar sits below the sticky header, only if it's out of view.
+// Scroll so the bar sits below the sticky header, only if it's out of view:
+// out of what's on screen, which on a phone zoomed out or under the browser's
+// toolbars is less than the window.
 function keepInView(box) {
   const header = document.querySelector("header").offsetHeight;
+  const view = window.visualViewport;
+  const bottom = view ? Math.min(window.innerHeight, view.offsetTop + view.height) : window.innerHeight;
   const top = $("score").getBoundingClientRect().top + box.top;
-  if (top >= header && top + box.height <= window.innerHeight) return;
+  if (top >= header && top + box.height <= bottom) return;
   window.scrollBy({ top: top - header - 16, behavior: "smooth" });
 }
 
