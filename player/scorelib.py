@@ -54,16 +54,18 @@ def to_tenor_clef(part: stream.Part) -> None:
         c.activeSite.replace(c, clef.Treble8vbClef())
 
 
-def write_out_repeats(part: stream.Part, order: list[int]) -> stream.Part:
+def write_out_repeats(part: stream.Part, order: list[int], renumber: bool = True) -> stream.Part:
     """The player plays straight through, so repeats are written out: a new part
-    with the bars numbered `order` in that order, renumbered from 1."""
+    with the bars numbered `order` in that order, renumbered from 1 unless
+    `renumber` is false (bars are left out, but none comes twice)."""
     bars = {m.number: m for m in part.getElementsByClass(stream.Measure)}
     out = stream.Part()
     offset = 0.0
     shown = {}  # the clef, key, time and tempo in force, by kind
     for number, n in enumerate(order, 1):
         m = copy.deepcopy(bars[n])
-        m.number = number
+        if renumber:
+            m.number = number
         # a repeated bar would show the clef, key, time and tempo again; only a change shows
         for kind in (clef.Clef, key.KeySignature, meter.TimeSignature, tempo.MetronomeMark):
             for el in list(m.getElementsByClass(kind)):

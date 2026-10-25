@@ -5,8 +5,9 @@ The notes are from the director's MusicXML, exported from Finale
 "no‿ol", ...) and get the hyphens wrong around them, so the lyrics are
 transcribed from the PDF instead. The player ignores the dynamics. build()
 writes out the two repeats (each with first and second endings), so bar
-numbers don't match the score; build_short() is the score as printed, each bar
-once.
+numbers don't match the score. build_short() goes through each section once,
+taking the second endings: a first ending leads back to the repeat, so isn't
+followed by the second. Its bars keep the score's numbers.
 """
 from music21 import stream
 
@@ -22,6 +23,8 @@ ABBREVIATIONS = ["S", "A", "T", "B"]
 # score bars 1-7 with ending 8, again with ending 9, then 10-16 with ending 17,
 # again with ending 18, then 19-20
 ORDER = [*range(1, 8), 8, *range(1, 8), 9, *range(10, 17), 17, *range(10, 17), 18, 19, 20]
+# without repeats: the score without its first endings, 8 and 17
+SHORT_ORDER = [*range(1, 8), 9, *range(10, 17), 18, 19, 20]
 # one entry per PDF bar, see scorelib.add_lyrics for the format; the parts only
 # differ in bar 2, where the tenor holds "de‿a" instead of singing "quí"
 LYRICS = """Si‿al gu- na vez cuan- do‿es- | tés le- jos de‿a quí |
@@ -58,8 +61,8 @@ def build() -> stream.Score:
 
 
 def build_short() -> stream.Score:
-    parts = load_parts()
+    parts = [write_out_repeats(part, SHORT_ORDER, renumber=False) for part in load_parts()]
     score = make_score(parts, NAMES, ABBREVIATIONS, TITLE, COMPOSER)
     for part in parts:
-        add_lyrics(part, lyrics(part.partName, list(range(1, 21))))
+        add_lyrics(part, lyrics(part.partName, SHORT_ORDER))
     return score

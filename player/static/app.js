@@ -1102,7 +1102,8 @@ $("repeats").addEventListener("click", e => {
   const bar = printedBar(currentBar);
   keepingPlace(async () => {
     await loadSong(songId);
-    const index = Math.max(song.measures.findIndex((_, i) => printedBar(i) === bar), 0);
+    // or, from a first ending, which the version without repeats leaves out, the bar after
+    const index = Math.max(song.measures.findIndex((_, i) => printedBar(i) >= bar), 0);
     transport.ticks = barTicks[index];
     showBar(index);
   });

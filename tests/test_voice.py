@@ -154,6 +154,25 @@ def test_repeats_wait_for_a_pause_and_keep_the_bar(server):
         browser.close()
 
 
+def test_without_repeats_a_first_ending_isnt_followed_by_the_second(server):
+    # No olvides has first and second endings (8 and 9, 17 and 18): each
+    # section once takes the second, and the bars keep the score's numbers
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page()
+        page.add_init_script(SET_VOICE)
+        page.goto(f"{server}/#no")
+        page.wait_for_function("songId === 'no' && !loading")
+        # stopped on the first ending, bar 8, in the written-out version
+        page.evaluate("currentBar = song.printedBars.indexOf(8)")
+        page.click("#repeats")
+        page.wait_for_function("song.measures.length === 18 && !loading")
+        printed = page.evaluate("song.measures.map((_, i) => printedBar(i))")
+        assert printed == [*range(1, 8), 9, *range(10, 17), 18, 19, 20]
+        # from the first ending, left out, it goes to the second
+        assert page.evaluate("printedBar(currentBar)") == 9
+        browser.close()
+
 def test_repeats_are_remembered_across_songs_and_visits(server):
     with sync_playwright() as p:
         browser = p.chromium.launch()

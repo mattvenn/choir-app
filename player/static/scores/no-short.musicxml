@@ -22,52 +22,20 @@
   </defaults>
   <part-list>
     <score-part id="P1">
-      <part-name print-object="no">Soprano</part-name>
-      <part-abbreviation print-object="no">S</part-abbreviation>
-      <score-instrument id="I1">
-        <instrument-name>SmartMusic SoftSynth</instrument-name>
-        <instrument-abbreviation>Ch</instrument-abbreviation>
-      </score-instrument>
-      <midi-instrument id="I1">
-        <midi-channel>1</midi-channel>
-        <midi-program>53</midi-program>
-      </midi-instrument>
+      <part-name>Soprano</part-name>
+      <part-abbreviation>S</part-abbreviation>
     </score-part>
     <score-part id="P2">
-      <part-name print-object="no">Alto</part-name>
-      <part-abbreviation print-object="no">A</part-abbreviation>
-      <score-instrument id="I2">
-        <instrument-name>SmartMusic SoftSynth</instrument-name>
-        <instrument-abbreviation>Ch</instrument-abbreviation>
-      </score-instrument>
-      <midi-instrument id="I2">
-        <midi-channel>2</midi-channel>
-        <midi-program>53</midi-program>
-      </midi-instrument>
+      <part-name>Alto</part-name>
+      <part-abbreviation>A</part-abbreviation>
     </score-part>
     <score-part id="P3">
-      <part-name print-object="no">Tenor</part-name>
-      <part-abbreviation print-object="no">T</part-abbreviation>
-      <score-instrument id="I3">
-        <instrument-name>SmartMusicSoftSynth</instrument-name>
-        <instrument-abbreviation>Ch</instrument-abbreviation>
-      </score-instrument>
-      <midi-instrument id="I3">
-        <midi-channel>3</midi-channel>
-        <midi-program>53</midi-program>
-      </midi-instrument>
+      <part-name>Tenor</part-name>
+      <part-abbreviation>T</part-abbreviation>
     </score-part>
     <score-part id="P4">
-      <part-name print-object="no">Bass</part-name>
-      <part-abbreviation print-object="no">B</part-abbreviation>
-      <score-instrument id="I4">
-        <instrument-name>SmartMusicSoftSynth</instrument-name>
-        <instrument-abbreviation>Ch</instrument-abbreviation>
-      </score-instrument>
-      <midi-instrument id="I4">
-        <midi-channel>4</midi-channel>
-        <midi-program>53</midi-program>
-      </midi-instrument>
+      <part-name>Bass</part-name>
+      <part-abbreviation>B</part-abbreviation>
     </score-part>
   </part-list>
   <!--=========================== Part 1 ===========================-->
@@ -745,66 +713,10 @@
         </lyric>
       </note>
     </measure>
-    <!--========================= Measure 8 ==========================-->
-    <measure implicit="no" number="8" width="231">
-      <barline location="left">
-        <bar-style>regular</bar-style>
-        <ending number="1" type="start" />
-      </barline>
-      <note default-x="56">
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-        <stem default-y="-4.5">up</stem>
-        <lyric name="1" number="1">
-          <syllabic>middle</syllabic>
-          <text>vi</text>
-        </lyric>
-      </note>
-      <note default-x="92">
-        <pitch>
-          <step>D</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-        <stem default-y="-9.5">up</stem>
-        <lyric name="1" number="1">
-          <syllabic>end</syllabic>
-          <text>des</text>
-        </lyric>
-      </note>
-      <note default-x="138">
-        <pitch>
-          <step>C</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-        <stem default-y="-14">up</stem>
-        <lyric name="1" number="1">
-          <syllabic>single</syllabic>
-          <text>John</text>
-        </lyric>
-      </note>
-      <note default-x="175">
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <barline location="right">
-        <ending number="1" type="stop" />
-        <repeat direction="backward" />
-      </barline>
-    </measure>
     <!--========================= Measure 9 ==========================-->
     <measure implicit="no" number="9" width="175">
       <barline location="left">
         <bar-style>regular</bar-style>
-        <ending number="2" type="start" />
       </barline>
       <note default-x="16">
         <pitch>
@@ -815,7 +727,7 @@
         <type>quarter</type>
         <stem default-y="-4.5">up</stem>
         <lyric name="1" number="1">
-          <syllabic>begin</syllabic>
+          <syllabic>middle</syllabic>
           <text>vi</text>
         </lyric>
       </note>
@@ -865,14 +777,10 @@
       </note>
       <barline location="right">
         <bar-style>regular</bar-style>
-        <ending number="2" type="stop" />
       </barline>
     </measure>
     <!--========================= Measure 10 =========================-->
     <measure implicit="no" number="10" width="278">
-      <barline location="left">
-        <repeat direction="forward" />
-      </barline>
       <note default-x="34">
         <pitch>
           <step>E</step>
@@ -1594,79 +1502,10 @@
         </lyric>
       </note>
     </measure>
-    <!--========================= Measure 17 =========================-->
-    <measure implicit="no" number="17" width="292">
-      <barline location="left">
-        <bar-style>regular</bar-style>
-        <ending number="1" type="start" />
-      </barline>
-      <note default-x="56">
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-        <stem default-y="-4">up</stem>
-        <lyric name="1" number="1">
-          <syllabic>middle</syllabic>
-          <text>vi</text>
-        </lyric>
-      </note>
-      <note default-x="107">
-        <pitch>
-          <step>D</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-        <stem default-y="-9">up</stem>
-        <lyric name="1" number="1">
-          <syllabic>end</syllabic>
-          <text>des</text>
-        </lyric>
-      </note>
-      <note default-x="158">
-        <pitch>
-          <step>C</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-        <stem default-y="-14.5">up</stem>
-        <lyric name="1" number="1">
-          <syllabic>single</syllabic>
-          <text>John</text>
-        </lyric>
-      </note>
-      <note default-x="209">
-        <rest />
-        <duration>5040</duration>
-        <type>eighth</type>
-      </note>
-      <note default-x="240">
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>5040</duration>
-        <type>eighth</type>
-        <stem default-y="5.5">up</stem>
-        <lyric name="1" number="1">
-          <syllabic>begin</syllabic>
-          <text>Es</text>
-        </lyric>
-      </note>
-      <barline location="right">
-        <ending number="1" type="stop" />
-        <repeat direction="backward" />
-      </barline>
-    </measure>
     <!--========================= Measure 18 =========================-->
     <measure implicit="no" number="18" width="233">
       <barline location="left">
         <bar-style>regular</bar-style>
-        <ending number="2" type="start" />
       </barline>
       <note default-x="16">
         <pitch>
@@ -1727,7 +1566,6 @@
       </note>
       <barline location="right">
         <bar-style>regular</bar-style>
-        <ending number="2" type="stop" />
       </barline>
     </measure>
     <!--========================= Measure 19 =========================-->
@@ -2568,66 +2406,10 @@
         </lyric>
       </note>
     </measure>
-    <!--========================= Measure 8 ==========================-->
-    <measure implicit="no" number="8" width="231">
-      <barline location="left">
-        <bar-style>regular</bar-style>
-        <ending number="1" type="start" />
-      </barline>
-      <note default-x="56">
-        <pitch>
-          <step>C</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-        <stem default-y="-15">up</stem>
-        <lyric name="1" number="1">
-          <syllabic>middle</syllabic>
-          <text>vi</text>
-        </lyric>
-      </note>
-      <note default-x="92">
-        <pitch>
-          <step>B</step>
-          <octave>3</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-        <stem default-y="-19">up</stem>
-        <lyric name="1" number="1">
-          <syllabic>end</syllabic>
-          <text>des</text>
-        </lyric>
-      </note>
-      <note default-x="138">
-        <pitch>
-          <step>C</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-        <stem default-y="-15">up</stem>
-        <lyric name="1" number="1">
-          <syllabic>single</syllabic>
-          <text>John</text>
-        </lyric>
-      </note>
-      <note default-x="175">
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <barline location="right">
-        <ending number="1" type="stop" />
-        <repeat direction="backward" />
-      </barline>
-    </measure>
     <!--========================= Measure 9 ==========================-->
     <measure implicit="no" number="9" width="175">
       <barline location="left">
         <bar-style>regular</bar-style>
-        <ending number="2" type="start" />
       </barline>
       <note default-x="16">
         <pitch>
@@ -2638,7 +2420,7 @@
         <type>quarter</type>
         <stem default-y="-15">up</stem>
         <lyric name="1" number="1">
-          <syllabic>begin</syllabic>
+          <syllabic>middle</syllabic>
           <text>vi</text>
         </lyric>
       </note>
@@ -2688,14 +2470,10 @@
       </note>
       <barline location="right">
         <bar-style>regular</bar-style>
-        <ending number="2" type="stop" />
       </barline>
     </measure>
     <!--========================= Measure 10 =========================-->
     <measure implicit="no" number="10" width="278">
-      <barline location="left">
-        <repeat direction="forward" />
-      </barline>
       <note default-x="34">
         <pitch>
           <step>C</step>
@@ -3420,79 +3198,10 @@
         </lyric>
       </note>
     </measure>
-    <!--========================= Measure 17 =========================-->
-    <measure implicit="no" number="17" width="292">
-      <barline location="left">
-        <bar-style>regular</bar-style>
-        <ending number="1" type="start" />
-      </barline>
-      <note default-x="56">
-        <pitch>
-          <step>C</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-        <stem default-y="-14.5">up</stem>
-        <lyric name="1" number="1">
-          <syllabic>middle</syllabic>
-          <text>vi</text>
-        </lyric>
-      </note>
-      <note default-x="107">
-        <pitch>
-          <step>B</step>
-          <octave>3</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-        <stem default-y="-19.5">up</stem>
-        <lyric name="1" number="1">
-          <syllabic>end</syllabic>
-          <text>des</text>
-        </lyric>
-      </note>
-      <note default-x="158">
-        <pitch>
-          <step>C</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-        <stem default-y="-14.5">up</stem>
-        <lyric name="1" number="1">
-          <syllabic>single</syllabic>
-          <text>John</text>
-        </lyric>
-      </note>
-      <note default-x="209">
-        <rest />
-        <duration>5040</duration>
-        <type>eighth</type>
-      </note>
-      <note default-x="240">
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>5040</duration>
-        <type>eighth</type>
-        <stem default-y="-5">up</stem>
-        <lyric name="1" number="1">
-          <syllabic>begin</syllabic>
-          <text>Es</text>
-        </lyric>
-      </note>
-      <barline location="right">
-        <ending number="1" type="stop" />
-        <repeat direction="backward" />
-      </barline>
-    </measure>
     <!--========================= Measure 18 =========================-->
     <measure implicit="no" number="18" width="233">
       <barline location="left">
         <bar-style>regular</bar-style>
-        <ending number="2" type="start" />
       </barline>
       <note default-x="16">
         <pitch>
@@ -3553,7 +3262,6 @@
       </note>
       <barline location="right">
         <bar-style>regular</bar-style>
-        <ending number="2" type="stop" />
       </barline>
     </measure>
     <!--========================= Measure 19 =========================-->
@@ -4390,66 +4098,10 @@
         </lyric>
       </note>
     </measure>
-    <!--========================= Measure 8 ==========================-->
-    <measure implicit="no" number="8" width="231">
-      <barline location="left">
-        <bar-style>regular</bar-style>
-        <ending number="1" type="start" />
-      </barline>
-      <note default-x="56">
-        <pitch>
-          <step>G</step>
-          <octave>3</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-        <stem default-y="-40.5">down</stem>
-        <lyric name="1" number="1">
-          <syllabic>middle</syllabic>
-          <text>vi</text>
-        </lyric>
-      </note>
-      <note default-x="92">
-        <pitch>
-          <step>G</step>
-          <octave>3</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-        <stem default-y="-40.5">down</stem>
-        <lyric name="1" number="1">
-          <syllabic>end</syllabic>
-          <text>des</text>
-        </lyric>
-      </note>
-      <note default-x="138">
-        <pitch>
-          <step>E</step>
-          <octave>3</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-        <stem default-y="-50">down</stem>
-        <lyric name="1" number="1">
-          <syllabic>single</syllabic>
-          <text>John</text>
-        </lyric>
-      </note>
-      <note default-x="175">
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <barline location="right">
-        <ending number="1" type="stop" />
-        <repeat direction="backward" />
-      </barline>
-    </measure>
     <!--========================= Measure 9 ==========================-->
     <measure implicit="no" number="9" width="175">
       <barline location="left">
         <bar-style>regular</bar-style>
-        <ending number="2" type="start" />
       </barline>
       <note default-x="16">
         <pitch>
@@ -4460,7 +4112,7 @@
         <type>quarter</type>
         <stem default-y="-40.5">down</stem>
         <lyric name="1" number="1">
-          <syllabic>begin</syllabic>
+          <syllabic>middle</syllabic>
           <text>vi</text>
         </lyric>
       </note>
@@ -4510,14 +4162,10 @@
       </note>
       <barline location="right">
         <bar-style>regular</bar-style>
-        <ending number="2" type="stop" />
       </barline>
     </measure>
     <!--========================= Measure 10 =========================-->
     <measure implicit="no" number="10" width="278">
-      <barline location="left">
-        <repeat direction="forward" />
-      </barline>
       <note default-x="34">
         <pitch>
           <step>G</step>
@@ -5239,79 +4887,10 @@
         </lyric>
       </note>
     </measure>
-    <!--========================= Measure 17 =========================-->
-    <measure implicit="no" number="17" width="292">
-      <barline location="left">
-        <bar-style>regular</bar-style>
-        <ending number="1" type="start" />
-      </barline>
-      <note default-x="56">
-        <pitch>
-          <step>G</step>
-          <octave>3</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-        <stem default-y="-40">down</stem>
-        <lyric name="1" number="1">
-          <syllabic>middle</syllabic>
-          <text>vi</text>
-        </lyric>
-      </note>
-      <note default-x="107">
-        <pitch>
-          <step>G</step>
-          <octave>3</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-        <stem default-y="-40">down</stem>
-        <lyric name="1" number="1">
-          <syllabic>end</syllabic>
-          <text>des</text>
-        </lyric>
-      </note>
-      <note default-x="158">
-        <pitch>
-          <step>E</step>
-          <octave>3</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-        <stem default-y="-50">down</stem>
-        <lyric name="1" number="1">
-          <syllabic>single</syllabic>
-          <text>John</text>
-        </lyric>
-      </note>
-      <note default-x="209">
-        <rest />
-        <duration>5040</duration>
-        <type>eighth</type>
-      </note>
-      <note default-x="240">
-        <pitch>
-          <step>C</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>5040</duration>
-        <type>eighth</type>
-        <stem default-y="-25">down</stem>
-        <lyric name="1" number="1">
-          <syllabic>begin</syllabic>
-          <text>Es</text>
-        </lyric>
-      </note>
-      <barline location="right">
-        <ending number="1" type="stop" />
-        <repeat direction="backward" />
-      </barline>
-    </measure>
     <!--========================= Measure 18 =========================-->
     <measure implicit="no" number="18" width="233">
       <barline location="left">
         <bar-style>regular</bar-style>
-        <ending number="2" type="start" />
       </barline>
       <note default-x="16">
         <pitch>
@@ -5372,7 +4951,6 @@
       </note>
       <barline location="right">
         <bar-style>regular</bar-style>
-        <ending number="2" type="stop" />
       </barline>
     </measure>
     <!--========================= Measure 19 =========================-->
@@ -6213,66 +5791,10 @@
         </lyric>
       </note>
     </measure>
-    <!--========================= Measure 8 ==========================-->
-    <measure implicit="no" number="8" width="231">
-      <barline location="left">
-        <bar-style>regular</bar-style>
-        <ending number="1" type="start" />
-      </barline>
-      <note default-x="56">
-        <pitch>
-          <step>G</step>
-          <octave>3</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-        <stem default-y="-40.5">down</stem>
-        <lyric name="1" number="1">
-          <syllabic>middle</syllabic>
-          <text>vi</text>
-        </lyric>
-      </note>
-      <note default-x="92">
-        <pitch>
-          <step>G</step>
-          <octave>2</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-        <stem default-y="-4">up</stem>
-        <lyric name="1" number="1">
-          <syllabic>end</syllabic>
-          <text>des</text>
-        </lyric>
-      </note>
-      <note default-x="138">
-        <pitch>
-          <step>C</step>
-          <octave>3</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-        <stem default-y="11">up</stem>
-        <lyric name="1" number="1">
-          <syllabic>single</syllabic>
-          <text>John</text>
-        </lyric>
-      </note>
-      <note default-x="175">
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <barline location="right">
-        <ending number="1" type="stop" />
-        <repeat direction="backward" />
-      </barline>
-    </measure>
     <!--========================= Measure 9 ==========================-->
     <measure implicit="no" number="9" width="175">
       <barline location="left">
         <bar-style>regular</bar-style>
-        <ending number="2" type="start" />
       </barline>
       <note default-x="16">
         <pitch>
@@ -6283,7 +5805,7 @@
         <type>quarter</type>
         <stem default-y="-40.5">down</stem>
         <lyric name="1" number="1">
-          <syllabic>begin</syllabic>
+          <syllabic>middle</syllabic>
           <text>vi</text>
         </lyric>
       </note>
@@ -6333,14 +5855,10 @@
       </note>
       <barline location="right">
         <bar-style>regular</bar-style>
-        <ending number="2" type="stop" />
       </barline>
     </measure>
     <!--========================= Measure 10 =========================-->
     <measure implicit="no" number="10" width="278">
-      <barline location="left">
-        <repeat direction="forward" />
-      </barline>
       <note default-x="34">
         <pitch>
           <step>C</step>
@@ -7062,79 +6580,10 @@
         </lyric>
       </note>
     </measure>
-    <!--========================= Measure 17 =========================-->
-    <measure implicit="no" number="17" width="292">
-      <barline location="left">
-        <bar-style>regular</bar-style>
-        <ending number="1" type="start" />
-      </barline>
-      <note default-x="56">
-        <pitch>
-          <step>G</step>
-          <octave>3</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-        <stem default-y="-40">down</stem>
-        <lyric name="1" number="1">
-          <syllabic>middle</syllabic>
-          <text>vi</text>
-        </lyric>
-      </note>
-      <note default-x="107">
-        <pitch>
-          <step>G</step>
-          <octave>2</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-        <stem default-y="-4.5">up</stem>
-        <lyric name="1" number="1">
-          <syllabic>end</syllabic>
-          <text>des</text>
-        </lyric>
-      </note>
-      <note default-x="158">
-        <pitch>
-          <step>C</step>
-          <octave>3</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-        <stem default-y="10">up</stem>
-        <lyric name="1" number="1">
-          <syllabic>single</syllabic>
-          <text>John</text>
-        </lyric>
-      </note>
-      <note default-x="209">
-        <rest />
-        <duration>5040</duration>
-        <type>eighth</type>
-      </note>
-      <note default-x="240">
-        <pitch>
-          <step>C</step>
-          <octave>3</octave>
-        </pitch>
-        <duration>5040</duration>
-        <type>eighth</type>
-        <stem default-y="10">up</stem>
-        <lyric name="1" number="1">
-          <syllabic>begin</syllabic>
-          <text>Es</text>
-        </lyric>
-      </note>
-      <barline location="right">
-        <ending number="1" type="stop" />
-        <repeat direction="backward" />
-      </barline>
-    </measure>
     <!--========================= Measure 18 =========================-->
     <measure implicit="no" number="18" width="233">
       <barline location="left">
         <bar-style>regular</bar-style>
-        <ending number="2" type="start" />
       </barline>
       <note default-x="16">
         <pitch>
@@ -7195,7 +6644,6 @@
       </note>
       <barline location="right">
         <bar-style>regular</bar-style>
-        <ending number="2" type="stop" />
       </barline>
     </measure>
     <!--========================= Measure 19 =========================-->

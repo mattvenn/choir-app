@@ -54,6 +54,9 @@ def write(song, name: str, score: stream.Score) -> None:
     # on a bar counts for it in both versions; otherwise bar i is printed bar i
     if name == song.ID and hasattr(song, "ORDER"):
         data["printedBars"] = song.ORDER
+    # a version without repeats that leaves out bars (first endings) says which it has
+    if name != song.ID and hasattr(song, "SHORT_ORDER"):
+        data["printedBars"] = song.SHORT_ORDER
     (OUT / f"{name}.json").write_text(json.dumps(data))
 
 
