@@ -271,6 +271,12 @@ const ticks = quarters => `${Math.round(quarters * transport.PPQ)}i`;
 
 const getJSON = async url => (await fetch(url)).json();
 
+// The commit this code is from, which the deploy puts on app.js's address (see
+// pages.yml); unset when run locally. The scores' addresses carry it too, so a
+// new version's are fetched, not taken from the browser's cache.
+const VERSION = new URL(document.currentScript.src).searchParams.get("v");
+const fresh = url => VERSION ? `${url}?v=${VERSION}` : url;
+
 // The choir's four voices, and the part names each looks for in a song, in
 // order: songs for three upper voices have one Baritone part for the men.
 // "Alto" also matches "Alto 1" and "Alto 2".
@@ -362,8 +368,9 @@ async function init() {
     // one drawn bar per score bar, so highlighting and clicking line up
     autoGenerateMultipleRestMeasuresFromRestMeasures: false,
   });
+  checkVersion();
 
-  songs = await getJSON("scores/index.json");
+  songs = await getJSON(fresh("scores/index.json"));
   let group;
   for (const { id, title, group: songGroup } of songs) {
     // another group's songs (the junior choir's) come after a heading with its name
@@ -386,25 +393,50 @@ async function init() {
   }
   if (!store.get("voice") && !director) await askVoice();
   await route();
-  showVersion();
 
   await Tone.loaded();
   makePianos();
   $("play").disabled = $("stop").disabled = false;
 }
 
-// "Last updated <date>" on the chooser, linking to the published commit.
-// version.json is written at deploy time, so it's missing when run locally.
-async function showVersion() {
+// Pages lets browsers keep the page for 10 minutes, so one opened soon after a
+// new version is published, or left open in a tab, can be the old one: if so,
+// load it again (not mid-song, and only once for each version, in case the
+// reload still gets the old one). version.json is written at deploy time, so
+// it's missing when run locally.
+async function checkVersion() {
+  let published;
   try {
-    const { commit, date } = await getJSON("version.json");
-    // in the viewer's own time zone
-    const day = new Date(date).toLocaleDateString(lang, { day: "numeric", month: "long", year: "numeric" });
-    const time = new Date(date).toLocaleTimeString(lang, { hour: "2-digit", minute: "2-digit" });
-    $("updated").href = `https://github.com/mattvenn/choir-app/commit/${commit}`;
-    $("updated").textContent = t("updated", day, time);
-    $("updated").hidden = false;
-  } catch {}
+    published = await (await fetch("version.json", { cache: "no-store" })).json();
+  } catch {
+    return;
+  }
+  if (VERSION && !published.commit.startsWith(VERSION)
+      && !document.body.classList.contains("playing")) {
+    let tried;
+    try {
+      tried = sessionStorage.getItem("choir.reloadedFor");
+      sessionStorage.setItem("choir.reloadedFor", published.commit);
+    } catch {}
+    if (tried !== published.commit) {
+      location.reload();
+      return;
+    }
+  }
+  showVersion(published);
+}
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible" && songs) checkVersion();
+});
+
+// "Last updated <date>" on the chooser, linking to the published commit.
+function showVersion({ commit, date }) {
+  // in the viewer's own time zone
+  const day = new Date(date).toLocaleDateString(lang, { day: "numeric", month: "long", year: "numeric" });
+  const time = new Date(date).toLocaleTimeString(lang, { hour: "2-digit", minute: "2-digit" });
+  $("updated").href = `https://github.com/mattvenn/choir-app/commit/${commit}`;
+  $("updated").textContent = t("updated", day, time);
+  $("updated").hidden = false;
 }
 
 // What each control does, beside a copy of its icons from the toolbar, then
@@ -521,10 +553,10 @@ async function loadScore(id) {
   const hasShort = songs.find(s => s.id === id).short;
   const noRepeats = $("repeats").getAttribute("aria-pressed") === "false";
   const file = hasShort && noRepeats ? `${id}-short` : id;
-  song = await getJSON(`scores/${file}.json`);
+  song = await getJSON(fresh(`scores/${file}.json`));
   document.title = `${song.title} · ${t("appName")}`;
   history.replaceState(null, "", `#${id}`);
-  await osmd.load(`scores/${file}.musicxml`);
+  await osmd.load(fresh(`scores/${file}.musicxml`));
   fixLyricHyphens();
   songId = id;
   updateSwitches();
