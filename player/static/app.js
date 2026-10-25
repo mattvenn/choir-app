@@ -35,7 +35,9 @@ const STRINGS = {
     directorMode: "Director's view: every voice",
     reportNote: (song, bar, part, n, note, lyric) =>
       `${song}, bar ${bar}, ${part}: note ${n} (${note}${lyric ? `, "${lyric}"` : ""})`,
+    reportSubject: (song, bar) => `${song}, bar ${bar}`,
     reportSend: "Report on WhatsApp",
+    reportEmail: "Report by email",
     playFromHere: "Play from this bar",
     yourPart: "Your part",
     help: "Help",
@@ -58,7 +60,7 @@ const STRINGS = {
       "Your voice, and the tempo and the other voices' volume for each song, are remembered on this device.",
       "On a phone, songs work best with the phone turned sideways.",
     ],
-    directorNote: "Director's view: every voice is shown and played equally loud, and songs start without repeats so the bar numbers match the score. Tap a note to report a mistake in it on WhatsApp: the message says which song, bar, voice and note, and you add what's wrong and choose who to send it to. To go back to one voice, open the address with ?director=no.",
+    directorNote: "Director's view: every voice is shown and played equally loud, and songs start without repeats so the bar numbers match the score. Tap a note to report a mistake in it on WhatsApp or by email: the message says which song, bar, voice and note, and you add what's wrong and choose who to send it to. To go back to one voice, open the address with ?director=no.",
     error: message => `Error: ${message}`,
     updated: (date, time) => `Last updated ${date} at ${time}`,
     minutes: n => `${n} min`,
@@ -89,7 +91,9 @@ const STRINGS = {
     directorMode: "Vista del director: todas las voces",
     reportNote: (song, bar, part, n, note, lyric) =>
       `${song}, compás ${bar}, ${part}: nota ${n} (${note}${lyric ? `, «${lyric}»` : ""})`,
+    reportSubject: (song, bar) => `${song}, compás ${bar}`,
     reportSend: "Avisar por WhatsApp",
+    reportEmail: "Avisar por correo",
     playFromHere: "Tocar desde este compás",
     yourPart: "Tu parte",
     help: "Ayuda",
@@ -112,7 +116,7 @@ const STRINGS = {
       "Tu voz, y el tempo y el volumen de las otras voces de cada canción, se guardan en este dispositivo.",
       "En el móvil, las canciones se ven mejor con el teléfono en horizontal.",
     ],
-    directorNote: "Vista del director: se muestran todas las voces y suenan igual de fuerte, y las canciones empiezan sin repeticiones para que los números de compás coincidan con la partitura. Pulsa una nota para avisar de un error por WhatsApp: el mensaje dice la canción, el compás, la voz y la nota, y tú añades qué está mal y eliges a quién enviarlo. Para volver a una sola voz, abre la dirección con ?director=no.",
+    directorNote: "Vista del director: se muestran todas las voces y suenan igual de fuerte, y las canciones empiezan sin repeticiones para que los números de compás coincidan con la partitura. Pulsa una nota para avisar de un error por WhatsApp o por correo: el mensaje dice la canción, el compás, la voz y la nota, y tú añades qué está mal y eliges a quién enviarlo. Para volver a una sola voz, abre la dirección con ?director=no.",
     error: message => `Error: ${message}`,
     updated: (date, time) => `Actualizado el ${date} a las ${time}`,
     minutes: n => `${n} min`,
@@ -712,16 +716,19 @@ function noteNear(x, y) {
   return best;
 }
 
-// Under the tapped note: which note it is, a link that opens WhatsApp with
-// that and a link to the song filled in, for the director to say what's wrong
-// and choose who to send it to, and a button to play from its bar.
+// Under the tapped note: which note it is, links that open WhatsApp or an
+// email with that and a link to the song filled in, for the director to say
+// what's wrong and choose who to send it to, and a button to play from its bar.
 let reportBar = 0;
 function showReport(g) {
   const { index, part, place, pitch, lyric } = noteInfo.get(g);
   const what = t("reportNote", song.title, printedBar(index), part, place, noteText(pitch), lyric);
   const link = `${location.origin}${location.pathname}#${songId}`;
   $("report-what").textContent = what;
-  $("report-send").href = `https://wa.me/?text=${encodeURIComponent(`${what}\n${link}\n\n`)}`;
+  const message = encodeURIComponent(`${what}\n${link}\n\n`);
+  $("report-send").href = `https://wa.me/?text=${message}`;
+  const subject = encodeURIComponent(t("reportSubject", song.title, printedBar(index)));
+  $("report-email").href = `mailto:?subject=${subject}&body=${message}`;
   reportBar = index;
   const s = $("score").getBoundingClientRect();
   const b = g.getBoundingClientRect();
@@ -1118,10 +1125,12 @@ $("score").addEventListener("click", e => {
   const bar = barAt(x, y);
   if (bar >= 0) goToBar(bar);
 });
-$("report-send").addEventListener("click", () => {
-  track("report", { song: songId });
-  hideReport();
-});
+for (const [id, by] of [["report-send", "whatsapp"], ["report-email", "email"]]) {
+  $(id).addEventListener("click", () => {
+    track("report", { song: songId, by });
+    hideReport();
+  });
+}
 $("report-play").addEventListener("click", () => {
   hideReport();
   if (!$("play").disabled) goToBar(reportBar);

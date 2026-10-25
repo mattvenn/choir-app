@@ -1,6 +1,7 @@
 """The director's view, for checking the scores: ?director shows and plays
 every part, starts each song without repeats so the bar numbers are the
-score's, and a tap on a note opens a report of it to send on WhatsApp.
+score's, and a tap on a note opens a report of it to send on WhatsApp or by
+email.
 """
 
 import urllib.parse
@@ -38,6 +39,12 @@ def test_director_sees_every_part_without_repeats_and_reports_a_note(server):
         href = page.get_attribute("#report-send", "href")
         assert href.startswith("https://wa.me/?text=")
         assert urllib.parse.unquote(href.split("=", 1)[1]) == f"{what}\n{server}/#triste\n\n"
+        # nor an address in the email
+        email = urllib.parse.urlparse(page.get_attribute("#report-email", "href"))
+        assert (email.scheme, email.path) == ("mailto", "")
+        fields = urllib.parse.parse_qs(email.query)
+        assert fields["subject"] == ["Triste reloj, compás 38"]
+        assert fields["body"] == [f"{what}\n{server}/#triste\n\n"]
         # nothing played: the tap was for the report
         assert page.evaluate("Tone.getTransport().state") != "started"
 

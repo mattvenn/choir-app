@@ -51,8 +51,8 @@ in proportion to the tempo set.
 For the director to check the scores, `?director` (e.g.
 https://mattvenn.github.io/choir-app/?director) shows and plays every part,
 starts songs without repeats so the bar numbers are the score's, and a tap on a
-note opens a WhatsApp message saying which song, bar, voice and note it is. It
-stays on in that browser until `?director=no`.
+note opens a WhatsApp message or an email saying which song, bar, voice and
+note it is. It stays on in that browser until `?director=no`.
 
     .venv/bin/python player/prepare.py                   # builds player/static/scores/
     .venv/bin/python -m http.server -d player/static 8765

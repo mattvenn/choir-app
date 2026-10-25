@@ -251,7 +251,7 @@ button:disabled { opacity: 0.4; cursor: default; }
 }
 #report p { margin: 0 0 8px; font-size: 0.95rem; }
 .report-actions { display: flex; flex-wrap: wrap; gap: 8px; }
-#report-send {
+#report-send, #report-email {
   padding: 6px 12px;
   border-radius: 6px;
   background: var(--accent);
