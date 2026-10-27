@@ -4,10 +4,10 @@ All four voices are hand transcriptions of the PDF, which has soprano and
 alto on one staff and tenor and bass on another, both in treble-8 clef; the
 player shows the bass in bass clef instead, as the director asked. The
 upbeat is padded with rests into bar 1, so bar numbers are one more than
-counting from the first full bar. The score repeats bars 10-21 and ends with
-D.C.; until we know how the choir sings it, the player goes through each bar
-once, with both verses under the notes, and the repeat signs are left out so
-the score shows what it plays.
+counting from the first full bar. The choir doesn't sing the score's repeat
+(bars 10-21), only the D.C.: build() writes out verse 1, then verse 2, each
+bar once, so bar numbers in the second verse don't match the score. build_short() is each bar once, with both verses under the
+notes and without the repeat signs, so it shows what it plays.
 """
 from music21 import clef, meter, stream
 
@@ -21,6 +21,9 @@ MY_PART = "Bass"
 NAMES = ["Soprano", "Alto", "Tenor", "Bass"]
 ABBREVIATIONS = ["S", "A", "T", "B"]
 BARS = 21
+# each verse goes straight through, without the score's repeat
+VERSE = list(range(1, BARS + 1))
+ORDER = VERSE * 2
 # one entry per bar, see scorelib.add_lyrics for the format. Verse 2 is only
 # printed up to "festinemus", in bar 13, where both go on with "Venite adoremus".
 VERSE_1 = {
@@ -66,11 +69,21 @@ def verse_2(part: stream.Part) -> str:
     return "|".join(bars)
 
 
-def build() -> stream.Score:
+def written_out(voice: str) -> str:
+    """The words for ORDER: verse 1, then verse 2, whose own words stop after
+    "festinemus" in bar 13 and go on with verse 1's "Venite adoremus"."""
+    first = VERSE_1[voice].split("|")
+    second = VERSE_2[voice].split("|")
+    second[12] = " ".join(second[12].split()[:2] + first[12].split()[2:])
+    second += first[len(second):]
+    return "|".join([first[n - 1] for n in VERSE] + [second[n - 1] for n in VERSE])
+
+
+def load_parts(order: list[int]) -> list[stream.Part]:
     parts = []
     for voice in NAMES:
-        # renumbered as they are, to drop the repeat signs the player doesn't follow
-        part = write_out_repeats(load_abc(f"adeste-{voice.lower()}.abc"), list(range(1, BARS + 1)))
+        # written out in `order`, which also drops the score's repeat signs
+        part = write_out_repeats(load_abc(f"adeste-{voice.lower()}.abc"), order)
         if voice in ("Tenor", "Bass"):
             to_tenor_clef(part)
         if voice == "Bass":
@@ -80,6 +93,19 @@ def build() -> stream.Score:
         for ts in part.recurse().getElementsByClass(meter.TimeSignature):
             ts.symbol = "common"  # the score writes C, not 4/4
         parts.append(part)
+    return parts
+
+
+def build() -> stream.Score:
+    parts = load_parts(ORDER)
+    score = make_score(parts, NAMES, ABBREVIATIONS, TITLE, COMPOSER)
+    for part in parts:
+        add_lyrics(part, written_out(part.partName))
+    return score
+
+
+def build_short() -> stream.Score:
+    parts = load_parts(list(range(1, BARS + 1)))
     score = make_score(parts, NAMES, ABBREVIATIONS, TITLE, COMPOSER)
     for part in parts:
         add_lyrics(part, VERSE_1[part.partName])
