@@ -165,9 +165,10 @@ if (askedDirector !== null) store.set("director", askedDirector !== "no");
 const director = Boolean(store.get("director"));
 document.body.classList.toggle("director", director);
 
-// Google Analytics: which songs get opened and played. Only on the published
-// site, so local testing isn't counted. Page views are sent by hand, since a
-// song is only a #fragment of the URL.
+// Google Analytics: which songs get opened and played. Only sent from the
+// published site, so local testing isn't counted (elsewhere the events just
+// wait in dataLayer, where the tests read them). Page views are sent by hand,
+// since a song is only a #fragment of the URL.
 const GA_ID = location.hostname === "mattvenn.github.io" ? "G-VEP6N5WR4B" : "";
 window.dataLayer = window.dataLayer || [];
 function gtag() { dataLayer.push(arguments); }
@@ -179,7 +180,7 @@ if (GA_ID) {
   gtag("js", new Date());
   gtag("config", GA_ID, { send_page_view: false });
 }
-const track = (event, params) => { if (GA_ID) gtag("event", event, params); };
+const track = (event, params) => gtag("event", event, params);
 const trackPage = (path, title) => track("page_view", {
   page_location: location.origin + location.pathname.replace(/\/$/, "") + path,
   page_title: title,
@@ -498,7 +499,8 @@ function showHome() {
     : voice ? t("yourVoice", voice) : t("chooseVoice");
   $("change-voice").disabled = director;
   showPracticeStats();
-  trackPage("/", t("appName"));
+  // one name in every language, so Analytics counts it as one page
+  trackPage("/", STRINGS.en.appName);
 }
 
 async function showSong(id) {
@@ -942,7 +944,8 @@ function setPlayLabel() {
 async function play() {
   await Tone.start();  // browsers only allow audio after a click
   // counted from a stop, not on every resume after a pause
-  if (transport.state === "stopped") track("play", { song: songId });
+  // with how loud the others are: 0 is your part alone, 100 everyone
+  if (transport.state === "stopped") track("play", { song: songId, others: Number($("others").value) });
   transport.start();
   document.body.classList.add("playing");  // the play button shows pause
   setPlayLabel();
@@ -1159,6 +1162,10 @@ $("click-volume").addEventListener("input", e => {
 $("others").addEventListener("input", e => {
   setOthers(Number(e.target.value));
   store.set(`others.${songId}`, Number(e.target.value));
+});
+// counted once on letting go, not at every step of the drag
+$("others").addEventListener("change", e => {
+  track("others_volume", { song: songId, others: Number(e.target.value) });
 });
 $("help-button").addEventListener("click", showHelp);
 $("change-voice").addEventListener("click", async () => {
