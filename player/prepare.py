@@ -15,10 +15,10 @@ from pathlib import Path
 from music21 import converter, stream
 
 from scorelib import check, events
-from songs import adeste, ave, boga, foc, no, shalala, triste
+from songs import adeste, ave, boga, foc, ich, no, shalala, triste
 
 # in the order listed; the main choir's first, then each other group's
-SONGS = [foc, ave, no, boga, adeste, shalala, triste]
+SONGS = [foc, ave, no, boga, adeste, shalala, triste, ich]
 OUT = Path(__file__).resolve().parent / "static/scores"
 
 

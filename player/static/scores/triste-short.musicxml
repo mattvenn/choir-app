@@ -6,7 +6,7 @@
   </work>
   <movement-title>Triste reloj</movement-title>
   <identification>
-    <creator type="composer">Diana Bengoechea</creator>
+    <creator type="composer">Daniel Basomba</creator>
     <encoding>
       <software>music21 v.10.5.0</software>
       <supports element="beam" type="yes" />
@@ -2261,7 +2261,7 @@
       </note>
     </measure>
     <!--========================= Measure 25 =========================-->
-    <measure implicit="no" number="25" width="391">
+    <measure implicit="no" number="25" width="388">
       <note default-x="91">
         <pitch>
           <step>C</step>
@@ -2283,7 +2283,7 @@
           <text>Tic</text>
         </lyric>
       </note>
-      <note default-x="130">
+      <note default-x="129">
         <pitch>
           <step>G</step>
           <octave>4</octave>
@@ -2294,7 +2294,7 @@
         <beam number="1">continue</beam>
         <notations>
           <articulations>
-            <staccato default-x="4" default-y="-47" placement="below" />
+            <staccato default-x="3" default-y="-47" placement="below" />
           </articulations>
         </notations>
         <lyric default-y="-80" name="1" number="1">
@@ -2302,7 +2302,7 @@
           <text>tic</text>
         </lyric>
       </note>
-      <note default-x="167">
+      <note default-x="165">
         <pitch>
           <step>A</step>
           <octave>4</octave>
@@ -2321,7 +2321,7 @@
           <text>tic</text>
         </lyric>
       </note>
-      <note default-x="204">
+      <note default-x="202">
         <pitch>
           <step>G</step>
           <octave>4</octave>
@@ -2340,7 +2340,7 @@
           <text>tic</text>
         </lyric>
       </note>
-      <note default-x="249">
+      <note default-x="243">
         <pitch>
           <step>E</step>
           <octave>4</octave>
@@ -2370,7 +2370,7 @@
           <text>toc</text>
         </lyric>
       </note>
-      <note default-x="96">
+      <note default-x="97">
         <rest />
         <duration>10080</duration>
         <type>quarter</type>
@@ -2378,7 +2378,7 @@
     </measure>
     <!--========================= Measure 27 =========================-->
     <measure implicit="no" number="27" width="139">
-      <note default-x="14">
+      <note default-x="13">
         <pitch>
           <step>F</step>
           <octave>4</octave>
@@ -2420,7 +2420,7 @@
           <text>ding</text>
         </lyric>
       </note>
-      <note default-x="74">
+      <note default-x="75">
         <pitch>
           <step>F</step>
           <octave>4</octave>
@@ -2435,7 +2435,7 @@
       </note>
     </measure>
     <!--========================= Measure 29 =========================-->
-    <measure implicit="no" number="29" width="139">
+    <measure implicit="no" number="29" width="140">
       <note default-x="17">
         <pitch>
           <step>F</step>
@@ -2464,7 +2464,7 @@
       </note>
     </measure>
     <!--========================= Measure 30 =========================-->
-    <measure implicit="no" number="30" width="139">
+    <measure implicit="no" number="30" width="140">
       <note default-x="17">
         <pitch>
           <step>F</step>
@@ -2478,7 +2478,7 @@
           <text>ding</text>
         </lyric>
       </note>
-      <note default-x="77">
+      <note default-x="78">
         <pitch>
           <step>F</step>
           <octave>4</octave>
@@ -2493,8 +2493,8 @@
       </note>
     </measure>
     <!--========================= Measure 31 =========================-->
-    <measure implicit="no" number="31" width="237">
-      <note default-x="26">
+    <measure implicit="no" number="31" width="238">
+      <note default-x="27">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -5207,18 +5207,125 @@
           <line>2</line>
         </clef>
       </attributes>
-      <note>
-        <rest measure="yes" />
-        <duration>40320</duration>
+      <note default-x="111">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem default-y="1">up</stem>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>single</syllabic>
+          <text>Tic</text>
+        </lyric>
+      </note>
+      <note default-x="183">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>7560</duration>
+        <type>eighth</type>
+        <dot />
+        <stem default-y="0">up</stem>
+        <beam number="1">begin</beam>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>begin</syllabic>
+          <text>ti</text>
+        </lyric>
+      </note>
+      <note default-x="226">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>2520</duration>
+        <type>16th</type>
+        <stem default-y="0">up</stem>
+        <beam number="1">end</beam>
+        <beam number="2">backward hook</beam>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>middle</syllabic>
+          <text>qui</text>
+        </lyric>
+      </note>
+      <note default-x="268">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem default-y="1">up</stem>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>end</syllabic>
+          <text>toc</text>
+        </lyric>
+      </note>
+      <note default-x="340">
+        <rest />
+        <duration>10080</duration>
+        <type>quarter</type>
       </note>
     </measure>
     <!--========================= Measure 2 ==========================-->
     <measure implicit="no" number="2" width="309">
-      <note default-x="14">
-        <rest />
-        <duration>30240</duration>
-        <type>half</type>
+      <note default-x="15">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem default-y="1">up</stem>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>single</syllabic>
+          <text>Tic</text>
+        </lyric>
+      </note>
+      <note default-x="84">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>7560</duration>
+        <type>eighth</type>
         <dot />
+        <stem default-y="0">up</stem>
+        <beam number="1">begin</beam>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>begin</syllabic>
+          <text>ti</text>
+        </lyric>
+      </note>
+      <note default-x="127">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>2520</duration>
+        <type>16th</type>
+        <stem default-y="0">up</stem>
+        <beam number="1">end</beam>
+        <beam number="2">backward hook</beam>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>middle</syllabic>
+          <text>qui</text>
+        </lyric>
+      </note>
+      <note default-x="169">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem default-y="1">up</stem>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>end</syllabic>
+          <text>toc</text>
+        </lyric>
       </note>
       <note default-x="238">
         <pitch>
@@ -6510,18 +6617,125 @@
     </measure>
     <!--========================= Measure 18 =========================-->
     <measure implicit="no" number="18" width="299">
-      <note>
-        <rest measure="yes" />
-        <duration>40320</duration>
+      <note default-x="15">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem default-y="1">up</stem>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>single</syllabic>
+          <text>Tic</text>
+        </lyric>
+      </note>
+      <note default-x="87">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>7560</duration>
+        <type>eighth</type>
+        <dot />
+        <stem default-y="0">up</stem>
+        <beam number="1">begin</beam>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>begin</syllabic>
+          <text>ti</text>
+        </lyric>
+      </note>
+      <note default-x="122">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>2520</duration>
+        <type>16th</type>
+        <stem default-y="0">up</stem>
+        <beam number="1">end</beam>
+        <beam number="2">backward hook</beam>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>middle</syllabic>
+          <text>qui</text>
+        </lyric>
+      </note>
+      <note default-x="164">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem default-y="1">up</stem>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>end</syllabic>
+          <text>toc</text>
+        </lyric>
+      </note>
+      <note default-x="236">
+        <rest />
+        <duration>10080</duration>
+        <type>quarter</type>
       </note>
     </measure>
     <!--========================= Measure 19 =========================-->
     <measure implicit="no" number="19" width="300">
-      <note default-x="14">
-        <rest />
-        <duration>30240</duration>
-        <type>half</type>
+      <note default-x="15">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem default-y="1">up</stem>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>single</syllabic>
+          <text>Tic</text>
+        </lyric>
+      </note>
+      <note default-x="87">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>7560</duration>
+        <type>eighth</type>
         <dot />
+        <stem default-y="0">up</stem>
+        <beam number="1">begin</beam>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>begin</syllabic>
+          <text>ti</text>
+        </lyric>
+      </note>
+      <note default-x="123">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>2520</duration>
+        <type>16th</type>
+        <stem default-y="0">up</stem>
+        <beam number="1">end</beam>
+        <beam number="2">backward hook</beam>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>middle</syllabic>
+          <text>qui</text>
+        </lyric>
+      </note>
+      <note default-x="164">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem default-y="1">up</stem>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>end</syllabic>
+          <text>toc</text>
+        </lyric>
       </note>
       <note default-x="235">
         <pitch>
@@ -7011,7 +7225,7 @@
       </note>
     </measure>
     <!--========================= Measure 25 =========================-->
-    <measure implicit="no" number="25" width="391">
+    <measure implicit="no" number="25" width="388">
       <note default-x="91">
         <pitch>
           <step>E</step>
@@ -7025,7 +7239,7 @@
           <text>loj</text>
         </lyric>
       </note>
-      <note default-x="249">
+      <note default-x="243">
         <pitch>
           <step>A</step>
           <octave>4</octave>
@@ -7055,7 +7269,7 @@
           <text>toc</text>
         </lyric>
       </note>
-      <note default-x="96">
+      <note default-x="97">
         <rest />
         <duration>10080</duration>
         <type>quarter</type>
@@ -7063,7 +7277,7 @@
     </measure>
     <!--========================= Measure 27 =========================-->
     <measure implicit="no" number="27" width="139">
-      <note default-x="14">
+      <note default-x="13">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -7105,7 +7319,7 @@
           <text>ding</text>
         </lyric>
       </note>
-      <note default-x="74">
+      <note default-x="75">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -7120,7 +7334,7 @@
       </note>
     </measure>
     <!--========================= Measure 29 =========================-->
-    <measure implicit="no" number="29" width="139">
+    <measure implicit="no" number="29" width="140">
       <note default-x="17">
         <pitch>
           <step>D</step>
@@ -7149,7 +7363,7 @@
       </note>
     </measure>
     <!--========================= Measure 30 =========================-->
-    <measure implicit="no" number="30" width="139">
+    <measure implicit="no" number="30" width="140">
       <note default-x="17">
         <pitch>
           <step>D</step>
@@ -7163,7 +7377,7 @@
           <text>ding</text>
         </lyric>
       </note>
-      <note default-x="77">
+      <note default-x="78">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -7178,8 +7392,8 @@
       </note>
     </measure>
     <!--========================= Measure 31 =========================-->
-    <measure implicit="no" number="31" width="237">
-      <note default-x="26">
+    <measure implicit="no" number="31" width="238">
+      <note default-x="27">
         <pitch>
           <step>B</step>
           <alter>0</alter>
@@ -9179,18 +9393,125 @@
           <beat-type>4</beat-type>
         </time>
       </attributes>
-      <note>
-        <rest measure="yes" />
-        <duration>40320</duration>
+      <note default-x="110">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem default-y="1">up</stem>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>single</syllabic>
+          <text>tic</text>
+        </lyric>
+      </note>
+      <note default-x="184">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>7560</duration>
+        <type>eighth</type>
+        <dot />
+        <stem default-y="0">up</stem>
+        <beam number="1">begin</beam>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>single</syllabic>
+          <text>ti</text>
+        </lyric>
+      </note>
+      <note default-x="232">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>2520</duration>
+        <type>16th</type>
+        <stem default-y="0">up</stem>
+        <beam number="1">end</beam>
+        <beam number="2">backward hook</beam>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>single</syllabic>
+          <text>qui</text>
+        </lyric>
+      </note>
+      <note default-x="273">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem default-y="1">up</stem>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>single</syllabic>
+          <text>toc</text>
+        </lyric>
+      </note>
+      <note default-x="344">
+        <rest />
+        <duration>10080</duration>
+        <type>quarter</type>
       </note>
     </measure>
     <!--========================= Measure 48 =========================-->
     <measure implicit="no" number="48" width="313">
-      <note default-x="77">
-        <rest />
-        <duration>30240</duration>
-        <type>half</type>
+      <note default-x="79">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem default-y="0.5">up</stem>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>single</syllabic>
+          <text>tic</text>
+        </lyric>
+      </note>
+      <note default-x="146">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>7560</duration>
+        <type>eighth</type>
         <dot />
+        <stem default-y="0">up</stem>
+        <beam number="1">begin</beam>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>single</syllabic>
+          <text>ti</text>
+        </lyric>
+      </note>
+      <note default-x="174">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>2520</duration>
+        <type>16th</type>
+        <stem default-y="0">up</stem>
+        <beam number="1">end</beam>
+        <beam number="2">backward hook</beam>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>single</syllabic>
+          <text>qui</text>
+        </lyric>
+      </note>
+      <note default-x="207">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem default-y="0.5">up</stem>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>single</syllabic>
+          <text>toc</text>
+        </lyric>
       </note>
       <note default-x="261">
         <pitch>
@@ -9960,12 +10281,12 @@
     <measure implicit="no" number="58" width="83">
       <note default-x="16">
         <pitch>
-          <step>F</step>
-          <octave>4</octave>
+          <step>A</step>
+          <octave>3</octave>
         </pitch>
         <duration>40320</duration>
         <type>whole</type>
-        <lyric default-y="-80" name="1" number="1" relative-x="6">
+        <lyric default-y="-80" name="1" number="1" relative-x="3">
           <syllabic>single</syllabic>
           <text>dong</text>
         </lyric>
@@ -11943,7 +12264,7 @@
       </note>
     </measure>
     <!--========================= Measure 25 =========================-->
-    <measure implicit="no" number="25" width="391">
+    <measure implicit="no" number="25" width="388">
       <note default-x="91">
         <pitch>
           <step>A</step>
@@ -11957,7 +12278,7 @@
           <text>toc</text>
         </lyric>
       </note>
-      <note default-x="249">
+      <note default-x="243">
         <pitch>
           <step>C</step>
           <alter>1</alter>
@@ -11978,7 +12299,7 @@
           <text>tic</text>
         </lyric>
       </note>
-      <note default-x="287">
+      <note default-x="280">
         <pitch>
           <step>G</step>
           <octave>3</octave>
@@ -11989,7 +12310,7 @@
         <beam number="1">continue</beam>
         <notations>
           <articulations>
-            <staccato default-x="3" default-y="-78" placement="below" />
+            <staccato default-x="4" default-y="-78" placement="below" />
           </articulations>
         </notations>
         <lyric default-y="-102" name="1" number="1" relative-x="-2">
@@ -11997,7 +12318,7 @@
           <text>tic</text>
         </lyric>
       </note>
-      <note default-x="322">
+      <note default-x="316">
         <pitch>
           <step>A</step>
           <octave>3</octave>
@@ -12016,7 +12337,7 @@
           <text>tic</text>
         </lyric>
       </note>
-      <note default-x="359">
+      <note default-x="352">
         <pitch>
           <step>G</step>
           <octave>3</octave>
@@ -12027,7 +12348,7 @@
         <beam number="1">end</beam>
         <notations>
           <articulations>
-            <staccato default-x="3" default-y="-78" placement="below" />
+            <staccato default-x="4" default-y="-78" placement="below" />
           </articulations>
         </notations>
         <lyric default-y="-95" name="1" number="1">
@@ -12052,7 +12373,7 @@
           <text>toc</text>
         </lyric>
       </note>
-      <note default-x="96">
+      <note default-x="97">
         <rest />
         <duration>10080</duration>
         <type>quarter</type>
@@ -12073,7 +12394,7 @@
       </note>
     </measure>
     <!--========================= Measure 29 =========================-->
-    <measure implicit="no" number="29" width="139">
+    <measure implicit="no" number="29" width="140">
       <note default-x="17">
         <pitch>
           <step>A</step>
@@ -12102,7 +12423,7 @@
       </note>
     </measure>
     <!--========================= Measure 30 =========================-->
-    <measure implicit="no" number="30" width="139">
+    <measure implicit="no" number="30" width="140">
       <note default-x="17">
         <pitch>
           <step>A</step>
@@ -12116,7 +12437,7 @@
           <text>ding</text>
         </lyric>
       </note>
-      <note default-x="77">
+      <note default-x="78">
         <pitch>
           <step>A</step>
           <octave>3</octave>
@@ -12131,8 +12452,8 @@
       </note>
     </measure>
     <!--========================= Measure 31 =========================-->
-    <measure implicit="no" number="31" width="237">
-      <note default-x="26">
+    <measure implicit="no" number="31" width="238">
+      <note default-x="27">
         <pitch>
           <step>A</step>
           <octave>3</octave>
@@ -14280,7 +14601,7 @@
         <duration>5040</duration>
         <type>eighth</type>
         <accidental>sharp</accidental>
-        <stem default-y="-15">up</stem>
+        <stem default-y="-5">up</stem>
         <beam number="1">begin</beam>
         <notations>
           <articulations>
@@ -14294,16 +14615,16 @@
       </note>
       <note default-x="164">
         <pitch>
-          <step>G</step>
-          <octave>3</octave>
+          <step>E</step>
+          <octave>4</octave>
         </pitch>
         <duration>5040</duration>
         <type>eighth</type>
-        <stem default-y="-16">up</stem>
+        <stem default-y="-5">up</stem>
         <beam number="1">continue</beam>
         <notations>
           <articulations>
-            <staccato default-x="3" default-y="-78" placement="below" />
+            <staccato default-x="3" default-y="-53" placement="below" />
           </articulations>
         </notations>
         <lyric default-y="-90" name="1" number="1" relative-x="-5">
@@ -14313,16 +14634,17 @@
       </note>
       <note default-x="185">
         <pitch>
-          <step>A</step>
-          <octave>3</octave>
+          <step>C</step>
+          <alter>1</alter>
+          <octave>4</octave>
         </pitch>
         <duration>5040</duration>
         <type>eighth</type>
-        <stem default-y="-16">up</stem>
+        <stem default-y="-5">up</stem>
         <beam number="1">continue</beam>
         <notations>
           <articulations>
-            <staccato default-x="4" default-y="-73" placement="below" />
+            <staccato default-x="4" default-y="-63" placement="below" />
           </articulations>
         </notations>
         <lyric default-y="-97" name="1" number="1" relative-x="3">
@@ -14332,16 +14654,16 @@
       </note>
       <note default-x="209">
         <pitch>
-          <step>G</step>
-          <octave>3</octave>
+          <step>E</step>
+          <octave>4</octave>
         </pitch>
         <duration>5040</duration>
         <type>eighth</type>
-        <stem default-y="-17.5">up</stem>
+        <stem default-y="-5">up</stem>
         <beam number="1">end</beam>
         <notations>
           <articulations>
-            <staccato default-x="3" default-y="-78" placement="below" />
+            <staccato default-x="3" default-y="-53" placement="below" />
           </articulations>
         </notations>
         <lyric default-y="-95" name="1" number="1" relative-x="8">
@@ -14354,12 +14676,12 @@
     <measure implicit="no" number="55" width="228">
       <note default-x="15">
         <pitch>
-          <step>D</step>
+          <step>F</step>
           <octave>4</octave>
         </pitch>
         <duration>40320</duration>
         <type>whole</type>
-        <lyric default-y="-75" name="1" number="1" relative-x="13">
+        <lyric default-y="-95" name="1" number="1" relative-x="11">
           <syllabic>single</syllabic>
           <text>dong</text>
         </lyric>
@@ -14369,12 +14691,12 @@
     <measure implicit="no" number="56" width="228">
       <note default-x="15">
         <pitch>
-          <step>D</step>
+          <step>F</step>
           <octave>4</octave>
         </pitch>
         <duration>40320</duration>
         <type>whole</type>
-        <lyric default-y="-80" name="1" number="1" relative-x="6">
+        <lyric default-y="-100" name="1" number="1" relative-x="6">
           <syllabic>single</syllabic>
           <text>dong</text>
         </lyric>
@@ -14384,12 +14706,12 @@
     <measure implicit="no" number="57" width="228">
       <note default-x="15">
         <pitch>
-          <step>D</step>
+          <step>F</step>
           <octave>4</octave>
         </pitch>
         <duration>40320</duration>
         <type>whole</type>
-        <lyric default-y="-80" name="1" number="1" relative-x="6">
+        <lyric default-y="-100" name="1" number="1" relative-x="6">
           <syllabic>single</syllabic>
           <text>dong</text>
         </lyric>
@@ -14399,12 +14721,12 @@
     <measure implicit="no" number="58" width="83">
       <note default-x="16">
         <pitch>
-          <step>A</step>
-          <octave>3</octave>
+          <step>F</step>
+          <octave>4</octave>
         </pitch>
         <duration>40320</duration>
         <type>whole</type>
-        <lyric default-y="-80" name="1" number="1" relative-x="3">
+        <lyric default-y="-80" name="1" number="1" relative-x="6">
           <syllabic>single</syllabic>
           <text>dong</text>
         </lyric>
@@ -14672,11 +14994,11 @@
       <note default-x="79">
         <pitch>
           <step>G</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>10080</duration>
         <type>quarter</type>
-        <stem default-y="-40">down</stem>
+        <stem default-y="-4">up</stem>
         <lyric default-y="-80" name="1" number="1">
           <syllabic>single</syllabic>
           <text>tic</text>
@@ -14731,11 +15053,11 @@
       <note default-x="26">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>10080</duration>
         <type>quarter</type>
-        <stem default-y="-35.5">down</stem>
+        <stem default-y="0.5">up</stem>
         <lyric default-y="-80" name="1" number="1">
           <syllabic>single</syllabic>
           <text>tic</text>
@@ -14744,12 +15066,12 @@
       <note default-x="96">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>7560</duration>
         <type>eighth</type>
         <dot />
-        <stem default-y="-35">down</stem>
+        <stem default-y="0">up</stem>
         <beam number="1">begin</beam>
         <lyric default-y="-80" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -14759,11 +15081,11 @@
       <note default-x="132">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>2520</duration>
         <type>16th</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0">up</stem>
         <beam number="1">end</beam>
         <beam number="2">backward hook</beam>
         <lyric default-y="-80" name="1" number="1">
@@ -14774,11 +15096,11 @@
       <note default-x="174">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>20160</duration>
         <type>half</type>
-        <stem default-y="-35.5">down</stem>
+        <stem default-y="0.5">up</stem>
         <lyric default-y="-80" name="1" number="1">
           <syllabic>end</syllabic>
           <text>toc</text>
@@ -14790,11 +15112,11 @@
       <note default-x="15">
         <pitch>
           <step>G</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>10080</duration>
         <type>quarter</type>
-        <stem default-y="-40">down</stem>
+        <stem default-y="-4">up</stem>
         <lyric default-y="-80" name="1" number="1">
           <syllabic>single</syllabic>
           <text>tic</text>
@@ -14849,11 +15171,11 @@
       <note default-x="27">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>10080</duration>
         <type>quarter</type>
-        <stem default-y="-35.5">down</stem>
+        <stem default-y="0.5">up</stem>
         <lyric default-y="-80" name="1" number="1">
           <syllabic>single</syllabic>
           <text>tic</text>
@@ -14862,12 +15184,12 @@
       <note default-x="95">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>7560</duration>
         <type>eighth</type>
         <dot />
-        <stem default-y="-35">down</stem>
+        <stem default-y="0">up</stem>
         <beam number="1">begin</beam>
         <lyric default-y="-80" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -14877,11 +15199,11 @@
       <note default-x="131">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>2520</duration>
         <type>16th</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0">up</stem>
         <beam number="1">end</beam>
         <beam number="2">backward hook</beam>
         <lyric default-y="-80" name="1" number="1">
@@ -14892,11 +15214,11 @@
       <note default-x="173">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>20160</duration>
         <type>half</type>
-        <stem default-y="-35.5">down</stem>
+        <stem default-y="0.5">up</stem>
         <lyric default-y="-80" name="1" number="1">
           <syllabic>end</syllabic>
           <text>toc</text>
@@ -15702,11 +16024,11 @@
       <note default-x="15">
         <pitch>
           <step>G</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>10080</duration>
         <type>quarter</type>
-        <stem default-y="-40.5">down</stem>
+        <stem default-y="-4.5">up</stem>
         <lyric default-y="-80" name="1" number="1">
           <syllabic>single</syllabic>
           <text>tic</text>
@@ -15761,11 +16083,11 @@
       <note default-x="26">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>10080</duration>
         <type>quarter</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0.5">up</stem>
         <lyric default-y="-80" name="1" number="1">
           <syllabic>single</syllabic>
           <text>tic</text>
@@ -15774,12 +16096,12 @@
       <note default-x="98">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>7560</duration>
         <type>eighth</type>
         <dot />
-        <stem default-y="-35">down</stem>
+        <stem default-y="0.5">up</stem>
         <beam number="1">begin</beam>
         <lyric default-y="-80" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -15789,11 +16111,11 @@
       <note default-x="135">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>2520</duration>
         <type>16th</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0.5">up</stem>
         <beam number="1">end</beam>
         <beam number="2">backward hook</beam>
         <lyric default-y="-80" name="1" number="1">
@@ -15804,11 +16126,11 @@
       <note default-x="176">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>20160</duration>
         <type>half</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0.5">up</stem>
         <lyric default-y="-80" name="1" number="1">
           <syllabic>end</syllabic>
           <text>toc</text>
@@ -15820,11 +16142,11 @@
       <note default-x="15">
         <pitch>
           <step>G</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>10080</duration>
         <type>quarter</type>
-        <stem default-y="-40.5">down</stem>
+        <stem default-y="-4.5">up</stem>
         <lyric default-y="-80" name="1" number="1">
           <syllabic>single</syllabic>
           <text>tic</text>
@@ -15870,34 +16192,34 @@
         <stem default-y="-40.5">down</stem>
         <lyric default-y="-80" name="1" number="1" relative-x="8">
           <syllabic>end</syllabic>
-          <text>toc</text>
+          <text>tic</text>
         </lyric>
       </note>
     </measure>
     <!--========================= Measure 25 =========================-->
-    <measure implicit="no" number="25" width="391">
+    <measure implicit="no" number="25" width="388">
       <note default-x="91">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>10080</duration>
         <type>quarter</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0.5">up</stem>
         <lyric default-y="-80" name="1" number="1">
           <syllabic>single</syllabic>
           <text>tic</text>
         </lyric>
       </note>
-      <note default-x="167">
+      <note default-x="165">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>7560</duration>
         <type>eighth</type>
         <dot />
-        <stem default-y="-35">down</stem>
+        <stem default-y="0">up</stem>
         <beam number="1">begin</beam>
         <lyric default-y="-80" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -15907,11 +16229,11 @@
       <note default-x="219">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>2520</duration>
         <type>16th</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0">up</stem>
         <beam number="1">end</beam>
         <beam number="2">backward hook</beam>
         <lyric default-y="-82" name="1" number="1" relative-x="-12">
@@ -15919,17 +16241,30 @@
           <text>qui</text>
         </lyric>
       </note>
-      <note default-x="249">
+      <note default-x="243">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
-        <duration>20160</duration>
-        <type>half</type>
-        <stem default-y="-35">down</stem>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem default-y="0.5">up</stem>
         <lyric default-y="-80" name="1" number="1">
           <syllabic>end</syllabic>
-          <text>toc</text>
+          <text>tic</text>
+        </lyric>
+      </note>
+      <note default-x="316">
+        <pitch>
+          <step>A</step>
+          <octave>2</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem default-y="0.5">up</stem>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>single</syllabic>
+          <text>tic</text>
         </lyric>
       </note>
     </measure>
@@ -15949,7 +16284,7 @@
           <text>toc</text>
         </lyric>
       </note>
-      <note default-x="96">
+      <note default-x="97">
         <rest />
         <duration>10080</duration>
         <type>quarter</type>
@@ -15970,7 +16305,7 @@
       </note>
     </measure>
     <!--========================= Measure 29 =========================-->
-    <measure implicit="no" number="29" width="139">
+    <measure implicit="no" number="29" width="140">
       <note default-x="17">
         <pitch>
           <step>D</step>
@@ -15999,7 +16334,7 @@
       </note>
     </measure>
     <!--========================= Measure 30 =========================-->
-    <measure implicit="no" number="30" width="139">
+    <measure implicit="no" number="30" width="140">
       <note default-x="17">
         <pitch>
           <step>D</step>
@@ -16013,7 +16348,7 @@
           <text>ding</text>
         </lyric>
       </note>
-      <note default-x="77">
+      <note default-x="78">
         <pitch>
           <step>D</step>
           <octave>3</octave>
@@ -16028,8 +16363,8 @@
       </note>
     </measure>
     <!--========================= Measure 31 =========================-->
-    <measure implicit="no" number="31" width="237">
-      <note default-x="26">
+    <measure implicit="no" number="31" width="238">
+      <note default-x="27">
         <pitch>
           <step>D</step>
           <alter>1</alter>
@@ -17798,11 +18133,11 @@
       <note default-x="15">
         <pitch>
           <step>G</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>10080</duration>
         <type>quarter</type>
-        <stem default-y="-40">down</stem>
+        <stem default-y="-4.5">up</stem>
         <lyric default-y="-80" name="1" number="1">
           <syllabic>single</syllabic>
           <text>tic</text>
@@ -17857,11 +18192,11 @@
       <note default-x="24">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>10080</duration>
         <type>quarter</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0">up</stem>
         <lyric default-y="-80" name="1" number="1">
           <syllabic>single</syllabic>
           <text>tic</text>
@@ -17870,12 +18205,12 @@
       <note default-x="81">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>7560</duration>
         <type>eighth</type>
         <dot />
-        <stem default-y="-35">down</stem>
+        <stem default-y="0">up</stem>
         <beam number="1">begin</beam>
         <lyric default-y="-80" name="1" number="1">
           <syllabic>single</syllabic>
@@ -17885,11 +18220,11 @@
       <note default-x="111">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>2520</duration>
         <type>16th</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0">up</stem>
         <beam number="1">end</beam>
         <beam number="2">backward hook</beam>
         <lyric default-y="-80" name="1" number="1">
@@ -17900,11 +18235,11 @@
       <note default-x="145">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>20160</duration>
         <type>half</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0">up</stem>
         <lyric default-y="-80" name="1" number="1">
           <syllabic>single</syllabic>
           <text>toc</text>
@@ -17916,11 +18251,11 @@
       <note default-x="79">
         <pitch>
           <step>G</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>10080</duration>
         <type>quarter</type>
-        <stem default-y="-40">down</stem>
+        <stem default-y="-4">up</stem>
         <lyric default-y="-80" name="1" number="1">
           <syllabic>single</syllabic>
           <text>tic</text>
@@ -17975,11 +18310,11 @@
       <note default-x="23">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>10080</duration>
         <type>quarter</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="1">up</stem>
         <lyric default-y="-80" name="1" number="1">
           <syllabic>single</syllabic>
           <text>tic</text>
@@ -17988,12 +18323,12 @@
       <note default-x="79">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>7560</duration>
         <type>eighth</type>
         <dot />
-        <stem default-y="-35">down</stem>
+        <stem default-y="0">up</stem>
         <beam number="1">begin</beam>
         <lyric default-y="-80" name="1" number="1">
           <syllabic>single</syllabic>
@@ -18003,11 +18338,11 @@
       <note default-x="107">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>2520</duration>
         <type>16th</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0">up</stem>
         <beam number="1">end</beam>
         <beam number="2">backward hook</beam>
         <lyric default-y="-80" name="1" number="1">
@@ -18018,11 +18353,11 @@
       <note default-x="140">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>20160</duration>
         <type>half</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="1">up</stem>
         <lyric default-y="-80" name="1" number="1">
           <syllabic>single</syllabic>
           <text>toc</text>

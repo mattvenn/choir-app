@@ -1,6 +1,9 @@
-"""Triste reloj (Diana Bengoechea), arranged for S, A1, A2 and Baritone.
+"""Triste reloj (Daniel Basomba), for S, A1, A2 and Baritone.
 
-From the director's MusicXML, exported from Finale 2014 (sources/triste.musicxml).
+From the director's MusicXML, exported from Finale 2014 (sources/triste.musicxml),
+the version of 3 November 2026: Alto 1 sings in bars 1-2, 18-19 and 47-48, the
+baritone's tic-tocs in bars 5-8, 22-25 and 51-54 are an octave lower, and the
+altos end differently.
 Bars 32-41 are repeated; build() writes the repeat out, so bar numbers after 41
 don't match the score. build_short() is the score as printed, each bar once.
 The tempo marks stay (quarter = 88, the 12/8 section dotted quarter = 76, then
@@ -21,7 +24,7 @@ from scorelib import load_finale, make_score, write_out_repeats
 ID = "triste"
 TITLE = "Triste reloj"
 GROUP = "Jóvenes"  # the junior choir's
-COMPOSER = "Diana Bengoechea"
+COMPOSER = "Daniel Basomba"
 TEMPO = 88  # quarter notes per minute, as marked
 MY_PART = "Baritone"
 NAMES = ["Soprano", "Alto 1", "Alto 2", "Baritone"]

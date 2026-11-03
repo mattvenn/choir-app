@@ -3,12 +3,12 @@
 <score-partwise version="3.0">
   <movement-title>TRISTE RELOJ</movement-title>
   <identification>
-    <creator type="composer">Diana Bengoechea</creator>
+    <creator type="composer">Daniel Basomba</creator>
     <rights>©</rights>
     <encoding>
       <software>Finale 2014 for Mac</software>
       <software>Dolet Light for Finale 2014</software>
-      <encoding-date>2026-10-25</encoding-date>
+      <encoding-date>2026-11-03</encoding-date>
       <supports attribute="new-system" element="print" type="yes" value="yes"/>
       <supports attribute="new-page" element="print" type="yes" value="yes"/>
       <supports element="accidental" type="yes"/>
@@ -64,14 +64,13 @@
   </defaults>
   <credit page="1">
     <credit-type>title</credit-type>
-    <credit-words default-x="783" default-y="1877" font-family="Chalkboard Bold" font-size="19.2" justify="center" valign="top" xml:space="preserve">TRISTE RELOJ
-Músicas del mundo I
-Uruguay</credit-words>
-    <credit-words font-size="19.2"> </credit-words>
+    <credit-words default-x="780" default-y="1786" font-family="Chalkboard Bold" font-size="19.2" justify="center" valign="top" xml:space="preserve">TRISTE RELOJ
+
+</credit-words>
   </credit>
   <credit page="1">
     <credit-type>composer</credit-type>
-    <credit-words default-x="1401" default-y="1739" font-family="Chalkboard Bold" font-size="9.6" justify="right" valign="top">Diana Bengoechea (1926-1969)</credit-words>
+    <credit-words default-x="1406" default-y="1756" font-family="Chalkboard Bold" font-size="9.6" justify="right" valign="top">Daniel Basomba</credit-words>
   </credit>
   <credit page="1">
     <credit-type>rights</credit-type>
@@ -164,7 +163,7 @@ Uruguay</credit-words>
         <midi-channel>2</midi-channel>
         <midi-bank>15489</midi-bank>
         <midi-program>53</midi-program>
-        <volume>98</volume>
+        <volume>100</volume>
         <pan>-21</pan>
       </midi-instrument>
     </score-part>
@@ -223,7 +222,7 @@ Uruguay</credit-words>
         <measure-numbering>system</measure-numbering>
       </print>
       <attributes>
-        <divisions>8</divisions>
+        <divisions>4</divisions>
         <key>
           <fifths>-1</fifths>
           <mode>minor</mode>
@@ -251,7 +250,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -271,7 +270,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -292,7 +291,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -312,7 +311,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -332,7 +331,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="10.5">up</stem>
@@ -349,7 +348,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -369,7 +368,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -390,7 +389,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -410,7 +409,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -430,7 +429,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="10.5">up</stem>
@@ -447,7 +446,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -467,7 +466,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -488,7 +487,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -508,7 +507,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -528,7 +527,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="10.5">up</stem>
@@ -545,7 +544,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -565,7 +564,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -586,7 +585,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -606,7 +605,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -626,7 +625,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="10.5">up</stem>
@@ -648,7 +647,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -668,7 +667,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -689,7 +688,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -709,7 +708,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -730,7 +729,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="-55">down</stem>
@@ -748,7 +747,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <accidental>sharp</accidental>
@@ -769,7 +768,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="18.5">up</stem>
@@ -789,7 +788,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="17">up</stem>
@@ -809,7 +808,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="15">up</stem>
@@ -829,7 +828,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="-4.5">up</stem>
@@ -846,7 +845,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -866,7 +865,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -887,7 +886,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -907,7 +906,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -928,7 +927,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="-55">down</stem>
@@ -946,7 +945,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <accidental>sharp</accidental>
@@ -967,7 +966,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="18.5">up</stem>
@@ -987,7 +986,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="17">up</stem>
@@ -1007,7 +1006,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="15">up</stem>
@@ -1027,7 +1026,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="-4.5">up</stem>
@@ -1049,7 +1048,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -1069,7 +1068,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -1090,7 +1089,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -1110,7 +1109,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -1130,7 +1129,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="11">up</stem>
@@ -1147,7 +1146,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -1167,7 +1166,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -1188,7 +1187,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -1208,7 +1207,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -1228,7 +1227,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="11">up</stem>
@@ -1245,7 +1244,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -1265,7 +1264,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -1286,7 +1285,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -1306,7 +1305,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -1326,7 +1325,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="11">up</stem>
@@ -1343,7 +1342,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -1363,7 +1362,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -1384,7 +1383,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -1404,7 +1403,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -1424,7 +1423,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="11">up</stem>
@@ -1456,7 +1455,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="15.5">up</stem>
@@ -1476,7 +1475,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="15.5">up</stem>
@@ -1497,7 +1496,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="15.5">up</stem>
@@ -1517,7 +1516,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="15.5">up</stem>
@@ -1538,7 +1537,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="-55">down</stem>
@@ -1556,7 +1555,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <accidental>sharp</accidental>
@@ -1577,7 +1576,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="18.5">up</stem>
@@ -1597,7 +1596,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="17">up</stem>
@@ -1617,7 +1616,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="15.5">up</stem>
@@ -1637,7 +1636,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="10.5">up</stem>
@@ -1654,7 +1653,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="15.5">up</stem>
@@ -1674,7 +1673,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="15.5">up</stem>
@@ -1695,7 +1694,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="15.5">up</stem>
@@ -1715,7 +1714,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="15.5">up</stem>
@@ -1737,7 +1736,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="-55">down</stem>
@@ -1759,7 +1758,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <accidental>sharp</accidental>
@@ -1780,7 +1779,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="18">up</stem>
@@ -1800,7 +1799,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="17">up</stem>
@@ -1820,7 +1819,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="15.5">up</stem>
@@ -1841,7 +1840,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="6">up</stem>
@@ -1857,7 +1856,7 @@ Uruguay</credit-words>
           <step>F</step>
           <octave>4</octave>
         </pitch>
-        <duration>24</duration>
+        <duration>12</duration>
         <voice>1</voice>
         <type>half</type>
         <dot/>
@@ -1869,7 +1868,7 @@ Uruguay</credit-words>
       </note>
       <note default-x="89">
         <rest/>
-        <duration>8</duration>
+        <duration>4</duration>
         <voice>1</voice>
         <type>quarter</type>
       </note>
@@ -1886,7 +1885,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -1906,7 +1905,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -1927,7 +1926,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -1947,7 +1946,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -1967,7 +1966,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="10.5">up</stem>
@@ -1984,7 +1983,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -2004,7 +2003,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -2025,7 +2024,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -2045,7 +2044,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -2065,7 +2064,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="10.5">up</stem>
@@ -2082,7 +2081,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -2102,7 +2101,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -2123,7 +2122,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -2143,7 +2142,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -2163,7 +2162,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="10.5">up</stem>
@@ -2185,7 +2184,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -2205,7 +2204,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -2226,7 +2225,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -2246,7 +2245,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -2266,7 +2265,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="10.5">up</stem>
@@ -2283,7 +2282,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -2303,7 +2302,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -2324,7 +2323,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -2344,7 +2343,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -2365,7 +2364,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="-55">down</stem>
@@ -2383,7 +2382,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <accidental>sharp</accidental>
@@ -2404,7 +2403,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="18.5">up</stem>
@@ -2424,7 +2423,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="17">up</stem>
@@ -2444,7 +2443,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="15.5">up</stem>
@@ -2464,7 +2463,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="-5">up</stem>
@@ -2481,7 +2480,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -2501,7 +2500,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -2522,7 +2521,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -2542,7 +2541,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -2563,7 +2562,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="-55">down</stem>
@@ -2574,7 +2573,7 @@ Uruguay</credit-words>
       </note>
     </measure>
     <!--=======================================================-->
-    <measure number="25" width="391">
+    <measure number="25" width="388">
       <print new-page="yes" page-number="3">
         <page-layout>
           <page-height>1932</page-height>
@@ -2596,7 +2595,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <accidental>sharp</accidental>
@@ -2612,19 +2611,19 @@ Uruguay</credit-words>
           <text font-family="Charter" font-size="9.6">Tic</text>
         </lyric>
       </note>
-      <note default-x="130">
+      <note default-x="129">
         <pitch>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="19">up</stem>
         <beam number="1">continue</beam>
         <notations>
           <articulations>
-            <staccato default-x="4" default-y="-47" placement="below"/>
+            <staccato default-x="3" default-y="-47" placement="below"/>
           </articulations>
         </notations>
         <lyric default-y="-80" number="1">
@@ -2632,12 +2631,12 @@ Uruguay</credit-words>
           <text font-family="Charter" font-size="9.6">tic</text>
         </lyric>
       </note>
-      <note default-x="167">
+      <note default-x="165">
         <pitch>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="17">up</stem>
@@ -2652,12 +2651,12 @@ Uruguay</credit-words>
           <text font-family="Charter" font-size="9.6">tic</text>
         </lyric>
       </note>
-      <note default-x="204">
+      <note default-x="202">
         <pitch>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="15">up</stem>
@@ -2672,12 +2671,12 @@ Uruguay</credit-words>
           <text font-family="Charter" font-size="9.6">tic</text>
         </lyric>
       </note>
-      <note default-x="249">
+      <note default-x="243">
         <pitch>
           <step>E</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="-4.5">up</stem>
@@ -2694,7 +2693,7 @@ Uruguay</credit-words>
           <step>F</step>
           <octave>4</octave>
         </pitch>
-        <duration>24</duration>
+        <duration>12</duration>
         <voice>1</voice>
         <type>half</type>
         <dot/>
@@ -2704,21 +2703,21 @@ Uruguay</credit-words>
           <text font-family="Charter" font-size="9.6">toc</text>
         </lyric>
       </note>
-      <note default-x="96">
+      <note default-x="97">
         <rest/>
-        <duration>8</duration>
+        <duration>4</duration>
         <voice>1</voice>
         <type>quarter</type>
       </note>
     </measure>
     <!--=======================================================-->
     <measure number="27" width="139">
-      <note default-x="14">
+      <note default-x="13">
         <pitch>
           <step>F</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="0.5">up</stem>
@@ -2732,7 +2731,7 @@ Uruguay</credit-words>
           <step>F</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="0.5">up</stem>
@@ -2749,7 +2748,7 @@ Uruguay</credit-words>
           <step>F</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="0.5">up</stem>
@@ -2758,12 +2757,12 @@ Uruguay</credit-words>
           <text font-family="Charter" font-size="9.6">ding</text>
         </lyric>
       </note>
-      <note default-x="74">
+      <note default-x="75">
         <pitch>
           <step>F</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="0.5">up</stem>
@@ -2774,13 +2773,13 @@ Uruguay</credit-words>
       </note>
     </measure>
     <!--=======================================================-->
-    <measure number="29" width="139">
+    <measure number="29" width="140">
       <note default-x="17">
         <pitch>
           <step>F</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="0.5">up</stem>
@@ -2794,7 +2793,7 @@ Uruguay</credit-words>
           <step>F</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="0.5">up</stem>
@@ -2805,13 +2804,13 @@ Uruguay</credit-words>
       </note>
     </measure>
     <!--=======================================================-->
-    <measure number="30" width="139">
+    <measure number="30" width="140">
       <note default-x="17">
         <pitch>
           <step>F</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="0.5">up</stem>
@@ -2820,12 +2819,12 @@ Uruguay</credit-words>
           <text font-family="Charter" font-size="9.6">ding</text>
         </lyric>
       </note>
-      <note default-x="77">
+      <note default-x="78">
         <pitch>
           <step>F</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="0.5">up</stem>
@@ -2836,14 +2835,14 @@ Uruguay</credit-words>
       </note>
     </measure>
     <!--=======================================================-->
-    <measure number="31" width="237">
-      <note default-x="26">
+    <measure number="31" width="238">
+      <note default-x="27">
         <pitch>
           <step>F</step>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>32</duration>
+        <duration>16</duration>
         <voice>1</voice>
         <type>whole</type>
         <accidental>sharp</accidental>
@@ -2887,14 +2886,14 @@ Uruguay</credit-words>
       </direction>
       <note default-x="174">
         <rest/>
-        <duration>24</duration>
+        <duration>12</duration>
         <voice>1</voice>
         <type>half</type>
         <dot/>
       </note>
       <note default-x="456">
         <rest/>
-        <duration>12</duration>
+        <duration>6</duration>
         <voice>1</voice>
         <type>quarter</type>
         <dot/>
@@ -2904,7 +2903,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-45">down</stem>
@@ -2920,7 +2919,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-45">down</stem>
@@ -2936,7 +2935,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-45">down</stem>
@@ -2950,7 +2949,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <tie type="start"/>
         <voice>1</voice>
         <type>eighth</type>
@@ -2969,7 +2968,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>5</octave>
         </pitch>
-        <duration>2</duration>
+        <duration>1</duration>
         <tie type="stop"/>
         <voice>1</voice>
         <type>16th</type>
@@ -2988,7 +2987,7 @@ Uruguay</credit-words>
           <step>B</step>
           <octave>4</octave>
         </pitch>
-        <duration>2</duration>
+        <duration>1</duration>
         <tie type="start"/>
         <voice>1</voice>
         <type>16th</type>
@@ -3009,7 +3008,7 @@ Uruguay</credit-words>
           <step>B</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <tie type="stop"/>
         <voice>1</voice>
         <type>eighth</type>
@@ -3023,14 +3022,14 @@ Uruguay</credit-words>
       </note>
       <note default-x="152">
         <rest/>
-        <duration>12</duration>
+        <duration>6</duration>
         <voice>1</voice>
         <type>quarter</type>
         <dot/>
       </note>
       <note default-x="276">
         <rest/>
-        <duration>24</duration>
+        <duration>12</duration>
         <voice>1</voice>
         <type>half</type>
         <dot/>
@@ -3045,14 +3044,14 @@ Uruguay</credit-words>
       </print>
       <note default-x="113">
         <rest/>
-        <duration>24</duration>
+        <duration>12</duration>
         <voice>1</voice>
         <type>half</type>
         <dot/>
       </note>
       <note default-x="423">
         <rest/>
-        <duration>12</duration>
+        <duration>6</duration>
         <voice>1</voice>
         <type>quarter</type>
         <dot/>
@@ -3062,7 +3061,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-44.5">down</stem>
@@ -3078,7 +3077,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-44.5">down</stem>
@@ -3094,7 +3093,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-44.5">down</stem>
@@ -3114,7 +3113,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>5</octave>
         </pitch>
-        <duration>12</duration>
+        <duration>6</duration>
         <voice>1</voice>
         <type>quarter</type>
         <dot/>
@@ -3126,14 +3125,14 @@ Uruguay</credit-words>
       </note>
       <note default-x="143">
         <rest/>
-        <duration>24</duration>
+        <duration>12</duration>
         <voice>1</voice>
         <type>half</type>
         <dot/>
       </note>
       <note default-x="471">
         <rest/>
-        <duration>12</duration>
+        <duration>6</duration>
         <voice>1</voice>
         <type>quarter</type>
         <dot/>
@@ -3151,7 +3150,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>5</octave>
         </pitch>
-        <duration>6</duration>
+        <duration>3</duration>
         <voice>1</voice>
         <type>eighth</type>
         <dot/>
@@ -3167,7 +3166,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>5</octave>
         </pitch>
-        <duration>2</duration>
+        <duration>1</duration>
         <voice>1</voice>
         <type>16th</type>
         <stem default-y="-40">down</stem>
@@ -3183,7 +3182,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-40">down</stem>
@@ -3198,7 +3197,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-44.5">down</stem>
@@ -3214,7 +3213,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-47.5">down</stem>
@@ -3226,7 +3225,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-50">down</stem>
@@ -3241,7 +3240,7 @@ Uruguay</credit-words>
           <step>B</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <tie type="start"/>
         <voice>1</voice>
         <type>eighth</type>
@@ -3260,7 +3259,7 @@ Uruguay</credit-words>
           <step>B</step>
           <octave>4</octave>
         </pitch>
-        <duration>2</duration>
+        <duration>1</duration>
         <tie type="stop"/>
         <voice>1</voice>
         <type>16th</type>
@@ -3280,7 +3279,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>2</duration>
+        <duration>1</duration>
         <tie type="start"/>
         <voice>1</voice>
         <type>16th</type>
@@ -3302,7 +3301,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <tie type="stop"/>
         <voice>1</voice>
         <type>eighth</type>
@@ -3316,7 +3315,7 @@ Uruguay</credit-words>
       </note>
       <note default-x="665">
         <rest/>
-        <duration>12</duration>
+        <duration>6</duration>
         <voice>1</voice>
         <type>quarter</type>
         <dot/>
@@ -3329,7 +3328,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>5</octave>
         </pitch>
-        <duration>6</duration>
+        <duration>3</duration>
         <voice>1</voice>
         <type>eighth</type>
         <dot/>
@@ -3345,7 +3344,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>5</octave>
         </pitch>
-        <duration>2</duration>
+        <duration>1</duration>
         <voice>1</voice>
         <type>16th</type>
         <stem default-y="-40">down</stem>
@@ -3361,7 +3360,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-40">down</stem>
@@ -3376,7 +3375,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-44.5">down</stem>
@@ -3392,7 +3391,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-47.5">down</stem>
@@ -3404,7 +3403,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-50">down</stem>
@@ -3416,7 +3415,7 @@ Uruguay</credit-words>
       </note>
       <note default-x="301">
         <rest/>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
       </note>
@@ -3425,7 +3424,7 @@ Uruguay</credit-words>
           <step>B</step>
           <octave>4</octave>
         </pitch>
-        <duration>8</duration>
+        <duration>4</duration>
         <tie type="start"/>
         <voice>1</voice>
         <type>quarter</type>
@@ -3444,7 +3443,7 @@ Uruguay</credit-words>
           <step>B</step>
           <octave>4</octave>
         </pitch>
-        <duration>12</duration>
+        <duration>6</duration>
         <tie type="stop"/>
         <voice>1</voice>
         <type>quarter</type>
@@ -3483,7 +3482,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>4</octave>
         </pitch>
-        <duration>6</duration>
+        <duration>3</duration>
         <voice>1</voice>
         <type>eighth</type>
         <dot/>
@@ -3499,7 +3498,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>4</octave>
         </pitch>
-        <duration>2</duration>
+        <duration>1</duration>
         <voice>1</voice>
         <type>16th</type>
         <stem default-y="-4.5">up</stem>
@@ -3515,7 +3514,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-4.5">up</stem>
@@ -3526,7 +3525,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="0">up</stem>
@@ -3542,7 +3541,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="2">up</stem>
@@ -3558,7 +3557,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="5">up</stem>
@@ -3569,7 +3568,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>6</duration>
+        <duration>3</duration>
         <voice>1</voice>
         <type>eighth</type>
         <dot/>
@@ -3585,7 +3584,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>2</duration>
+        <duration>1</duration>
         <voice>1</voice>
         <type>16th</type>
         <stem default-y="10">up</stem>
@@ -3601,7 +3600,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="10">up</stem>
@@ -3612,7 +3611,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="10">up</stem>
@@ -3628,7 +3627,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="8">up</stem>
@@ -3644,7 +3643,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="5">up</stem>
@@ -3663,7 +3662,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>6</duration>
+        <duration>3</duration>
         <voice>1</voice>
         <type>eighth</type>
         <dot/>
@@ -3680,7 +3679,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>2</duration>
+        <duration>1</duration>
         <voice>1</voice>
         <type>16th</type>
         <stem default-y="5">up</stem>
@@ -3697,7 +3696,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="5">up</stem>
@@ -3713,7 +3712,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-4.5">up</stem>
@@ -3728,7 +3727,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-6.5">up</stem>
@@ -3744,7 +3743,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-7.5">up</stem>
@@ -3759,7 +3758,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>4</octave>
         </pitch>
-        <duration>12</duration>
+        <duration>6</duration>
         <voice>1</voice>
         <type>quarter</type>
         <dot/>
@@ -3771,7 +3770,7 @@ Uruguay</credit-words>
       </note>
       <note default-x="270">
         <rest/>
-        <duration>12</duration>
+        <duration>6</duration>
         <voice>1</voice>
         <type>quarter</type>
         <dot/>
@@ -3781,7 +3780,7 @@ Uruguay</credit-words>
     <measure number="40" width="400">
       <note default-x="15">
         <rest/>
-        <duration>6</duration>
+        <duration>3</duration>
         <voice>1</voice>
         <type>eighth</type>
         <dot/>
@@ -3799,7 +3798,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>4</octave>
         </pitch>
-        <duration>2</duration>
+        <duration>1</duration>
         <voice>1</voice>
         <type>16th</type>
         <stem default-y="-4.5">up</stem>
@@ -3815,7 +3814,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-4.5">up</stem>
@@ -3826,7 +3825,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="0">up</stem>
@@ -3842,7 +3841,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="3">up</stem>
@@ -3858,7 +3857,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="5">up</stem>
@@ -3866,7 +3865,7 @@ Uruguay</credit-words>
       </note>
       <note default-x="207">
         <rest/>
-        <duration>6</duration>
+        <duration>3</duration>
         <voice>1</voice>
         <type>eighth</type>
         <dot/>
@@ -3876,7 +3875,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>2</duration>
+        <duration>1</duration>
         <voice>1</voice>
         <type>16th</type>
         <stem default-y="10">up</stem>
@@ -3892,7 +3891,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="10">up</stem>
@@ -3903,7 +3902,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="10">up</stem>
@@ -3919,7 +3918,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="8">up</stem>
@@ -3935,7 +3934,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="5">up</stem>
@@ -3960,7 +3959,7 @@ Uruguay</credit-words>
       </direction>
       <note default-x="113">
         <rest/>
-        <duration>6</duration>
+        <duration>3</duration>
         <voice>1</voice>
         <type>eighth</type>
         <dot/>
@@ -3971,7 +3970,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>2</duration>
+        <duration>1</duration>
         <voice>1</voice>
         <type>16th</type>
         <stem default-y="5">up</stem>
@@ -3988,7 +3987,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="5">up</stem>
@@ -4004,7 +4003,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-4.5">up</stem>
@@ -4019,7 +4018,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-6.5">up</stem>
@@ -4035,7 +4034,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-7">up</stem>
@@ -4047,7 +4046,7 @@ Uruguay</credit-words>
       </note>
       <note default-x="351">
         <rest/>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
       </note>
@@ -4056,7 +4055,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>4</octave>
         </pitch>
-        <duration>8</duration>
+        <duration>4</duration>
         <voice>1</voice>
         <type>quarter</type>
         <stem default-y="-4.5">up</stem>
@@ -4067,7 +4066,7 @@ Uruguay</credit-words>
       </note>
       <note default-x="428">
         <rest/>
-        <duration>12</duration>
+        <duration>6</duration>
         <voice>1</voice>
         <type>quarter</type>
         <dot/>
@@ -4090,7 +4089,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>6</duration>
+        <duration>3</duration>
         <voice>1</voice>
         <type>eighth</type>
         <dot/>
@@ -4107,7 +4106,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>2</duration>
+        <duration>1</duration>
         <voice>1</voice>
         <type>16th</type>
         <stem default-y="0">up</stem>
@@ -4124,7 +4123,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="0">up</stem>
@@ -4140,7 +4139,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="0">up</stem>
@@ -4156,7 +4155,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="0">up</stem>
@@ -4172,7 +4171,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="0">up</stem>
@@ -4188,7 +4187,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>8</duration>
+        <duration>4</duration>
         <voice>1</voice>
         <type>quarter</type>
         <stem default-y="6">up</stem>
@@ -4202,7 +4201,7 @@ Uruguay</credit-words>
           <step>B</step>
           <octave>4</octave>
         </pitch>
-        <duration>8</duration>
+        <duration>4</duration>
         <voice>1</voice>
         <type>quarter</type>
         <stem default-y="-55">down</stem>
@@ -4221,7 +4220,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>8</duration>
+        <duration>4</duration>
         <voice>1</voice>
         <type>quarter</type>
         <accidental>natural</accidental>
@@ -4240,7 +4239,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>6</duration>
+        <duration>3</duration>
         <voice>1</voice>
         <type>eighth</type>
         <dot/>
@@ -4257,7 +4256,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>2</duration>
+        <duration>1</duration>
         <voice>1</voice>
         <type>16th</type>
         <stem default-y="-50">down</stem>
@@ -4274,7 +4273,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-50">down</stem>
@@ -4290,7 +4289,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-45">down</stem>
@@ -4306,7 +4305,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-45">down</stem>
@@ -4322,7 +4321,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-45">down</stem>
@@ -4337,7 +4336,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>5</octave>
         </pitch>
-        <duration>12</duration>
+        <duration>6</duration>
         <voice>1</voice>
         <type>quarter</type>
         <dot/>
@@ -4349,7 +4348,7 @@ Uruguay</credit-words>
       </note>
       <note default-x="344">
         <rest/>
-        <duration>12</duration>
+        <duration>6</duration>
         <voice>1</voice>
         <type>quarter</type>
         <dot/>
@@ -4369,7 +4368,7 @@ Uruguay</credit-words>
       </direction>
       <note default-x="115">
         <rest/>
-        <duration>6</duration>
+        <duration>3</duration>
         <voice>1</voice>
         <type>eighth</type>
         <dot/>
@@ -4380,7 +4379,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>2</duration>
+        <duration>1</duration>
         <voice>1</voice>
         <type>16th</type>
         <stem default-y="0">up</stem>
@@ -4397,7 +4396,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="0">up</stem>
@@ -4413,7 +4412,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="0">up</stem>
@@ -4429,7 +4428,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="0">up</stem>
@@ -4445,7 +4444,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="0">up</stem>
@@ -4461,7 +4460,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>8</duration>
+        <duration>4</duration>
         <voice>1</voice>
         <type>quarter</type>
         <stem default-y="6">up</stem>
@@ -4475,7 +4474,7 @@ Uruguay</credit-words>
           <step>B</step>
           <octave>4</octave>
         </pitch>
-        <duration>8</duration>
+        <duration>4</duration>
         <voice>1</voice>
         <type>quarter</type>
         <stem default-y="-55">down</stem>
@@ -4494,7 +4493,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>8</duration>
+        <duration>4</duration>
         <voice>1</voice>
         <type>quarter</type>
         <accidental>natural</accidental>
@@ -4509,7 +4508,7 @@ Uruguay</credit-words>
     <measure number="45" width="350">
       <note default-x="14">
         <rest/>
-        <duration>6</duration>
+        <duration>3</duration>
         <voice>1</voice>
         <type>eighth</type>
         <dot/>
@@ -4520,7 +4519,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>2</duration>
+        <duration>1</duration>
         <voice>1</voice>
         <type>16th</type>
         <stem default-y="-50">down</stem>
@@ -4537,7 +4536,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-50">down</stem>
@@ -4553,7 +4552,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-45">down</stem>
@@ -4565,7 +4564,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-45">down</stem>
@@ -4577,7 +4576,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="-45">down</stem>
@@ -4592,7 +4591,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>5</octave>
         </pitch>
-        <duration>12</duration>
+        <duration>6</duration>
         <voice>1</voice>
         <type>quarter</type>
         <dot/>
@@ -4604,7 +4603,7 @@ Uruguay</credit-words>
       </note>
       <note default-x="300">
         <rest/>
-        <duration>12</duration>
+        <duration>6</duration>
         <voice>1</voice>
         <type>quarter</type>
         <dot/>
@@ -4631,7 +4630,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>5</octave>
         </pitch>
-        <duration>24</duration>
+        <duration>12</duration>
         <voice>1</voice>
         <type>half</type>
         <dot/>
@@ -4672,7 +4671,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -4692,7 +4691,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -4713,7 +4712,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -4733,7 +4732,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -4753,7 +4752,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="11">up</stem>
@@ -4775,7 +4774,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -4795,7 +4794,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -4816,7 +4815,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -4836,7 +4835,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -4856,7 +4855,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="10.5">up</stem>
@@ -4873,7 +4872,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -4893,7 +4892,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -4914,7 +4913,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -4934,7 +4933,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -4954,7 +4953,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="10.5">up</stem>
@@ -4971,7 +4970,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -4991,7 +4990,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -5012,7 +5011,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -5032,7 +5031,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -5052,7 +5051,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="10.5">up</stem>
@@ -5069,7 +5068,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -5089,7 +5088,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -5110,7 +5109,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -5130,7 +5129,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -5151,7 +5150,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="-55.5">down</stem>
@@ -5169,7 +5168,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <accidental>sharp</accidental>
@@ -5190,7 +5189,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="18.5">up</stem>
@@ -5210,7 +5209,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="16.5">up</stem>
@@ -5230,7 +5229,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="15">up</stem>
@@ -5250,7 +5249,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="-4">up</stem>
@@ -5272,7 +5271,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -5292,7 +5291,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -5313,7 +5312,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -5333,7 +5332,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -5354,7 +5353,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="-55">down</stem>
@@ -5372,7 +5371,7 @@ Uruguay</credit-words>
           <alter>1</alter>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <accidental>sharp</accidental>
@@ -5393,7 +5392,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="18">up</stem>
@@ -5413,7 +5412,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="17">up</stem>
@@ -5433,7 +5432,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="15">up</stem>
@@ -5453,7 +5452,7 @@ Uruguay</credit-words>
           <step>E</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="-4.5">up</stem>
@@ -5467,7 +5466,7 @@ Uruguay</credit-words>
     <measure number="55" width="228">
       <direction placement="above">
         <direction-type>
-          <wedge default-y="53" spread="15" type="diminuendo"/>
+          <wedge default-y="46" relative-x="-8" spread="15" type="diminuendo"/>
         </direction-type>
       </direction>
       <note default-x="15">
@@ -5475,7 +5474,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -5495,7 +5494,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -5516,7 +5515,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -5536,7 +5535,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -5556,7 +5555,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="11">up</stem>
@@ -5573,7 +5572,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -5593,7 +5592,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -5614,7 +5613,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -5634,7 +5633,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -5654,7 +5653,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="11">up</stem>
@@ -5671,7 +5670,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -5691,7 +5690,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -5712,7 +5711,7 @@ Uruguay</credit-words>
           <alter>-1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -5732,7 +5731,7 @@ Uruguay</credit-words>
           <step>G</step>
           <octave>4</octave>
         </pitch>
-        <duration>4</duration>
+        <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
         <stem default-y="25">up</stem>
@@ -5749,7 +5748,7 @@ Uruguay</credit-words>
       </note>
       <direction>
         <direction-type>
-          <wedge spread="0" type="stop"/>
+          <wedge relative-x="-7" spread="0" type="stop"/>
         </direction-type>
       </direction>
       <note default-x="123">
@@ -5757,7 +5756,7 @@ Uruguay</credit-words>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>16</duration>
+        <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
         <stem default-y="11">up</stem>
@@ -5768,9 +5767,8 @@ Uruguay</credit-words>
       </note>
       <direction placement="above">
         <direction-type>
-          <wedge default-y="53" relative-x="16" spread="0" type="crescendo"/>
+          <wedge default-y="39" relative-x="-12" spread="0" type="crescendo"/>
         </direction-type>
-        <offset>-8</offset>
       </direction>
     </measure>
     <!--=======================================================-->
@@ -5780,7 +5778,7 @@ Uruguay</credit-words>
           <step>D</step>
           <octave>5</octave>
         </pitch>
-        <duration>32</duration>
+        <duration>16</duration>
         <voice>1</voice>
         <type>whole</type>
         <lyric default-y="-80" number="1" relative-x="6">
@@ -5788,19 +5786,18 @@ Uruguay</credit-words>
           <text font-family="Charter" font-size="9.6">dong</text>
         </lyric>
       </note>
-      <direction>
-        <direction-type>
-          <wedge spread="15" type="stop"/>
-        </direction-type>
-        <offset>-16</offset>
-      </direction>
       <direction placement="above">
         <direction-type>
-          <dynamics default-x="-5" default-y="46" halign="center">
+          <dynamics default-x="13" default-y="46" halign="center">
             <f/>
           </dynamics>
         </direction-type>
         <sound dynamics="98"/>
+      </direction>
+      <direction>
+        <direction-type>
+          <wedge spread="15" type="stop"/>
+        </direction-type>
       </direction>
       <barline location="right">
         <bar-style>light-heavy</bar-style>
@@ -5828,20 +5825,134 @@ Uruguay</credit-words>
           <line>2</line>
         </clef>
       </attributes>
-      <note>
-        <rest measure="yes"/>
-        <duration>16</duration>
+      <note default-x="111">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
         <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="1">up</stem>
+        <lyric default-y="-80" number="1">
+          <syllabic>single</syllabic>
+          <text font-family="Charter" font-size="9.6">Tic</text>
+        </lyric>
+      </note>
+      <note default-x="183">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>3</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <dot/>
+        <stem default-y="0">up</stem>
+        <beam number="1">begin</beam>
+        <lyric default-y="-80" number="1">
+          <syllabic>begin</syllabic>
+          <text font-family="Charter" font-size="9.6">ti</text>
+        </lyric>
+      </note>
+      <note default-x="226">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>1</duration>
+        <voice>1</voice>
+        <type>16th</type>
+        <stem default-y="0">up</stem>
+        <beam number="1">end</beam>
+        <beam number="2">backward hook</beam>
+        <lyric default-y="-80" number="1">
+          <syllabic>middle</syllabic>
+          <text font-family="Charter" font-size="9.6">qui</text>
+        </lyric>
+      </note>
+      <note default-x="268">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="1">up</stem>
+        <lyric default-y="-80" number="1">
+          <syllabic>end</syllabic>
+          <text font-family="Charter" font-size="9.6">toc</text>
+        </lyric>
+      </note>
+      <note default-x="340">
+        <rest/>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
       </note>
     </measure>
     <!--=======================================================-->
     <measure number="2" width="309">
-      <note default-x="14">
-        <rest/>
-        <duration>12</duration>
+      <note default-x="15">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
         <voice>1</voice>
-        <type>half</type>
+        <type>quarter</type>
+        <stem default-y="1">up</stem>
+        <lyric default-y="-80" number="1">
+          <syllabic>single</syllabic>
+          <text font-family="Charter" font-size="9.6">Tic</text>
+        </lyric>
+      </note>
+      <note default-x="84">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>3</duration>
+        <voice>1</voice>
+        <type>eighth</type>
         <dot/>
+        <stem default-y="0">up</stem>
+        <beam number="1">begin</beam>
+        <lyric default-y="-80" number="1">
+          <syllabic>begin</syllabic>
+          <text font-family="Charter" font-size="9.6">ti</text>
+        </lyric>
+      </note>
+      <note default-x="127">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>1</duration>
+        <voice>1</voice>
+        <type>16th</type>
+        <stem default-y="0">up</stem>
+        <beam number="1">end</beam>
+        <beam number="2">backward hook</beam>
+        <lyric default-y="-80" number="1">
+          <syllabic>middle</syllabic>
+          <text font-family="Charter" font-size="9.6">qui</text>
+        </lyric>
+      </note>
+      <note default-x="169">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="1">up</stem>
+        <lyric default-y="-80" number="1">
+          <syllabic>end</syllabic>
+          <text font-family="Charter" font-size="9.6">toc</text>
+        </lyric>
       </note>
       <note default-x="238">
         <pitch>
@@ -7214,20 +7325,134 @@ Uruguay</credit-words>
     </measure>
     <!--=======================================================-->
     <measure number="18" width="299">
-      <note>
-        <rest measure="yes"/>
-        <duration>16</duration>
+      <note default-x="15">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
         <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="1">up</stem>
+        <lyric default-y="-80" number="1">
+          <syllabic>single</syllabic>
+          <text font-family="Charter" font-size="9.6">Tic</text>
+        </lyric>
+      </note>
+      <note default-x="87">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>3</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <dot/>
+        <stem default-y="0">up</stem>
+        <beam number="1">begin</beam>
+        <lyric default-y="-80" number="1">
+          <syllabic>begin</syllabic>
+          <text font-family="Charter" font-size="9.6">ti</text>
+        </lyric>
+      </note>
+      <note default-x="122">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>1</duration>
+        <voice>1</voice>
+        <type>16th</type>
+        <stem default-y="0">up</stem>
+        <beam number="1">end</beam>
+        <beam number="2">backward hook</beam>
+        <lyric default-y="-80" number="1">
+          <syllabic>middle</syllabic>
+          <text font-family="Charter" font-size="9.6">qui</text>
+        </lyric>
+      </note>
+      <note default-x="164">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="1">up</stem>
+        <lyric default-y="-80" number="1">
+          <syllabic>end</syllabic>
+          <text font-family="Charter" font-size="9.6">toc</text>
+        </lyric>
+      </note>
+      <note default-x="236">
+        <rest/>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
       </note>
     </measure>
     <!--=======================================================-->
     <measure number="19" width="300">
-      <note default-x="14">
-        <rest/>
-        <duration>12</duration>
+      <note default-x="15">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
         <voice>1</voice>
-        <type>half</type>
+        <type>quarter</type>
+        <stem default-y="1">up</stem>
+        <lyric default-y="-80" number="1">
+          <syllabic>single</syllabic>
+          <text font-family="Charter" font-size="9.6">Tic</text>
+        </lyric>
+      </note>
+      <note default-x="87">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>3</duration>
+        <voice>1</voice>
+        <type>eighth</type>
         <dot/>
+        <stem default-y="0">up</stem>
+        <beam number="1">begin</beam>
+        <lyric default-y="-80" number="1">
+          <syllabic>begin</syllabic>
+          <text font-family="Charter" font-size="9.6">ti</text>
+        </lyric>
+      </note>
+      <note default-x="123">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>1</duration>
+        <voice>1</voice>
+        <type>16th</type>
+        <stem default-y="0">up</stem>
+        <beam number="1">end</beam>
+        <beam number="2">backward hook</beam>
+        <lyric default-y="-80" number="1">
+          <syllabic>middle</syllabic>
+          <text font-family="Charter" font-size="9.6">qui</text>
+        </lyric>
+      </note>
+      <note default-x="164">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="1">up</stem>
+        <lyric default-y="-80" number="1">
+          <syllabic>end</syllabic>
+          <text font-family="Charter" font-size="9.6">toc</text>
+        </lyric>
       </note>
       <note default-x="235">
         <pitch>
@@ -7735,7 +7960,7 @@ Uruguay</credit-words>
       </note>
     </measure>
     <!--=======================================================-->
-    <measure number="25" width="391">
+    <measure number="25" width="388">
       <print new-page="yes"/>
       <note default-x="91">
         <pitch>
@@ -7751,7 +7976,7 @@ Uruguay</credit-words>
           <text font-family="Charter" font-size="9.6">loj</text>
         </lyric>
       </note>
-      <note default-x="249">
+      <note default-x="243">
         <pitch>
           <step>A</step>
           <octave>4</octave>
@@ -7783,7 +8008,7 @@ Uruguay</credit-words>
           <text font-family="Charter" font-size="9.6">toc</text>
         </lyric>
       </note>
-      <note default-x="96">
+      <note default-x="97">
         <rest/>
         <duration>4</duration>
         <voice>1</voice>
@@ -7792,7 +8017,7 @@ Uruguay</credit-words>
     </measure>
     <!--=======================================================-->
     <measure number="27" width="139">
-      <note default-x="14">
+      <note default-x="13">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -7837,7 +8062,7 @@ Uruguay</credit-words>
           <text font-family="Charter" font-size="9.6">ding</text>
         </lyric>
       </note>
-      <note default-x="74">
+      <note default-x="75">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -7853,7 +8078,7 @@ Uruguay</credit-words>
       </note>
     </measure>
     <!--=======================================================-->
-    <measure number="29" width="139">
+    <measure number="29" width="140">
       <note default-x="17">
         <pitch>
           <step>D</step>
@@ -7884,7 +8109,7 @@ Uruguay</credit-words>
       </note>
     </measure>
     <!--=======================================================-->
-    <measure number="30" width="139">
+    <measure number="30" width="140">
       <note default-x="17">
         <pitch>
           <step>D</step>
@@ -7899,7 +8124,7 @@ Uruguay</credit-words>
           <text font-family="Charter" font-size="9.6">ding</text>
         </lyric>
       </note>
-      <note default-x="77">
+      <note default-x="78">
         <pitch>
           <step>D</step>
           <octave>4</octave>
@@ -7915,8 +8140,8 @@ Uruguay</credit-words>
       </note>
     </measure>
     <!--=======================================================-->
-    <measure number="31" width="237">
-      <note default-x="26">
+    <measure number="31" width="238">
+      <note default-x="27">
         <pitch>
           <step>B</step>
           <octave>3</octave>
@@ -10158,21 +10383,135 @@ Uruguay</credit-words>
           <beat-type>4</beat-type>
         </time>
       </attributes>
-      <note>
-        <rest measure="yes"/>
-        <duration>16</duration>
+      <note default-x="110">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
         <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="1">up</stem>
+        <lyric default-y="-80" number="1">
+          <syllabic>single</syllabic>
+          <text font-family="Charter" font-size="9.6">tic</text>
+        </lyric>
+      </note>
+      <note default-x="184">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>3</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <dot/>
+        <stem default-y="0">up</stem>
+        <beam number="1">begin</beam>
+        <lyric default-y="-80" number="1">
+          <syllabic>single</syllabic>
+          <text font-family="Charter" font-size="9.6">ti</text>
+        </lyric>
+      </note>
+      <note default-x="232">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>1</duration>
+        <voice>1</voice>
+        <type>16th</type>
+        <stem default-y="0">up</stem>
+        <beam number="1">end</beam>
+        <beam number="2">backward hook</beam>
+        <lyric default-y="-80" number="1">
+          <syllabic>single</syllabic>
+          <text font-family="Charter" font-size="9.6">qui</text>
+        </lyric>
+      </note>
+      <note default-x="273">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="1">up</stem>
+        <lyric default-y="-80" number="1">
+          <syllabic>single</syllabic>
+          <text font-family="Charter" font-size="9.6">toc</text>
+        </lyric>
+      </note>
+      <note default-x="344">
+        <rest/>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
       </note>
     </measure>
     <!--=======================================================-->
     <measure number="48" width="313">
       <print new-system="yes"/>
-      <note default-x="77">
-        <rest/>
-        <duration>12</duration>
+      <note default-x="79">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
         <voice>1</voice>
-        <type>half</type>
+        <type>quarter</type>
+        <stem default-y="0.5">up</stem>
+        <lyric default-y="-80" number="1">
+          <syllabic>single</syllabic>
+          <text font-family="Charter" font-size="9.6">tic</text>
+        </lyric>
+      </note>
+      <note default-x="146">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>3</duration>
+        <voice>1</voice>
+        <type>eighth</type>
         <dot/>
+        <stem default-y="0">up</stem>
+        <beam number="1">begin</beam>
+        <lyric default-y="-80" number="1">
+          <syllabic>single</syllabic>
+          <text font-family="Charter" font-size="9.6">ti</text>
+        </lyric>
+      </note>
+      <note default-x="174">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>1</duration>
+        <voice>1</voice>
+        <type>16th</type>
+        <stem default-y="0">up</stem>
+        <beam number="1">end</beam>
+        <beam number="2">backward hook</beam>
+        <lyric default-y="-80" number="1">
+          <syllabic>single</syllabic>
+          <text font-family="Charter" font-size="9.6">qui</text>
+        </lyric>
+      </note>
+      <note default-x="207">
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="0.5">up</stem>
+        <lyric default-y="-80" number="1">
+          <syllabic>single</syllabic>
+          <text font-family="Charter" font-size="9.6">toc</text>
+        </lyric>
       </note>
       <note default-x="261">
         <pitch>
@@ -10993,13 +11332,13 @@ Uruguay</credit-words>
     <measure number="58" width="83">
       <note default-x="16">
         <pitch>
-          <step>F</step>
-          <octave>4</octave>
+          <step>A</step>
+          <octave>3</octave>
         </pitch>
         <duration>16</duration>
         <voice>1</voice>
         <type>whole</type>
-        <lyric default-y="-80" number="1" relative-x="6">
+        <lyric default-y="-80" number="1" relative-x="3">
           <syllabic>single</syllabic>
           <text font-family="Charter" font-size="9.6">dong</text>
         </lyric>
@@ -13100,7 +13439,7 @@ Uruguay</credit-words>
       </note>
     </measure>
     <!--=======================================================-->
-    <measure number="25" width="391">
+    <measure number="25" width="388">
       <print new-page="yes"/>
       <note default-x="91">
         <pitch>
@@ -13116,7 +13455,7 @@ Uruguay</credit-words>
           <text font-family="Charter" font-size="9.6">toc</text>
         </lyric>
       </note>
-      <note default-x="249">
+      <note default-x="243">
         <pitch>
           <step>C</step>
           <alter>1</alter>
@@ -13138,7 +13477,7 @@ Uruguay</credit-words>
           <text font-family="Charter" font-size="9.6">tic</text>
         </lyric>
       </note>
-      <note default-x="287">
+      <note default-x="280">
         <pitch>
           <step>G</step>
           <octave>3</octave>
@@ -13150,7 +13489,7 @@ Uruguay</credit-words>
         <beam number="1">continue</beam>
         <notations>
           <articulations>
-            <staccato default-x="3" default-y="-78" placement="below"/>
+            <staccato default-x="4" default-y="-78" placement="below"/>
           </articulations>
         </notations>
         <lyric default-y="-102" number="1" relative-x="-2">
@@ -13158,7 +13497,7 @@ Uruguay</credit-words>
           <text font-family="Charter" font-size="9.6">tic</text>
         </lyric>
       </note>
-      <note default-x="322">
+      <note default-x="316">
         <pitch>
           <step>A</step>
           <octave>3</octave>
@@ -13178,7 +13517,7 @@ Uruguay</credit-words>
           <text font-family="Charter" font-size="9.6">tic</text>
         </lyric>
       </note>
-      <note default-x="359">
+      <note default-x="352">
         <pitch>
           <step>G</step>
           <octave>3</octave>
@@ -13190,7 +13529,7 @@ Uruguay</credit-words>
         <beam number="1">end</beam>
         <notations>
           <articulations>
-            <staccato default-x="3" default-y="-78" placement="below"/>
+            <staccato default-x="4" default-y="-78" placement="below"/>
           </articulations>
         </notations>
         <lyric default-y="-95" number="1">
@@ -13216,7 +13555,7 @@ Uruguay</credit-words>
           <text font-family="Charter" font-size="9.6">toc</text>
         </lyric>
       </note>
-      <note default-x="96">
+      <note default-x="97">
         <rest/>
         <duration>4</duration>
         <voice>1</voice>
@@ -13240,7 +13579,7 @@ Uruguay</credit-words>
       </note>
     </measure>
     <!--=======================================================-->
-    <measure number="29" width="139">
+    <measure number="29" width="140">
       <note default-x="17">
         <pitch>
           <step>A</step>
@@ -13271,7 +13610,7 @@ Uruguay</credit-words>
       </note>
     </measure>
     <!--=======================================================-->
-    <measure number="30" width="139">
+    <measure number="30" width="140">
       <note default-x="17">
         <pitch>
           <step>A</step>
@@ -13286,7 +13625,7 @@ Uruguay</credit-words>
           <text font-family="Charter" font-size="9.6">ding</text>
         </lyric>
       </note>
-      <note default-x="77">
+      <note default-x="78">
         <pitch>
           <step>A</step>
           <octave>3</octave>
@@ -13302,8 +13641,8 @@ Uruguay</credit-words>
       </note>
     </measure>
     <!--=======================================================-->
-    <measure number="31" width="237">
-      <note default-x="26">
+    <measure number="31" width="238">
+      <note default-x="27">
         <pitch>
           <step>A</step>
           <octave>3</octave>
@@ -15685,7 +16024,7 @@ Uruguay</credit-words>
         <voice>1</voice>
         <type>eighth</type>
         <accidental>sharp</accidental>
-        <stem default-y="-15">up</stem>
+        <stem default-y="-5">up</stem>
         <beam number="1">begin</beam>
         <notations>
           <articulations>
@@ -15699,17 +16038,17 @@ Uruguay</credit-words>
       </note>
       <note default-x="164">
         <pitch>
-          <step>G</step>
-          <octave>3</octave>
+          <step>E</step>
+          <octave>4</octave>
         </pitch>
         <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
-        <stem default-y="-16">up</stem>
+        <stem default-y="-5">up</stem>
         <beam number="1">continue</beam>
         <notations>
           <articulations>
-            <staccato default-x="3" default-y="-78" placement="below"/>
+            <staccato default-x="3" default-y="-53" placement="below"/>
           </articulations>
         </notations>
         <lyric default-y="-90" number="1" relative-x="-5">
@@ -15719,17 +16058,18 @@ Uruguay</credit-words>
       </note>
       <note default-x="185">
         <pitch>
-          <step>A</step>
-          <octave>3</octave>
+          <step>C</step>
+          <alter>1</alter>
+          <octave>4</octave>
         </pitch>
         <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
-        <stem default-y="-16">up</stem>
+        <stem default-y="-5">up</stem>
         <beam number="1">continue</beam>
         <notations>
           <articulations>
-            <staccato default-x="4" default-y="-73" placement="below"/>
+            <staccato default-x="4" default-y="-63" placement="below"/>
           </articulations>
         </notations>
         <lyric default-y="-97" number="1" relative-x="3">
@@ -15739,17 +16079,17 @@ Uruguay</credit-words>
       </note>
       <note default-x="209">
         <pitch>
-          <step>G</step>
-          <octave>3</octave>
+          <step>E</step>
+          <octave>4</octave>
         </pitch>
         <duration>2</duration>
         <voice>1</voice>
         <type>eighth</type>
-        <stem default-y="-17.5">up</stem>
+        <stem default-y="-5">up</stem>
         <beam number="1">end</beam>
         <notations>
           <articulations>
-            <staccato default-x="3" default-y="-78" placement="below"/>
+            <staccato default-x="3" default-y="-53" placement="below"/>
           </articulations>
         </notations>
         <lyric default-y="-95" number="1" relative-x="8">
@@ -15762,13 +16102,13 @@ Uruguay</credit-words>
     <measure number="55" width="228">
       <note default-x="15">
         <pitch>
-          <step>D</step>
+          <step>F</step>
           <octave>4</octave>
         </pitch>
         <duration>16</duration>
         <voice>1</voice>
         <type>whole</type>
-        <lyric default-y="-75" number="1" relative-x="13">
+        <lyric default-y="-95" number="1" relative-x="11">
           <syllabic>single</syllabic>
           <text font-family="Charter" font-size="9.6">dong</text>
         </lyric>
@@ -15778,13 +16118,13 @@ Uruguay</credit-words>
     <measure number="56" width="228">
       <note default-x="15">
         <pitch>
-          <step>D</step>
+          <step>F</step>
           <octave>4</octave>
         </pitch>
         <duration>16</duration>
         <voice>1</voice>
         <type>whole</type>
-        <lyric default-y="-80" number="1" relative-x="6">
+        <lyric default-y="-100" number="1" relative-x="6">
           <syllabic>single</syllabic>
           <text font-family="Charter" font-size="9.6">dong</text>
         </lyric>
@@ -15794,13 +16134,13 @@ Uruguay</credit-words>
     <measure number="57" width="228">
       <note default-x="15">
         <pitch>
-          <step>D</step>
+          <step>F</step>
           <octave>4</octave>
         </pitch>
         <duration>16</duration>
         <voice>1</voice>
         <type>whole</type>
-        <lyric default-y="-80" number="1" relative-x="6">
+        <lyric default-y="-100" number="1" relative-x="6">
           <syllabic>single</syllabic>
           <text font-family="Charter" font-size="9.6">dong</text>
         </lyric>
@@ -15810,13 +16150,13 @@ Uruguay</credit-words>
     <measure number="58" width="83">
       <note default-x="16">
         <pitch>
-          <step>A</step>
-          <octave>3</octave>
+          <step>F</step>
+          <octave>4</octave>
         </pitch>
         <duration>16</duration>
         <voice>1</voice>
         <type>whole</type>
-        <lyric default-y="-80" number="1" relative-x="3">
+        <lyric default-y="-80" number="1" relative-x="6">
           <syllabic>single</syllabic>
           <text font-family="Charter" font-size="9.6">dong</text>
         </lyric>
@@ -16103,12 +16443,12 @@ Uruguay</credit-words>
       <note default-x="79">
         <pitch>
           <step>G</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>4</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <stem default-y="-40">down</stem>
+        <stem default-y="-4">up</stem>
         <lyric default-y="-80" number="1">
           <syllabic>single</syllabic>
           <text font-family="Charter" font-size="9.6">tic</text>
@@ -16166,12 +16506,12 @@ Uruguay</credit-words>
       <note default-x="26">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>4</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <stem default-y="-35.5">down</stem>
+        <stem default-y="0.5">up</stem>
         <lyric default-y="-80" number="1">
           <syllabic>single</syllabic>
           <text font-family="Charter" font-size="9.6">tic</text>
@@ -16180,13 +16520,13 @@ Uruguay</credit-words>
       <note default-x="96">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>3</duration>
         <voice>1</voice>
         <type>eighth</type>
         <dot/>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0">up</stem>
         <beam number="1">begin</beam>
         <lyric default-y="-80" number="1">
           <syllabic>begin</syllabic>
@@ -16196,12 +16536,12 @@ Uruguay</credit-words>
       <note default-x="132">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>1</duration>
         <voice>1</voice>
         <type>16th</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0">up</stem>
         <beam number="1">end</beam>
         <beam number="2">backward hook</beam>
         <lyric default-y="-80" number="1">
@@ -16212,12 +16552,12 @@ Uruguay</credit-words>
       <note default-x="174">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
-        <stem default-y="-35.5">down</stem>
+        <stem default-y="0.5">up</stem>
         <lyric default-y="-80" number="1">
           <syllabic>end</syllabic>
           <text font-family="Charter" font-size="9.6">toc</text>
@@ -16229,12 +16569,12 @@ Uruguay</credit-words>
       <note default-x="15">
         <pitch>
           <step>G</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>4</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <stem default-y="-40">down</stem>
+        <stem default-y="-4">up</stem>
         <lyric default-y="-80" number="1">
           <syllabic>single</syllabic>
           <text font-family="Charter" font-size="9.6">tic</text>
@@ -16292,12 +16632,12 @@ Uruguay</credit-words>
       <note default-x="27">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>4</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <stem default-y="-35.5">down</stem>
+        <stem default-y="0.5">up</stem>
         <lyric default-y="-80" number="1">
           <syllabic>single</syllabic>
           <text font-family="Charter" font-size="9.6">tic</text>
@@ -16306,13 +16646,13 @@ Uruguay</credit-words>
       <note default-x="95">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>3</duration>
         <voice>1</voice>
         <type>eighth</type>
         <dot/>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0">up</stem>
         <beam number="1">begin</beam>
         <lyric default-y="-80" number="1">
           <syllabic>begin</syllabic>
@@ -16322,12 +16662,12 @@ Uruguay</credit-words>
       <note default-x="131">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>1</duration>
         <voice>1</voice>
         <type>16th</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0">up</stem>
         <beam number="1">end</beam>
         <beam number="2">backward hook</beam>
         <lyric default-y="-80" number="1">
@@ -16338,12 +16678,12 @@ Uruguay</credit-words>
       <note default-x="173">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
-        <stem default-y="-35.5">down</stem>
+        <stem default-y="0.5">up</stem>
         <lyric default-y="-80" number="1">
           <syllabic>end</syllabic>
           <text font-family="Charter" font-size="9.6">toc</text>
@@ -17199,12 +17539,12 @@ Uruguay</credit-words>
       <note default-x="15">
         <pitch>
           <step>G</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>4</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <stem default-y="-40.5">down</stem>
+        <stem default-y="-4.5">up</stem>
         <lyric default-y="-80" number="1">
           <syllabic>single</syllabic>
           <text font-family="Charter" font-size="9.6">tic</text>
@@ -17262,12 +17602,12 @@ Uruguay</credit-words>
       <note default-x="26">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>4</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0.5">up</stem>
         <lyric default-y="-80" number="1">
           <syllabic>single</syllabic>
           <text font-family="Charter" font-size="9.6">tic</text>
@@ -17276,13 +17616,13 @@ Uruguay</credit-words>
       <note default-x="98">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>3</duration>
         <voice>1</voice>
         <type>eighth</type>
         <dot/>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0.5">up</stem>
         <beam number="1">begin</beam>
         <lyric default-y="-80" number="1">
           <syllabic>begin</syllabic>
@@ -17292,12 +17632,12 @@ Uruguay</credit-words>
       <note default-x="135">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>1</duration>
         <voice>1</voice>
         <type>16th</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0.5">up</stem>
         <beam number="1">end</beam>
         <beam number="2">backward hook</beam>
         <lyric default-y="-80" number="1">
@@ -17308,12 +17648,12 @@ Uruguay</credit-words>
       <note default-x="176">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0.5">up</stem>
         <lyric default-y="-80" number="1">
           <syllabic>end</syllabic>
           <text font-family="Charter" font-size="9.6">toc</text>
@@ -17325,12 +17665,12 @@ Uruguay</credit-words>
       <note default-x="15">
         <pitch>
           <step>G</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>4</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <stem default-y="-40.5">down</stem>
+        <stem default-y="-4.5">up</stem>
         <lyric default-y="-80" number="1">
           <syllabic>single</syllabic>
           <text font-family="Charter" font-size="9.6">tic</text>
@@ -17379,37 +17719,37 @@ Uruguay</credit-words>
         <stem default-y="-40.5">down</stem>
         <lyric default-y="-80" number="1" relative-x="8">
           <syllabic>end</syllabic>
-          <text font-family="Charter" font-size="9.6">toc</text>
+          <text font-family="Charter" font-size="9.6">tic</text>
         </lyric>
       </note>
     </measure>
     <!--=======================================================-->
-    <measure number="25" width="391">
+    <measure number="25" width="388">
       <print new-page="yes"/>
       <note default-x="91">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>4</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0.5">up</stem>
         <lyric default-y="-80" number="1">
           <syllabic>single</syllabic>
           <text font-family="Charter" font-size="9.6">tic</text>
         </lyric>
       </note>
-      <note default-x="167">
+      <note default-x="165">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>3</duration>
         <voice>1</voice>
         <type>eighth</type>
         <dot/>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0">up</stem>
         <beam number="1">begin</beam>
         <lyric default-y="-80" number="1">
           <syllabic>begin</syllabic>
@@ -17419,12 +17759,12 @@ Uruguay</credit-words>
       <note default-x="219">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>1</duration>
         <voice>1</voice>
         <type>16th</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0">up</stem>
         <beam number="1">end</beam>
         <beam number="2">backward hook</beam>
         <lyric default-y="-82" number="1" relative-x="-12">
@@ -17432,18 +17772,32 @@ Uruguay</credit-words>
           <text font-family="Charter" font-size="9.6">qui</text>
         </lyric>
       </note>
-      <note default-x="249">
+      <note default-x="243">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
-        <duration>8</duration>
+        <duration>4</duration>
         <voice>1</voice>
-        <type>half</type>
-        <stem default-y="-35">down</stem>
+        <type>quarter</type>
+        <stem default-y="0.5">up</stem>
         <lyric default-y="-80" number="1">
           <syllabic>end</syllabic>
-          <text font-family="Charter" font-size="9.6">toc</text>
+          <text font-family="Charter" font-size="9.6">tic</text>
+        </lyric>
+      </note>
+      <note default-x="316">
+        <pitch>
+          <step>A</step>
+          <octave>2</octave>
+        </pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem default-y="0.5">up</stem>
+        <lyric default-y="-80" number="1">
+          <syllabic>single</syllabic>
+          <text font-family="Charter" font-size="9.6">tic</text>
         </lyric>
       </note>
     </measure>
@@ -17464,7 +17818,7 @@ Uruguay</credit-words>
           <text font-family="Charter" font-size="9.6">toc</text>
         </lyric>
       </note>
-      <note default-x="96">
+      <note default-x="97">
         <rest/>
         <duration>4</duration>
         <voice>1</voice>
@@ -17488,7 +17842,7 @@ Uruguay</credit-words>
       </note>
     </measure>
     <!--=======================================================-->
-    <measure number="29" width="139">
+    <measure number="29" width="140">
       <note default-x="17">
         <pitch>
           <step>D</step>
@@ -17519,10 +17873,10 @@ Uruguay</credit-words>
       </note>
     </measure>
     <!--=======================================================-->
-    <measure number="30" width="139">
+    <measure number="30" width="140">
       <direction>
         <direction-type>
-          <words default-x="74" default-y="-140" font-size="9.6" valign="top" xml:space="preserve">*     *    *        *       * 
+          <words default-x="75" default-y="-140" font-size="9.6" valign="top" xml:space="preserve">*     *    *        *       * 
 (frotar palmas)</words>
         </direction-type>
       </direction>
@@ -17540,7 +17894,7 @@ Uruguay</credit-words>
           <text font-family="Charter" font-size="9.6">ding</text>
         </lyric>
       </note>
-      <note default-x="77">
+      <note default-x="78">
         <pitch>
           <step>D</step>
           <octave>3</octave>
@@ -17556,8 +17910,8 @@ Uruguay</credit-words>
       </note>
     </measure>
     <!--=======================================================-->
-    <measure number="31" width="237">
-      <note default-x="26">
+    <measure number="31" width="238">
+      <note default-x="27">
         <pitch>
           <step>D</step>
           <alter>1</alter>
@@ -19520,12 +19874,12 @@ Uruguay</credit-words>
       <note default-x="15">
         <pitch>
           <step>G</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>4</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <stem default-y="-40">down</stem>
+        <stem default-y="-4.5">up</stem>
         <lyric default-y="-80" number="1">
           <syllabic>single</syllabic>
           <text font-family="Charter" font-size="9.6">tic</text>
@@ -19583,12 +19937,12 @@ Uruguay</credit-words>
       <note default-x="24">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>4</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0">up</stem>
         <lyric default-y="-80" number="1">
           <syllabic>single</syllabic>
           <text font-family="Charter" font-size="9.6">tic</text>
@@ -19597,13 +19951,13 @@ Uruguay</credit-words>
       <note default-x="81">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>3</duration>
         <voice>1</voice>
         <type>eighth</type>
         <dot/>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0">up</stem>
         <beam number="1">begin</beam>
         <lyric default-y="-80" number="1">
           <syllabic>single</syllabic>
@@ -19613,12 +19967,12 @@ Uruguay</credit-words>
       <note default-x="111">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>1</duration>
         <voice>1</voice>
         <type>16th</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0">up</stem>
         <beam number="1">end</beam>
         <beam number="2">backward hook</beam>
         <lyric default-y="-80" number="1">
@@ -19629,12 +19983,12 @@ Uruguay</credit-words>
       <note default-x="145">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0">up</stem>
         <lyric default-y="-80" number="1">
           <syllabic>single</syllabic>
           <text font-family="Charter" font-size="9.6">toc</text>
@@ -19647,12 +20001,12 @@ Uruguay</credit-words>
       <note default-x="79">
         <pitch>
           <step>G</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>4</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <stem default-y="-40">down</stem>
+        <stem default-y="-4">up</stem>
         <lyric default-y="-80" number="1">
           <syllabic>single</syllabic>
           <text font-family="Charter" font-size="9.6">tic</text>
@@ -19710,12 +20064,12 @@ Uruguay</credit-words>
       <note default-x="23">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>4</duration>
         <voice>1</voice>
         <type>quarter</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="1">up</stem>
         <lyric default-y="-80" number="1">
           <syllabic>single</syllabic>
           <text font-family="Charter" font-size="9.6">tic</text>
@@ -19724,13 +20078,13 @@ Uruguay</credit-words>
       <note default-x="79">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>3</duration>
         <voice>1</voice>
         <type>eighth</type>
         <dot/>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0">up</stem>
         <beam number="1">begin</beam>
         <lyric default-y="-80" number="1">
           <syllabic>single</syllabic>
@@ -19740,12 +20094,12 @@ Uruguay</credit-words>
       <note default-x="107">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>1</duration>
         <voice>1</voice>
         <type>16th</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="0">up</stem>
         <beam number="1">end</beam>
         <beam number="2">backward hook</beam>
         <lyric default-y="-80" number="1">
@@ -19756,12 +20110,12 @@ Uruguay</credit-words>
       <note default-x="140">
         <pitch>
           <step>A</step>
-          <octave>3</octave>
+          <octave>2</octave>
         </pitch>
         <duration>8</duration>
         <voice>1</voice>
         <type>half</type>
-        <stem default-y="-35">down</stem>
+        <stem default-y="1">up</stem>
         <lyric default-y="-80" number="1">
           <syllabic>single</syllabic>
           <text font-family="Charter" font-size="9.6">toc</text>
