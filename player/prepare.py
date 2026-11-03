@@ -52,6 +52,9 @@ def write(song, name: str, score: stream.Score) -> None:
             **events(score)}
     # with the repeats written out, which printed bar each bar is, so practice
     # on a bar counts for it in both versions; otherwise bar i is printed bar i
+    # a voice that sings another line than the one named like it
+    if hasattr(song, "VOICES"):
+        data["voices"] = song.VOICES
     if name == song.ID and hasattr(song, "ORDER"):
         data["printedBars"] = song.ORDER
     # a version without repeats that leaves out bars (first endings) says which it has

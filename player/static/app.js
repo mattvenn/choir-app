@@ -288,8 +288,12 @@ const VOICE_PARTS = {
   Bass: ["Bass", "Baritone"],
 };
 
-// Which parts of this song are the voice's; if none, the song's own part.
+// Which parts of this song are the voice's: the ones the song names for it
+// (Ich grolle nicht's tenors sing Alto 2), else the first found of the voice's
+// names; if none, the song's own part.
 function voiceParts(voice) {
+  const named = song.voices?.[voice];
+  if (named) return song.parts.map(p => named.includes(p.name));
   for (const name of VOICE_PARTS[voice] ?? []) {
     const flags = song.parts.map(p => p.name === name || p.name.startsWith(`${name} `));
     if (flags.some(Boolean)) return flags;
