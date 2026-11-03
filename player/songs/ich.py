@@ -21,9 +21,6 @@ TEMPO = 90  # quarter notes per minute, the file's
 MY_PART = "Baritone"
 NAMES = ["Soprano", "Alto 1", "Alto 2", "Baritone"]
 ABBREVIATIONS = ["S", "A1", "A2", "B"]
-# all four lines are sung: the tenors sing Alto 2 (the third, in treble clef),
-# and the basses the Baritone
-VOICES = {"Tenor": ["Alto 2"]}
 
 
 def load_parts() -> list[stream.Part]:

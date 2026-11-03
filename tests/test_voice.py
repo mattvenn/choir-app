@@ -9,11 +9,11 @@ either.
 import pytest
 from playwright.sync_api import sync_playwright
 
-# voice: its parts in an SATB song and in a S/A1/A2/Bar one
+# voice: its parts in an SATB song and in a S/A1/A2/Bar one (each line is sung)
 CASES = {
     "Soprano": (["Soprano"], ["Soprano"]),
     "Alto": (["Alto"], ["Alto 1"]),  # split, so the first to start with
-    "Tenor": (["Tenor"], ["Baritone"]),
+    "Tenor": (["Tenor"], ["Alto 2"]),
     "Bass": (["Bass"], ["Baritone"]),
 }
 

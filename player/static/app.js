@@ -279,21 +279,18 @@ const VERSION = new URL(document.currentScript.src).searchParams.get("v");
 const fresh = url => VERSION ? `${url}?v=${VERSION}` : url;
 
 // The choir's four voices, and the part names each looks for in a song, in
-// order: songs for three upper voices have one Baritone part for the men.
-// "Alto" also matches "Alto 1" and "Alto 2".
+// order. "Alto" also matches "Alto 1" and "Alto 2". Each of a song's four
+// lines is sung: in a Soprano, Alto 1, Alto 2, Baritone song the tenors sing
+// Alto 2 and the basses the Baritone.
 const VOICE_PARTS = {
   Soprano: ["Soprano"],
   Alto: ["Alto"],
-  Tenor: ["Tenor", "Baritone"],
+  Tenor: ["Tenor", "Alto 2"],
   Bass: ["Bass", "Baritone"],
 };
 
-// Which parts of this song are the voice's: the ones the song names for it
-// (Ich grolle nicht's tenors sing Alto 2), else the first found of the voice's
-// names; if none, the song's own part.
+// Which parts of this song are the voice's; if none, the song's own part.
 function voiceParts(voice) {
-  const named = song.voices?.[voice];
-  if (named) return song.parts.map(p => named.includes(p.name));
   for (const name of VOICE_PARTS[voice] ?? []) {
     const flags = song.parts.map(p => p.name === name || p.name.startsWith(`${name} `));
     if (flags.some(Boolean)) return flags;
