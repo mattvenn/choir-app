@@ -42,3 +42,22 @@ def test_ticks_survive_the_page_stalling(server):
 
     late = [round(a * 1000) for a in ahead if a <= 0]
     assert not late, f"ticks handed over this many ms after their time: {late}"
+
+
+def test_full_volume_is_as_loud_as_half_way_was(server):
+    # the slider all the way up is as loud as half way used to be (gain 0.09375)
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page()
+        page.add_init_script('localStorage.setItem("choir.voice", \'"Bass"\')')
+        page.goto(f"{server}/#no")
+        page.wait_for_selector("#play:not([disabled])", timeout=60_000)
+        gain = {}
+        for percent in (100, 50):
+            page.fill("#click-volume", str(percent))
+            page.dispatch_event("#click-volume", "input")
+            gain[percent] = page.evaluate("Tone.dbToGain(click.volume.value)")
+        browser.close()
+
+    assert abs(gain[100] - 0.09375) < 1e-6, gain
+    assert abs(gain[50] - 0.046875) < 1e-6, gain

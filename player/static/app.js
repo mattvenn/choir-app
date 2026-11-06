@@ -244,9 +244,9 @@ const click = new Tone.Synth({
   oscillator: { type: "square" },
   envelope: { attack: 0.001, decay: 0.04, sustain: 0, release: 0.01 },
 }).toDestination();
-// the slider runs 0-100; 100 is three quarters of what it was before, which
-// could still be set too loud
-const CLICK_MAX_GAIN = 0.1875;
+// the slider runs 0-100; 100 is as loud as half way was before, which could
+// still be set too loud
+const CLICK_MAX_GAIN = 0.09375;
 const setClickVolume = percent => {
   click.volume.value = Tone.gainToDb(percent / 100 * CLICK_MAX_GAIN);
   // silent: no waves; then one more for each third of the way up
