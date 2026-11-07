@@ -34,8 +34,8 @@
       </midi-instrument>
     </score-part>
     <score-part id="P2">
-      <part-name>Alto 1</part-name>
-      <part-abbreviation>A1</part-abbreviation>
+      <part-name>Alto</part-name>
+      <part-abbreviation>A</part-abbreviation>
       <score-instrument id="I2">
         <instrument-name>SmartMusicSoftSynth</instrument-name>
         <instrument-abbreviation>Ch</instrument-abbreviation>
@@ -46,8 +46,8 @@
       </midi-instrument>
     </score-part>
     <score-part id="P3">
-      <part-name>Alto 2</part-name>
-      <part-abbreviation>A2</part-abbreviation>
+      <part-name>Tenor</part-name>
+      <part-abbreviation>T</part-abbreviation>
       <score-instrument id="I3">
         <instrument-name>SmartMusicSoftSynth</instrument-name>
         <instrument-abbreviation>Ch</instrument-abbreviation>

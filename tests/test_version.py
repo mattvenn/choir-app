@@ -53,3 +53,22 @@ def test_an_old_page_loads_the_new_version_once(server):
         page.wait_for_timeout(500)
         assert len(loads) == 2
         assert page.is_visible("#player")
+
+
+def test_run_locally_the_scores_are_fetched_new_each_visit(server):
+    # with no version (not deployed), a browser can keep an old score from an
+    # earlier visit and pair it with the new app.js, so each visit asks anew
+    with sync_playwright() as p:
+        page = p.chromium.launch().new_page()
+        page.add_init_script(SET_VOICE)
+        scores = []
+        page.on("request", lambda r: "/scores/" in r.url and scores.append(r.url))
+        page.goto(f"{server}/#ave")
+        page.wait_for_function("songId === 'ave' && !loading")
+        first = {url.split("?v=")[1] for url in scores if "?v=" in url}
+        assert scores and all("?v=" in url for url in scores)
+        assert len(first) == 1
+        scores.clear()
+        page.reload()
+        page.wait_for_function("songId === 'ave' && !loading")
+        assert {url.split("?v=")[1] for url in scores} - first

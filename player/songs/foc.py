@@ -1,4 +1,6 @@
 """Foc de Nadal (D. Basomba), arranged for S, A1, A2 and Baritone.
+The score's Alto 1 is the altos' line and Alto 2 the tenors', so they're
+named Alto and Tenor.
 
 The notes are from the director's MusicXML, exported from Finale
 (sources/foc.musicxml). Its lyrics leave out every elided syllable ("na‿els",
@@ -18,8 +20,8 @@ TITLE = "Foc de Nadal"
 COMPOSER = "D. Basomba"
 TEMPO = 100  # quarter notes per minute; the score has no marking
 MY_PART = "Baritone"
-NAMES = ["Soprano", "Alto 1", "Alto 2", "Baritone"]
-ABBREVIATIONS = ["S", "A1", "A2", "B"]
+NAMES = ["Soprano", "Alto", "Tenor", "Baritone"]
+ABBREVIATIONS = ["S", "A", "T", "B"]
 # transcribed from the PDF, see scorelib.add_lyrics for the format
 LYRICS = {
     "Soprano": """La | nit de na- | dal fa | fred i ca- | lor el | foc il- lu- |
@@ -30,7 +32,7 @@ LYRICS = {
         són _ des | de dalt ens | mi- ren La | nit de na- | dal fa | fred i ca- |
         lor el | foc il- lu- | mi- na‿els de- | sit- jos de | tots la | nit de na- |
         dal _ es- | tre- les al | cel""",
-    "Alto 1": """ | La nit | de Na- | dal fred | i ca- | lor de- |
+    "Alto": """ | La nit | de Na- | dal fred | i ca- | lor de- |
         sit- jos | de | tots | La nit | de Na- | dal al |
         cel si | pa- res l'o- | re- lla se | sen- ten molt | bé | el |
         foc | cre- | pi- | ta | cri cri cri | crac |
@@ -38,7 +40,7 @@ LYRICS = {
         són | _ | mi- ren | La nit | de Na- | dal fred |
         i ca- | lor de- | sit- jos | de sit- | jos | nit de Na- |
         dal es- | tre- les al | cel""",
-    "Alto 2": """ | La nit | de Na- | dal fred | i ca- | lor de- |
+    "Tenor": """ | La nit | de Na- | dal fred | i ca- | lor de- |
         sit- jos | de _ | tots | La nit | de Na- | dal al |
         cel si | pa- res l'o- | re se _ | sen- ten molt | bé | el |
         foc | cre- | pi- | ta | cri cri cri | crac |

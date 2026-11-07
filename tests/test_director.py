@@ -10,9 +10,9 @@ from playwright.sync_api import sync_playwright
 
 MINE = "song.parts.filter((_, i) => mine[i]).map(p => p.name)"
 DRAWN = "song.parts.filter((_, i) => osmd.Sheet.Instruments[i].Visible).map(p => p.name)"
-ALL = ["Soprano", "Alto 1", "Alto 2", "Baritone"]
-# the note head of Alto 2's first note in printed bar 38
-NOTE = """[...noteInfo].find(([, n]) => n.index === 37 && n.part === "Alto 2" && n.place === 1)[0]"""
+ALL = ["Soprano", "Alto", "Tenor", "Baritone"]
+# the note head of the tenors' (the score's Alto 2) first note in printed bar 38
+NOTE = """[...noteInfo].find(([, n]) => n.index === 37 && n.part === "Tenor" && n.place === 1)[0]"""
 
 
 def test_director_sees_every_part_without_repeats_and_reports_a_note(server):
@@ -33,7 +33,7 @@ def test_director_sees_every_part_without_repeats_and_reports_a_note(server):
         box = note.bounding_box()
         page.mouse.click(box["x"] + box["width"] / 2, box["y"] + box["height"] / 2)
         page.wait_for_selector("#report:not([hidden])")
-        what = "Triste reloj, compás 38, Alto 2: nota 1 (Do♯4, «por»)"
+        what = "Triste reloj, compás 38, Tenor: nota 1 (Do♯4, «por»)"
         assert page.text_content("#report-what") == what
         # no number in the link: WhatsApp asks who to send it to
         href = page.get_attribute("#report-send", "href")

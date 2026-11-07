@@ -2,18 +2,19 @@
 with a slider to bring the other voices in.
 
 Songs don't all have the same parts: some are Soprano, Alto, Tenor, Bass and
-some Soprano, Alto 1, Alto 2, Baritone, so each voice has to find its part in
+some Soprano, Alto, Tenor, Baritone, so each voice has to find its part in
 either.
 """
 
 import pytest
 from playwright.sync_api import sync_playwright
 
-# voice: its parts in an SATB song and in a S/A1/A2/Bar one (each line is sung)
+# voice: its parts in an SATB song (Ave) and a S/A/T/Bar one (Foc de Nadal);
+# each line is sung
 CASES = {
     "Soprano": (["Soprano"], ["Soprano"]),
-    "Alto": (["Alto"], ["Alto 1"]),  # split, so the first to start with
-    "Tenor": (["Tenor"], ["Alto 2"]),
+    "Alto": (["Alto"], ["Alto"]),
+    "Tenor": (["Tenor"], ["Tenor"]),
     "Bass": (["Bass"], ["Baritone"]),
 }
 
@@ -36,7 +37,7 @@ def set_slider(page, value):
 
 @pytest.mark.parametrize("voice", CASES)
 def test_first_visit_asks_voice_and_songs_start_on_it(server, voice):
-    satb, upper = CASES[voice]
+    satb, satbar = CASES[voice]
     with sync_playwright() as p:
         browser = p.chromium.launch()
         page = browser.new_page()
@@ -50,8 +51,9 @@ def test_first_visit_asks_voice_and_songs_start_on_it(server, voice):
         assert page.evaluate(DRAWN) == satb
 
         open_song(page, server, "foc")
-        assert page.evaluate(MINE) == upper
-        assert page.evaluate(DRAWN) == upper
+        page.wait_for_function("!loading")
+        assert page.evaluate(MINE) == satbar
+        assert page.evaluate(DRAWN) == satbar
 
         # asked only once
         page.goto(server)
@@ -231,37 +233,20 @@ def test_the_address_can_choose_the_language(server, asked, help_text):
         browser.close()
 
 
-def test_a_split_voice_chooses_its_line(server):
+@pytest.mark.parametrize("song_id", ["foc", "shalala", "triste", "ich"])
+def test_altos_and_tenors_each_have_their_own_line(server, song_id):
+    """The scores' Alto 1 and Alto 2 are the altos' and the tenors' lines, so
+    they're named Alto and Tenor, and altos aren't offered the tenors' line."""
     with sync_playwright() as p:
         browser = p.chromium.launch()
         page = browser.new_page()
-        page.add_init_script(f"if (!localStorage.getItem('choir.voice')) {SET_VOICE}")
-        # not split here: no switch
-        open_song(page, server, "ave")
-        assert page.is_hidden("#part-switch")
-
-        open_song(page, server, "foc")
-        page.wait_for_selector("#play:not([disabled])", timeout=60_000)
-        assert page.locator("#part-switch button").all_text_contents() == ["A1", "A2"]
-        assert page.evaluate(MINE) == ["Alto 1"]
-        page.click("#part-switch button:text-is('A2')")
-        page.wait_for_function("mine[2]")
-        assert page.evaluate(MINE) == ["Alto 2"]
-        assert page.evaluate(DRAWN) == ["Alto 2"]
-        assert page.get_attribute("#part-switch button:text-is('A2')", "aria-pressed") == "true"
-
-        # kept for the song
-        page.reload()
-        page.wait_for_function("songId === 'foc'")
-        assert page.evaluate(MINE) == ["Alto 2"]
-
-        # redrawing would hold up the music, so not while playing
-        page.click("#play")
-        page.wait_for_function("transport.state === 'started'")
-        assert page.is_disabled("#part-switch button:text-is('A1')")
-        page.click("#play")
-        page.wait_for_function("transport.state === 'paused'")
-        assert page.is_enabled("#part-switch button:text-is('A1')")
+        page.add_init_script(SET_VOICE)
+        open_song(page, server, song_id)
+        page.wait_for_function("!loading")
+        assert page.evaluate("song.parts.map(p => p.name)") == ["Soprano", "Alto", "Tenor", "Baritone"]
+        assert page.evaluate(MINE) == ["Alto"]
+        assert page.evaluate(DRAWN) == ["Alto"]
+        assert page.locator("#part-switch").count() == 0
         browser.close()
 
 

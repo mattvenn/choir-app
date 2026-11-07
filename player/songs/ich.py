@@ -1,5 +1,6 @@
 """Ich grolle nicht (Robert Schumann, words by Heinrich Heine), arranged for
-S, A1, A2 and Baritone.
+S, A1, A2 and Baritone. The score's Alto 1 is the altos' line and Alto 2 the
+tenors', so they're named Alto and Tenor.
 
 From the director's MusicXML, exported from Finale 2014 (sources/ich.musicxml).
 It has no repeats, so there's no version without them. The player ignores the
@@ -19,8 +20,8 @@ GROUP = "Jóvenes"  # the junior choir's
 COMPOSER = "Robert Schumann"
 TEMPO = 90  # quarter notes per minute, the file's
 MY_PART = "Baritone"
-NAMES = ["Soprano", "Alto 1", "Alto 2", "Baritone"]
-ABBREVIATIONS = ["S", "A1", "A2", "B"]
+NAMES = ["Soprano", "Alto", "Tenor", "Baritone"]
+ABBREVIATIONS = ["S", "A", "T", "B"]
 
 
 def load_parts() -> list[stream.Part]:

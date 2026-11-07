@@ -1,8 +1,8 @@
 """Each voice gets its own line, the right one: a song with four lines gives
 each of the four voices a different one, and it's the line that voice has in
 the director's view, top to bottom Soprano, Alto, Tenor, Bass. In a Soprano,
-Alto 1, Alto 2, Baritone song the altos start on Alto 1, the tenors sing Alto 2
-(the third line, in treble clef) and the basses the Baritone.
+Alto, Tenor, Baritone song (the scores' Alto 1 and Alto 2) the tenors sing the
+third line, in treble clef, and the basses the Baritone.
 
 The voice's view must show and play the same notes as that line of the
 director's, in the same version (with or without repeats).
@@ -17,7 +17,7 @@ from playwright.sync_api import sync_playwright
 SCORES = Path(__file__).parent.parent / "player" / "static" / "scores"
 SONGS = [s["id"] for s in json.loads((SCORES / "index.json").read_text())]
 VOICES = ["Soprano", "Alto", "Tenor", "Bass"]  # the director's lines, top to bottom
-UPPER = {"Soprano": ["Soprano"], "Alto": ["Alto 1"], "Tenor": ["Alto 2"], "Bass": ["Baritone"]}
+UPPER = {"Soprano": ["Soprano"], "Alto": ["Alto"], "Tenor": ["Tenor"], "Bass": ["Baritone"]}
 
 MINE = "song.parts.filter((_, i) => mine[i]).map(p => p.name)"
 # per line drawn, top to bottom: the pitches of its notes, as drawn
@@ -78,5 +78,5 @@ def test_each_voice_gets_its_line_in_the_directors_view(server, song_id):
         browser.close()
     if len(parts) == 4:
         assert len({tuple(names) for names in got.values()}) == 4, f"{song_id}: voices share a line: {got}"
-    if parts == ["Soprano", "Alto 1", "Alto 2", "Baritone"]:
+    if parts == ["Soprano", "Alto", "Tenor", "Baritone"]:
         assert got == UPPER

@@ -1,4 +1,6 @@
 """Shalala-Bon nadal (D. Basomba), arranged for S, A1, A2 and Baritone.
+The score's Alto 1 is the altos' line and Alto 2 the tenors', so they're
+named Alto and Tenor.
 
 From the director's MusicXML, exported from Finale 2014 (sources/shalala.musicxml).
 The whole song is repeated; build() writes the repeat out, so bar numbers after
@@ -18,8 +20,8 @@ TITLE = "Shalala-Bon nadal"
 COMPOSER = "D. Basomba"
 TEMPO = 56  # the choir's choice
 MY_PART = "Baritone"
-NAMES = ["Soprano", "Alto 1", "Alto 2", "Baritone"]
-ABBREVIATIONS = ["S", "A1", "A2", "B"]
+NAMES = ["Soprano", "Alto", "Tenor", "Baritone"]
+ABBREVIATIONS = ["S", "A", "T", "B"]
 ORDER = [*range(1, 14), *range(1, 14)]
 
 

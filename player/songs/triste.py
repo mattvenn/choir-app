@@ -1,4 +1,6 @@
 """Triste reloj (Daniel Basomba), for S, A1, A2 and Baritone.
+The score's Alto 1 is the altos' line and Alto 2 the tenors', so they're
+named Alto and Tenor.
 
 From the director's MusicXML, exported from Finale 2014 (sources/triste.musicxml),
 the version of 3 November 2026: Alto 1 sings in bars 1-2, 18-19 and 47-48, the
@@ -27,12 +29,13 @@ GROUP = "Jóvenes"  # the junior choir's
 COMPOSER = "Daniel Basomba"
 TEMPO = 88  # quarter notes per minute, as marked
 MY_PART = "Baritone"
-NAMES = ["Soprano", "Alto 1", "Alto 2", "Baritone"]
-ABBREVIATIONS = ["S", "A1", "A2", "B"]
+NAMES = ["Soprano", "Alto", "Tenor", "Baritone"]
+ABBREVIATIONS = ["S", "A", "T", "B"]
 ORDER = [*range(1, 42), *range(32, 59)]
 # syllables missing from the file, from the PDF: by part, (bar, sung note) →
 # syllable, counting the notes in the bar that start a syllable (not the ends
-# of ties); "-" at the end continues the word
+# of ties); "-" at the end continues the word. The parts are as the file names
+# them, before they're renamed Alto and Tenor.
 MISSING = {
     "Soprano": {
         (32, 3): "me‿es", (34, 3): "va‿a", (36, 5): "vio‿im", (37, 5): "le‿a",
