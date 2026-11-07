@@ -54,6 +54,8 @@ header {
 #voice-picker h2 { margin: 0 0 16px; font-size: 1.3rem; font-weight: normal; }
 #voice-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 #voice-list button { padding: 18px 20px; border-radius: 10px; font-size: 1.2rem; }
+#voice-list hr { grid-column: 1 / -1; width: 100%; margin: 4px 0; border: 0; border-top: 1px solid var(--muted); }
+#voice-list button:last-child { grid-column: 1 / -1; }
 #voice-picker p { margin: 16px 0 0; color: var(--muted); font-size: 0.9rem; }
 /* your voice and help, side by side under the songs, styled like them, with a
    rule as wide as the songs halfway between */

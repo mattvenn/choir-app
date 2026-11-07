@@ -58,3 +58,44 @@ def test_director_sees_every_part_without_repeats_and_reports_a_note(server):
         page.goto(f"{server}/?director=no")
         page.wait_for_selector("#voice-picker:not([hidden])")
         browser.close()
+
+
+def test_director_is_chosen_like_a_voice_and_left_by_choosing_one(server):
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page()
+        page.goto(f"{server}/#triste")
+        page.wait_for_selector("#voice-picker:not([hidden])")
+        # last, on its own row under a line
+        assert page.evaluate("$('voice-list').lastElementChild.textContent") == "Director"
+        assert page.evaluate("$('voice-list').lastElementChild.previousElementSibling.tagName") == "HR"
+        page.click("#voice-list button:text-is('Director')")
+        page.wait_for_function("songId === 'triste' && !loading && director")
+        assert page.evaluate(MINE) == ALL
+
+        # kept, and the voice button takes you out of it
+        page.goto(server)
+        page.wait_for_selector("#song-list a")
+        assert page.evaluate("director")
+        assert page.is_enabled("#change-voice")
+        page.click("#change-voice")
+        page.click("#voice-list button:text-is('Soprano')")
+        page.wait_for_function("typeof director !== 'undefined' && !director")
+        page.goto(f"{server}/#triste")
+        page.wait_for_function("songId === 'triste' && !loading")
+        assert page.evaluate(MINE) == ["Soprano"]
+        browser.close()
+
+
+def test_choosing_a_voice_leaves_the_director_view_opened_by_link(server):
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page()
+        page.goto(f"{server}/?director")
+        page.wait_for_selector("#song-list a")
+        page.click("#change-voice")
+        page.click("#voice-list button:text-is('Alto')")
+        # the ?director in the address doesn't switch it straight back on
+        page.wait_for_function("typeof director !== 'undefined' && !director")
+        assert "director" not in page.url
+        browser.close()

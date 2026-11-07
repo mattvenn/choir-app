@@ -33,6 +33,7 @@ const STRINGS = {
     othersTitle: "Fade the other voices in and out",
     yourVoice: voice => `Your voice: ${voice}`,
     directorMode: "Director's view: every voice",
+    director: "Director",
     reportNote: (song, bar, part, n, note, lyric) =>
       `${song}, bar ${bar}, ${part}: note ${n} (${note}${lyric ? `, "${lyric}"` : ""})`,
     reportSubject: (song, bar) => `${song}, bar ${bar}`,
@@ -60,7 +61,7 @@ const STRINGS = {
       "Your voice, the repeats and the metronome, and the tempo and the other voices' volume for each song, are remembered on this device.",
       "On a phone, songs work best with the phone turned sideways.",
     ],
-    directorNote: "Director's view: every voice is shown and played equally loud, and songs start without repeats so the bar numbers match the score. Tap a note to report a mistake in it on WhatsApp or by email: the message says which song, bar, voice and note, and you add what's wrong and choose who to send it to. To go back to one voice, open the address with ?director=no.",
+    directorNote: "Director's view: every voice is shown and played equally loud, and songs start without repeats so the bar numbers match the score. Tap a note to report a mistake in it on WhatsApp or by email: the message says which song, bar, voice and note, and you add what's wrong and choose who to send it to. To go back to one voice, choose it with the voice button.",
     error: message => `Error: ${message}`,
     updated: (date, time) => `Last updated ${date} at ${time}`,
     minutes: n => `${n} min`,
@@ -89,6 +90,7 @@ const STRINGS = {
     othersTitle: "Sube y baja las otras voces",
     yourVoice: voice => `Tu voz: ${voice}`,
     directorMode: "Vista del director: todas las voces",
+    director: "Director",
     reportNote: (song, bar, part, n, note, lyric) =>
       `${song}, compás ${bar}, ${part}: nota ${n} (${note}${lyric ? `, «${lyric}»` : ""})`,
     reportSubject: (song, bar) => `${song}, compás ${bar}`,
@@ -116,7 +118,7 @@ const STRINGS = {
       "Tu voz, las repeticiones y el metrónomo, y el tempo y el volumen de las otras voces de cada canción, se guardan en este dispositivo.",
       "En el móvil, las canciones se ven mejor con el teléfono en horizontal.",
     ],
-    directorNote: "Vista del director: se muestran todas las voces y suenan igual de fuerte, y las canciones empiezan sin repeticiones para que los números de compás coincidan con la partitura. Pulsa una nota para avisar de un error por WhatsApp o por correo: el mensaje dice la canción, el compás, la voz y la nota, y tú añades qué está mal y eliges a quién enviarlo. Para volver a una sola voz, abre la dirección con ?director=no.",
+    directorNote: "Vista del director: se muestran todas las voces y suenan igual de fuerte, y las canciones empiezan sin repeticiones para que los números de compás coincidan con la partitura. Pulsa una nota para avisar de un error por WhatsApp o por correo: el mensaje dice la canción, el compás, la voz y la nota, y tú añades qué está mal y eliges a quién enviarlo. Para volver a una sola voz, elígela con el botón de la voz.",
     error: message => `Error: ${message}`,
     updated: (date, time) => `Actualizado el ${date} a las ${time}`,
     minutes: n => `${n} min`,
@@ -158,8 +160,8 @@ const store = {
 };
 
 // The director's view, for checking the scores: every part shown and played
-// alike, each bar once. Not offered on the page: ?director turns it on for
-// this browser and ?director=no off again.
+// alike, each bar once. Chosen like a voice, kept for this browser; ?director
+// in the address also turns it on, and ?director=no off.
 const askedDirector = new URLSearchParams(location.search).get("director");
 if (askedDirector !== null) store.set("director", askedDirector !== "no");
 const director = Boolean(store.get("director"));
@@ -338,26 +340,41 @@ function choosePart(i) {
 }
 
 // On a first visit, ask which voice they sing before anything else opens;
-// again from the chooser's "change" link.
+// again from the chooser's "change" link. The director's view is the last
+// choice, under a line.
 function askVoice() {
   $("home").hidden = false;
   $("song-list").hidden = $("voice-line").hidden = true;
   $("voice-picker").hidden = false;
   $("voice-list").replaceChildren();
   return new Promise(resolve => {
-    for (const voice of Object.keys(VOICE_PARTS)) {
+    const choose = (label, voice) => {
       const button = document.createElement("button");
-      button.textContent = voice;
+      button.textContent = label;
       button.addEventListener("click", () => {
-        store.set("voice", voice);
-        track("choose_voice", { voice });
+        if (voice) store.set("voice", voice);
+        track("choose_voice", { voice: voice ?? "director" });
+        if (!voice !== director) return switchDirector(!voice);
         $("voice-picker").hidden = true;
         $("song-list").hidden = $("voice-line").hidden = false;
         resolve();
       });
       $("voice-list").append(button);
-    }
+    };
+    for (const voice of Object.keys(VOICE_PARTS)) choose(voice, voice);
+    $("voice-list").append(document.createElement("hr"));
+    choose(t("director"), null);
   });
+}
+
+// The director's view changes too much of the page to switch in place, so
+// load it again, without a ?director that would switch it straight back.
+function switchDirector(on) {
+  store.set("director", on);
+  const url = new URL(location.href);
+  url.searchParams.delete("director");
+  history.replaceState(null, "", url);
+  location.reload();
 }
 
 async function init() {
@@ -498,7 +515,6 @@ function showHome() {
   const voice = store.get("voice");
   $("change-voice").textContent = director ? t("directorMode")
     : voice ? t("yourVoice", voice) : t("chooseVoice");
-  $("change-voice").disabled = director;
   showPracticeStats();
   // one name in every language, so Analytics counts it as one page
   trackPage("/", STRINGS.en.appName);
