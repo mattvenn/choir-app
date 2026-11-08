@@ -49,6 +49,11 @@ def build() -> stream.Score:
     for part in parts:
         for ts in part.recurse().getElementsByClass(meter.TimeSignature):
             ts.symbol = "cut"  # the edition writes alla breve, not 2/2
+    # soprano bars 12 and 17 are A, G sharp, G sharp: the ABC has to sharpen
+    # the second G too (music21 doesn't carry the sharp on), but the edition
+    # doesn't print a second sharp, so hide it
+    for bar in (12, 17):
+        parts[0].measure(bar).notes.last().pitch.accidental.displayStatus = False
     score = make_score(parts, NAMES, ABBREVIATIONS, TITLE, COMPOSER)
     for part in parts:
         add_lyrics(part, LYRICS[part.partName])
