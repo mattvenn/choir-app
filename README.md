@@ -38,7 +38,7 @@ for now the features these are the features
 # player (first version)
 
 A web page for practising Foc de Nadal, Ave Verum Corpus, No olvides, Boga, boga,
-Shalala-Bon nadal, Triste reloj and Ich grolle nicht: the score is drawn
+Shalala-Bon nadal, Triste reloj, Ich grolle nicht and Wellcome: the score is drawn
 in the browser from MusicXML (with lyrics), and played on a sampled grand piano.
 Tick the parts to show and hear, set the tempo (or tap it in with "Marcar"),
 turn on a metronome, and click a bar to play from there. Space is play/pause

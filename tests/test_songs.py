@@ -16,11 +16,17 @@ def test_jovenes_songs_listed_and_open(server):
         page.wait_for_function("songId === 'ich' && !loading")
         listed = page.evaluate(LIST)
         jovenes = listed[listed.index("Jóvenes") + 1:]
-        assert [t for t in jovenes if t.startswith(("Triste", "Ich"))] == [
-            "Triste reloj", "Ich grolle nicht"]
+        assert [t for t in jovenes if t.startswith(("Triste", "Ich", "Wellcome"))] == [
+            "Triste reloj", "Ich grolle nicht", "Wellcome"]
         assert page.evaluate("song.title") == "Ich grolle nicht"
         assert page.evaluate("song.measures.length") == 36
         assert page.evaluate(DRAWN) == ALL
+        # Wellcome (Daniel Basomba) is for soprano, alto and baritone, 26 bars
+        page.goto(f"{server}/?director#wellcome")
+        page.wait_for_function("songId === 'wellcome' && !loading")
+        assert page.evaluate("song.title") == "Wellcome"
+        assert page.evaluate("song.measures.length") == 26
+        assert page.evaluate(DRAWN) == ["Soprano", "Alto", "Baritone"]
         # Dani's version of 3 November 2026: the altos (Alto 1) now start in bar 1
         page.goto(f"{server}/?director#triste")
         page.wait_for_function("songId === 'triste' && !loading")
