@@ -1,5 +1,3 @@
-# source music (PDFs, recordings) is not committed
-music/
 # generated outputs and OMR caches
 out/
 *.pkl
