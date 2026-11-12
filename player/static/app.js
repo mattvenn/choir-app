@@ -289,8 +289,14 @@ const VOICE_PARTS = {
   Bass: ["Bass", "Baritone"],
 };
 
-// Which parts of this song are the voice's; if none, the song's own part.
+// Which parts of this song are the voice's. A song with four lines is sung top
+// to bottom by Soprano, Alto, Tenor and Bass, whatever the lines are called: in
+// Esa estrella (Soprano 1, Soprano 2, Baritone, Cello) the altos sing Soprano 2,
+// the tenors the Baritone and the basses the cello. Otherwise the parts named
+// for the voice; if none, the song's own part.
 function voiceParts(voice) {
+  const line = Object.keys(VOICE_PARTS).indexOf(voice);
+  if (song.parts.length === 4 && line >= 0) return song.parts.map((_, i) => i === line);
   for (const name of VOICE_PARTS[voice] ?? []) {
     const flags = song.parts.map(p => p.name === name || p.name.startsWith(`${name} `));
     if (flags.some(Boolean)) return flags;

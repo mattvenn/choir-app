@@ -38,13 +38,14 @@ for now the features these are the features
 # player (first version)
 
 A web page for practising Foc de Nadal, Ave Verum Corpus, No olvides, Boga, boga,
-Shalala-Bon nadal, Triste reloj, Ich grolle nicht and Wellcome: the score is drawn
+Adeste Fideles, Shalala-Bon nadal, Agnus Dei, Esa estrella que brilla,
+Triste reloj, Ich grolle nicht and Wellcome: the score is drawn
 in the browser from MusicXML (with lyrics), and played on a sampled grand piano.
 Tick the parts to show and hear, set the tempo (or tap it in with "Marcar"),
 turn on a metronome, and click a bar to play from there. Space is play/pause
 and S solos the parts shown.
 Repeats are written out; for songs with a version that has each bar once (so
-far Boga, boga, Shalala and Triste reloj), "Sin repeticiones" switches to it.
+far Boga, boga, Shalala, Esa estrella and Triste reloj), "Sin repeticiones" switches to it.
 Where a score changes tempo (Triste reloj), playback and the metronome follow it,
 in proportion to the tempo set.
 

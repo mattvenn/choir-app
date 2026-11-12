@@ -2,7 +2,9 @@
 each of the four voices a different one, and it's the line that voice has in
 the director's view, top to bottom Soprano, Alto, Tenor, Bass. In a Soprano,
 Alto, Tenor, Baritone song (the scores' Alto 1 and Alto 2) the tenors sing the
-third line, in treble clef, and the basses the Baritone.
+third line, in treble clef, and the basses the Baritone. In Esa estrella
+(Soprano 1, Soprano 2, Baritone, Cello) the altos sing Soprano 2, the tenors
+the Baritone and the basses the cello.
 
 The voice's view must show and play the same notes as that line of the
 director's, in the same version (with or without repeats).
@@ -18,6 +20,9 @@ SCORES = Path(__file__).parent.parent / "player" / "static" / "scores"
 SONGS = [s["id"] for s in json.loads((SCORES / "index.json").read_text())]
 VOICES = ["Soprano", "Alto", "Tenor", "Bass"]  # the director's lines, top to bottom
 UPPER = {"Soprano": ["Soprano"], "Alto": ["Alto"], "Tenor": ["Tenor"], "Bass": ["Baritone"]}
+# Esa estrella: two sopranos, a baritone and a cello, sung top to bottom
+TRIO_AND_CELLO = {"Soprano": ["Soprano 1"], "Alto": ["Soprano 2"], "Tenor": ["Baritone"],
+                  "Bass": ["Cello"]}
 
 MINE = "song.parts.filter((_, i) => mine[i]).map(p => p.name)"
 # per line drawn, top to bottom: the pitches of its notes, as drawn
@@ -80,3 +85,5 @@ def test_each_voice_gets_its_line_in_the_directors_view(server, song_id):
         assert len({tuple(names) for names in got.values()}) == 4, f"{song_id}: voices share a line: {got}"
     if parts == ["Soprano", "Alto", "Tenor", "Baritone"]:
         assert got == UPPER
+    if parts == ["Soprano 1", "Soprano 2", "Baritone", "Cello"]:
+        assert got == TRIO_AND_CELLO

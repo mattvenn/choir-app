@@ -33,3 +33,26 @@ def test_jovenes_songs_listed_and_open(server):
         alto1 = page.evaluate("song.parts.find(p => p.name === 'Alto').notes[0]")
         assert alto1[:2] == [65, 0]  # F4, at the start
         browser.close()
+
+
+def test_main_choir_songs_listed_and_open(server):
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page()
+        page.goto(f"{server}/?director#esa")
+        page.wait_for_function("songId === 'esa' && !loading")
+        listed = page.evaluate(LIST)
+        main = listed[:listed.index("Jóvenes")]
+        assert [t for t in main if t.startswith(("Agnus", "Esa"))] == [
+            "Agnus Dei", "Esa estrella que brilla"]
+        # the repeats written out: 65 bars, or 33 without them
+        assert page.evaluate("song.measures.length") == 33
+        assert page.evaluate(DRAWN) == ["Soprano 1", "Soprano 2", "Baritone", "Cello"]
+        page.click("#repeats")
+        page.wait_for_function("!loading && song.measures.length === 65")
+        page.goto(f"{server}/?director#agnus")
+        page.wait_for_function("songId === 'agnus' && !loading")
+        assert page.evaluate("song.title") == "Agnus Dei"
+        assert page.evaluate("song.measures.length") == 55
+        assert page.evaluate(DRAWN) == ALL
+        browser.close()
