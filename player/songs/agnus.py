@@ -12,6 +12,7 @@ from scorelib import load_finale, make_score
 
 ID = "agnus"
 TITLE = "Agnus Dei"
+GROUP = "Jóvenes"  # the junior choir's
 COMPOSER = "D. Basomba"
 TEMPO = 80  # quarter notes per minute, as marked
 MY_PART = "Baritone"

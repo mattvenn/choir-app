@@ -18,7 +18,7 @@ from scorelib import check, events
 from songs import adeste, agnus, ave, boga, esa, foc, ich, no, shalala, triste, wellcome
 
 # in the order listed; the main choir's first, then each other group's
-SONGS = [foc, ave, no, boga, adeste, shalala, agnus, esa, triste, ich, wellcome]
+SONGS = [foc, ave, no, boga, adeste, shalala, triste, ich, wellcome, agnus, esa]
 OUT = Path(__file__).resolve().parent / "static/scores"
 
 

@@ -16,8 +16,10 @@ def test_jovenes_songs_listed_and_open(server):
         page.wait_for_function("songId === 'ich' && !loading")
         listed = page.evaluate(LIST)
         jovenes = listed[listed.index("Jóvenes") + 1:]
-        assert [t for t in jovenes if t.startswith(("Triste", "Ich", "Wellcome"))] == [
-            "Triste reloj", "Ich grolle nicht", "Wellcome"]
+        assert [t for t in jovenes if t.startswith(("Triste", "Ich", "Wellcome", "Agnus", "Esa"))] == [
+            "Triste reloj", "Ich grolle nicht", "Wellcome", "Agnus Dei", "Esa estrella que brilla"]
+        main = listed[:listed.index("Jóvenes")]
+        assert not [t for t in main if t.startswith(("Agnus", "Esa"))]
         assert page.evaluate("song.title") == "Ich grolle nicht"
         assert page.evaluate("song.measures.length") == 36
         assert page.evaluate(DRAWN) == ALL
@@ -35,16 +37,12 @@ def test_jovenes_songs_listed_and_open(server):
         browser.close()
 
 
-def test_main_choir_songs_listed_and_open(server):
+def test_agnus_and_esa_open(server):
     with sync_playwright() as p:
         browser = p.chromium.launch()
         page = browser.new_page()
         page.goto(f"{server}/?director#esa")
         page.wait_for_function("songId === 'esa' && !loading")
-        listed = page.evaluate(LIST)
-        main = listed[:listed.index("Jóvenes")]
-        assert [t for t in main if t.startswith(("Agnus", "Esa"))] == [
-            "Agnus Dei", "Esa estrella que brilla"]
         # the repeats written out: 65 bars, or 33 without them
         assert page.evaluate("song.measures.length") == 33
         assert page.evaluate(DRAWN) == ["Soprano 1", "Soprano 2", "Baritone", "Cello"]

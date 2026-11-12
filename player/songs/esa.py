@@ -30,6 +30,7 @@ from scorelib import load_finale, make_score, write_out_repeats
 
 ID = "esa"
 TITLE = "Esa estrella que brilla"
+GROUP = "Jóvenes"  # the junior choir's
 COMPOSER = "D. Basomba"
 TEMPO = 90  # quarter notes per minute, the file's
 MY_PART = "Baritone"
