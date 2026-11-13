@@ -53,4 +53,41 @@ def test_agnus_and_esa_open(server):
         assert page.evaluate("song.title") == "Agnus Dei"
         assert page.evaluate("song.measures.length") == 55
         assert page.evaluate(DRAWN) == ALL
+        # Dani's corrections of 13 November 2026: altos and tenors sing
+        # "mun" in bar 46 and "di do" (half, quarter) in bar 47 like the
+        # others, and end on B3 and G sharp 3
+        bar47 = """name => { const s = song.measures[46], e = song.measures[47];
+            return song.parts.find(p => p.name === name).notes
+                .filter(n => n[1] >= s && n[1] < e).map(n => [n[0], n[1] - s, n[2]]); }"""
+        assert page.evaluate(bar47, "Alto") == [[61, 0, 2], [61, 2, 1]]
+        assert page.evaluate(bar47, "Tenor") == [[58, 0, 2], [58, 2, 1]]
+        last = "name => song.parts.find(p => p.name === name).notes.at(-1)[0]"
+        assert page.evaluate(last, "Alto") == 59  # B3
+        assert page.evaluate(last, "Tenor") == 56  # G#3
+        browser.close()
+
+
+# the words under one part's bar of a built score, as the app loads it
+LYRICS = """async ([id, part, bar]) => {
+    const xml = new DOMParser().parseFromString(
+        await (await fetch(`scores/${id}.musicxml`)).text(), "application/xml");
+    const parts = [...xml.querySelectorAll("score-part")];
+    const pid = parts.find(p => p.querySelector("part-name").textContent === part).id;
+    const m = xml.querySelector(`part[id="${pid}"] > measure[number="${bar}"]`);
+    return [...m.querySelectorAll("note")].map(n =>
+        n.querySelector("lyric text")?.textContent ?? null);
+}"""
+
+
+def test_esa_baritone_sings_jesus_in_bar_49(server):
+    """Dani, 13 November 2026: in the app's bar 49 (the score's bar 29) the
+    baritone's note had no "sús"; it's sung like the sopranos'."""
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page()
+        page.goto(f"{server}/?director#esa")
+        page.wait_for_function("songId === 'esa' && !loading")
+        assert page.evaluate(LYRICS, ["esa", "Baritone", 49]) == ["sús.", None]
+        # without repeats, the bar keeps the score's number
+        assert page.evaluate(LYRICS, ["esa-short", "Baritone", 29]) == ["sús.", None]
         browser.close()

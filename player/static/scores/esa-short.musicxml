@@ -4254,6 +4254,10 @@
         <duration>10080</duration>
         <type>quarter</type>
         <stem default-y="-45">down</stem>
+        <lyric name="1" number="1">
+          <syllabic>single</syllabic>
+          <text>sús.</text>
+        </lyric>
       </note>
       <note default-x="193">
         <rest />

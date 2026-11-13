@@ -19,7 +19,8 @@ marks ("a-b", "Coro") and the "*" (sin director) marks.
 The lyrics are the file's, which match the PDF, except that Finale left out
 some elided syllables ("sa‿es", "que‿ha", "de‿a", "to‿y"): they're put back
 from the PDF. Soprano 2's pick-up in bar 29 has no words in the PDF; it gets
-"sús. E sa‿es", as the sopranos sing in bar 9. Misprints in both are
+"sús. E sa‿es", as the sopranos sing in bar 9, and the Baritone's note
+there, also without words, gets "sús." (Dani, 13 November 2026). Misprints in both are
 corrected: Soprano 2's "dón-se" (bars 4 and 32) is "dón-de" and "ci-co" (bar
 35) is "ci-do", as the others sing, and the Baritone's "LLe-vad" is "Lle-vad".
 The "sús" printed under the cello's last bar is left out.
@@ -57,7 +58,7 @@ MISSING = {
         (1, 2): "sa‿es", (9, 3): "sa‿es", (13, 3): "de‿a", (17, 2): "to‿y", (19, 2): "to‿y",
         (29, 1): "sús.", (29, 2): "E", (29, 3): "sa‿es",
     },
-    "Baritone": {(2, 2): "sa‿es", (17, 2): "to‿y", (19, 2): "to‿y"},
+    "Baritone": {(2, 2): "sa‿es", (17, 2): "to‿y", (19, 2): "to‿y", (29, 1): "sús."},
     "Cello": {},
 }
 # misprints: by part, (bar, old) → new

@@ -1651,7 +1651,7 @@
           <text>di</text>
         </lyric>
       </note>
-      <note default-x="61">
+      <note default-x="62">
         <pitch>
           <step>D</step>
           <alter>1</alter>
@@ -2370,6 +2370,9 @@
         <duration>10080</duration>
         <type>quarter</type>
         <stem default-y="4">up</stem>
+        <notations>
+          <slur bezier-x="-65" bezier-y="24" default-x="7" default-y="-12" number="1" placement="below" type="start" />
+        </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
           <text>mi</text>
@@ -2458,6 +2461,9 @@
         <duration>20160</duration>
         <type>half</type>
         <stem default-y="-11.5">up</stem>
+        <notations>
+          <slur number="1" type="stop" />
+        </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
           <text>bis</text>
@@ -2475,6 +2481,9 @@
         <duration>10080</duration>
         <type>quarter</type>
         <stem default-y="-11.5">up</stem>
+        <notations>
+          <slur bezier-x="-35" bezier-x2="39" bezier-y="21" bezier-y2="15" default-x="14" default-y="-19" number="2" placement="below" type="start" />
+        </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
           <text>no</text>
@@ -2544,6 +2553,7 @@
         <stem default-y="-12">up</stem>
         <notations>
           <tied type="stop" />
+          <slur number="2" type="stop" />
         </notations>
       </note>
       <note default-x="68">
@@ -2564,7 +2574,7 @@
         <type>half</type>
         <stem default-y="0.5">up</stem>
         <notations>
-          <slur bezier-x="31" bezier-y="19" default-x="6" default-y="-2" number="1" placement="below" type="start" />
+          <slur bezier-x="31" bezier-y="19" default-x="6" default-y="-2" number="3" placement="below" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -2640,7 +2650,7 @@
         <type>quarter</type>
         <stem default-y="0.5">up</stem>
         <notations>
-          <slur number="1" type="stop" />
+          <slur number="3" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>single</syllabic>
@@ -2660,7 +2670,7 @@
         <type>half</type>
         <stem default-y="0.5">up</stem>
         <notations>
-          <slur bezier-x="-51" bezier-y="18" default-x="19" default-y="6" number="2" placement="below" type="start" />
+          <slur bezier-x="-51" bezier-y="18" default-x="19" default-y="6" number="4" placement="below" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -2736,7 +2746,7 @@
         <type>quarter</type>
         <stem default-y="0.5">up</stem>
         <notations>
-          <slur number="2" type="stop" />
+          <slur number="4" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>single</syllabic>
@@ -2757,7 +2767,7 @@
         <accidental>double-sharp</accidental>
         <stem default-y="0.5">up</stem>
         <notations>
-          <slur bezier-x="-13" bezier-x2="27" bezier-y="20" bezier-y2="8" default-x="3" default-y="0" number="3" placement="below" type="start" />
+          <slur bezier-x="-13" bezier-x2="27" bezier-y="20" bezier-y2="8" default-x="3" default-y="0" number="5" placement="below" type="start" />
         </notations>
         <lyric default-y="-64" justify="left" name="1" number="1">
           <syllabic>single</syllabic>
@@ -2841,7 +2851,7 @@
         <accidental>double-sharp</accidental>
         <stem default-y="0">up</stem>
         <notations>
-          <slur number="3" type="stop" />
+          <slur number="5" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>single</syllabic>
@@ -2870,7 +2880,7 @@
         <type>quarter</type>
         <stem default-y="-44.5">down</stem>
         <notations>
-          <slur bezier-x="-74" bezier-y="43" default-x="6" default-y="-21" number="4" placement="above" type="start" />
+          <slur bezier-x="-74" bezier-y="43" default-x="6" default-y="-21" number="6" placement="above" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -2983,7 +2993,7 @@
         <dot />
         <stem default-y="-16">up</stem>
         <notations>
-          <slur number="4" type="stop" />
+          <slur number="6" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
@@ -3003,7 +3013,7 @@
         <type>half</type>
         <stem default-y="-7.5">up</stem>
         <notations>
-          <slur bezier-x="-12" bezier-x2="35" bezier-y="27" bezier-y2="7" default-x="8" default-y="-13" number="5" placement="below" type="start" />
+          <slur bezier-x="-12" bezier-x2="35" bezier-y="27" bezier-y2="7" default-x="8" default-y="-13" number="1" placement="below" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -3087,7 +3097,7 @@
         <dot />
         <stem default-y="-8">up</stem>
         <notations>
-          <slur number="5" type="stop" />
+          <slur number="1" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
@@ -3106,7 +3116,7 @@
         <type>half</type>
         <stem default-y="-4">up</stem>
         <notations>
-          <slur bezier-x="-68" bezier-y="25" default-x="8" default-y="-2" number="6" placement="below" type="start" />
+          <slur bezier-x="-68" bezier-y="25" default-x="8" default-y="-2" number="2" placement="below" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -3203,7 +3213,7 @@
         <dot />
         <stem default-y="-8">up</stem>
         <notations>
-          <slur number="6" type="stop" />
+          <slur number="2" type="stop" />
         </notations>
       </note>
     </measure>
@@ -3219,7 +3229,7 @@
         <type>quarter</type>
         <stem default-y="0.5">up</stem>
         <notations>
-          <slur bezier-x="-32" bezier-y="14" default-x="6" default-y="4" number="1" placement="below" type="start" />
+          <slur bezier-x="-32" bezier-y="14" default-x="6" default-y="4" number="3" placement="below" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -3267,7 +3277,7 @@
         <type>half</type>
         <stem default-y="0.5">up</stem>
         <notations>
-          <slur number="1" type="stop" />
+          <slur number="3" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
@@ -3287,7 +3297,7 @@
         <type>quarter</type>
         <stem default-y="0.5">up</stem>
         <notations>
-          <slur bezier-x="-26" bezier-y="16" default-x="-6" default-y="-2" number="2" placement="below" type="start" />
+          <slur bezier-x="-26" bezier-y="16" default-x="-6" default-y="-2" number="4" placement="below" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -3335,7 +3345,7 @@
         <type>half</type>
         <stem default-y="0.5">up</stem>
         <notations>
-          <slur number="2" type="stop" />
+          <slur number="4" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
@@ -3355,7 +3365,7 @@
         <type>quarter</type>
         <stem default-y="4.5">up</stem>
         <notations>
-          <slur bezier-x="-41" bezier-x2="45" bezier-y="19" bezier-y2="13" default-x="5" default-y="-8" number="3" placement="below" type="start" />
+          <slur bezier-x="-41" bezier-x2="45" bezier-y="19" bezier-y2="13" default-x="5" default-y="-8" number="5" placement="below" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>single</syllabic>
@@ -3447,7 +3457,7 @@
         <stem default-y="-11.5">up</stem>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>single</syllabic>
-          <text>di</text>
+          <text>mun</text>
         </lyric>
       </note>
     </measure>
@@ -3459,15 +3469,31 @@
           <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>30240</duration>
+        <duration>20160</duration>
         <type>half</type>
-        <dot />
         <stem default-y="-11.5">up</stem>
         <notations>
-          <slur number="3" type="stop" />
+          <slur number="5" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
-          <syllabic>begin</syllabic>
+          <syllabic>single</syllabic>
+          <text>di</text>
+        </lyric>
+      </note>
+      <note default-x="62">
+        <pitch>
+          <step>C</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem default-y="-11.5">up</stem>
+        <notations>
+          <slur bezier-x="-40" bezier-y="32" default-x="9" default-y="-9" number="6" placement="below" type="start" />
+        </notations>
+        <lyric default-y="-64" name="1" number="1">
+          <syllabic>single</syllabic>
           <text>do</text>
         </lyric>
       </note>
@@ -3483,11 +3509,8 @@
         <duration>10080</duration>
         <type>quarter</type>
         <stem default-y="-11.5">up</stem>
-        <notations>
-          <slur bezier-x="-32" bezier-y="19" default-x="14" default-y="-3" number="4" placement="below" type="start" />
-        </notations>
         <lyric default-y="-64" name="1" number="1">
-          <syllabic>end</syllabic>
+          <syllabic>single</syllabic>
           <text>na</text>
         </lyric>
       </note>
@@ -3546,7 +3569,7 @@
         <type>half</type>
         <stem default-y="-7.5">up</stem>
         <notations>
-          <slur number="4" type="stop" />
+          <slur number="6" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
@@ -3566,7 +3589,7 @@
         <type>quarter</type>
         <stem default-y="-11.5">up</stem>
         <notations>
-          <slur bezier-x="-31" bezier-y="16" default-x="-4" default-y="0" number="5" placement="below" type="start" />
+          <slur bezier-x="-31" bezier-y="16" default-x="-4" default-y="0" number="1" placement="below" type="start" />
         </notations>
         <lyric default-y="-64" justify="left" name="1" number="1" relative-x="-18">
           <syllabic>single</syllabic>
@@ -3624,7 +3647,7 @@
         <type>half</type>
         <stem default-y="-7.5">up</stem>
         <notations>
-          <slur number="5" type="stop" />
+          <slur number="1" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
@@ -3644,7 +3667,7 @@
         <type>quarter</type>
         <stem default-y="-7.5">up</stem>
         <notations>
-          <slur bezier-x="-53" bezier-y="14" default-x="-2" default-y="2" number="6" placement="below" type="start" />
+          <slur bezier-x="-52" bezier-y="15" default-x="-2" default-y="-6" number="2" placement="below" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -3719,17 +3742,16 @@
     <measure implicit="no" number="55" width="71">
       <note default-x="16">
         <pitch>
-          <step>D</step>
-          <alter>1</alter>
-          <octave>4</octave>
+          <step>B</step>
+          <octave>3</octave>
         </pitch>
         <duration>30240</duration>
         <type>half</type>
         <dot />
-        <stem default-y="-7.5">up</stem>
+        <stem default-y="-16">up</stem>
         <notations>
           <fermata type="upright" />
-          <slur number="6" type="stop" />
+          <slur number="2" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>single</syllabic>
@@ -3798,7 +3820,7 @@
         <type>half</type>
         <stem default-y="-7.5">up</stem>
         <notations>
-          <slur bezier-x="-55" bezier-y="35" default-x="11" default-y="-1" number="1" placement="below" type="start" />
+          <slur bezier-x="-55" bezier-y="35" default-x="11" default-y="-1" number="3" placement="below" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -3875,7 +3897,7 @@
         <type>half</type>
         <stem default-y="-7.5">up</stem>
         <notations>
-          <slur number="1" type="stop" />
+          <slur number="3" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
@@ -3905,7 +3927,7 @@
         <type>quarter</type>
         <stem default-y="-7.5">up</stem>
         <notations>
-          <slur bezier-x="-64" bezier-x2="68" bezier-y="24" bezier-y2="14" default-x="11" default-y="-15" number="2" placement="below" type="start" />
+          <slur bezier-x="-64" bezier-x2="68" bezier-y="24" bezier-y2="14" default-x="11" default-y="-15" number="4" placement="below" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>single</syllabic>
@@ -4036,7 +4058,7 @@
         <stem default-y="-15">up</stem>
         <notations>
           <tied type="start" />
-          <slur number="2" type="stop" />
+          <slur number="4" type="stop" />
         </notations>
         <lyric default-y="-70" justify="left" name="1" number="1" relative-x="-2">
           <syllabic>end</syllabic>
@@ -4074,6 +4096,9 @@
         <duration>10080</duration>
         <type>quarter</type>
         <stem default-y="-15">up</stem>
+        <notations>
+          <slur bezier-x="-64" bezier-y="24" default-x="9" default-y="-15" number="5" placement="below" type="start" />
+        </notations>
         <lyric default-y="-76" name="1" number="1" relative-x="3">
           <syllabic>begin</syllabic>
           <text>mi</text>
@@ -4160,6 +4185,9 @@
         <duration>20160</duration>
         <type>half</type>
         <stem default-y="-15">up</stem>
+        <notations>
+          <slur number="5" type="stop" />
+        </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
           <text>bis</text>
@@ -4176,6 +4204,9 @@
         <duration>10080</duration>
         <type>quarter</type>
         <stem default-y="-15">up</stem>
+        <notations>
+          <slur bezier-x="-31" bezier-x2="37" bezier-y="21" bezier-y2="15" default-x="14" default-y="-22" number="6" placement="below" type="start" />
+        </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
           <text>no</text>
@@ -4244,6 +4275,7 @@
         <stem default-y="-15.5">up</stem>
         <notations>
           <tied type="stop" />
+          <slur number="6" type="stop" />
         </notations>
       </note>
       <note default-x="68">
@@ -4269,7 +4301,7 @@
         <type>quarter</type>
         <stem default-y="-11.5">up</stem>
         <notations>
-          <slur bezier-x="-29" bezier-y="30" default-x="8" default-y="-13" number="3" placement="below" type="start" />
+          <slur bezier-x="-29" bezier-y="30" default-x="8" default-y="-13" number="1" placement="below" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -4328,7 +4360,7 @@
         <type>quarter</type>
         <stem default-y="-15.5">up</stem>
         <notations>
-          <slur number="3" type="stop" />
+          <slur number="1" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>single</syllabic>
@@ -4358,7 +4390,7 @@
         <type>quarter</type>
         <stem default-y="-11.5">up</stem>
         <notations>
-          <slur bezier-x="-32" bezier-y="21" default-x="11" default-y="-13" number="4" placement="below" type="start" />
+          <slur bezier-x="-32" bezier-y="21" default-x="11" default-y="-13" number="2" placement="below" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -4417,7 +4449,7 @@
         <type>quarter</type>
         <stem default-y="-15.5">up</stem>
         <notations>
-          <slur number="4" type="stop" />
+          <slur number="2" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>single</syllabic>
@@ -4437,7 +4469,7 @@
         <type>quarter</type>
         <stem default-y="-7">up</stem>
         <notations>
-          <slur bezier-x="-29" bezier-x2="26" bezier-y="36" bezier-y2="8" default-x="6" default-y="-5" number="5" placement="below" type="start" />
+          <slur bezier-x="-29" bezier-x2="26" bezier-y="36" bezier-y2="8" default-x="6" default-y="-5" number="3" placement="below" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>single</syllabic>
@@ -4499,7 +4531,7 @@
         <dot />
         <stem default-y="-7.5">up</stem>
         <notations>
-          <slur number="5" type="stop" />
+          <slur number="3" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>single</syllabic>
@@ -4547,7 +4579,7 @@
         <type>quarter</type>
         <stem default-y="-7.5">up</stem>
         <notations>
-          <slur bezier-x="-57" bezier-y="25" default-x="9" default-y="-19" number="6" placement="below" type="start" />
+          <slur bezier-x="-57" bezier-y="25" default-x="9" default-y="-19" number="4" placement="below" type="start" />
         </notations>
         <lyric default-y="-70" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -4628,7 +4660,7 @@
         <accidental>double-sharp</accidental>
         <stem default-y="-16">up</stem>
         <notations>
-          <slur number="6" type="stop" />
+          <slur number="4" type="stop" />
         </notations>
         <lyric default-y="-80" name="1" number="1" relative-x="-5">
           <syllabic>end</syllabic>
@@ -4647,7 +4679,7 @@
         <type>half</type>
         <stem default-y="-16">up</stem>
         <notations>
-          <slur bezier-x="-10" bezier-x2="32" bezier-y="25" bezier-y2="6" default-x="16" default-y="-15" number="1" placement="below" type="start" />
+          <slur bezier-x="-10" bezier-x2="32" bezier-y="25" bezier-y2="6" default-x="16" default-y="-15" number="5" placement="below" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -4726,7 +4758,7 @@
         <dot />
         <stem default-y="-15">up</stem>
         <notations>
-          <slur number="1" type="stop" />
+          <slur number="5" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
@@ -4745,7 +4777,7 @@
         <type>half</type>
         <stem default-y="-15">up</stem>
         <notations>
-          <slur bezier-x="-68" bezier-y="31" default-x="8" default-y="-11" number="2" placement="below" type="start" />
+          <slur bezier-x="-68" bezier-y="31" default-x="8" default-y="-11" number="6" placement="below" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -4842,7 +4874,7 @@
         <dot />
         <stem default-y="-15">up</stem>
         <notations>
-          <slur number="2" type="stop" />
+          <slur number="6" type="stop" />
         </notations>
       </note>
     </measure>
@@ -4858,7 +4890,7 @@
         <type>quarter</type>
         <stem default-y="-7">up</stem>
         <notations>
-          <slur bezier-x="-32" bezier-y="13" default-x="6" default-y="-5" number="3" placement="below" type="start" />
+          <slur bezier-x="-32" bezier-y="13" default-x="6" default-y="-5" number="1" placement="below" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -4906,7 +4938,7 @@
         <type>half</type>
         <stem default-y="-7">up</stem>
         <notations>
-          <slur number="3" type="stop" />
+          <slur number="1" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
@@ -4926,7 +4958,7 @@
         <type>quarter</type>
         <stem default-y="-7">up</stem>
         <notations>
-          <slur bezier-x="-27" bezier-y="13" default-x="2" default-y="1" number="4" placement="below" type="start" />
+          <slur bezier-x="-27" bezier-y="13" default-x="2" default-y="1" number="2" placement="below" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -4974,7 +5006,7 @@
         <type>half</type>
         <stem default-y="-7">up</stem>
         <notations>
-          <slur number="4" type="stop" />
+          <slur number="2" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
@@ -4993,7 +5025,7 @@
         <type>quarter</type>
         <stem default-y="-3.5">up</stem>
         <notations>
-          <slur bezier-x="-43" bezier-x2="50" bezier-y="25" bezier-y2="14" default-x="10" default-y="-11" number="5" placement="below" type="start" />
+          <slur bezier-x="-43" bezier-x2="50" bezier-y="25" bezier-y2="14" default-x="10" default-y="-11" number="3" placement="below" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>single</syllabic>
@@ -5084,9 +5116,9 @@
         <type>half</type>
         <dot />
         <stem default-y="-15.5">up</stem>
-        <lyric default-y="-64" name="1" number="1">
+        <lyric default-y="-69" name="1" number="1">
           <syllabic>single</syllabic>
-          <text>di</text>
+          <text>mun</text>
         </lyric>
       </note>
     </measure>
@@ -5098,15 +5130,31 @@
           <alter>1</alter>
           <octave>3</octave>
         </pitch>
-        <duration>30240</duration>
+        <duration>20160</duration>
         <type>half</type>
-        <dot />
         <stem default-y="-15.5">up</stem>
         <notations>
-          <slur number="5" type="stop" />
+          <slur number="3" type="stop" />
         </notations>
-        <lyric default-y="-64" name="1" number="1">
-          <syllabic>begin</syllabic>
+        <lyric default-y="-76" name="1" number="1" relative-x="4">
+          <syllabic>single</syllabic>
+          <text>di</text>
+        </lyric>
+      </note>
+      <note default-x="62">
+        <pitch>
+          <step>A</step>
+          <alter>1</alter>
+          <octave>3</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem default-y="-15.5">up</stem>
+        <notations>
+          <slur bezier-x="-42" bezier-y="18" default-x="3" default-y="-14" number="4" placement="below" type="start" />
+        </notations>
+        <lyric default-y="-80" name="1" number="1">
+          <syllabic>single</syllabic>
           <text>do</text>
         </lyric>
       </note>
@@ -5122,11 +5170,8 @@
         <duration>10080</duration>
         <type>quarter</type>
         <stem default-y="-15.5">up</stem>
-        <notations>
-          <slur bezier-x="-35" bezier-y="13" default-x="14" default-y="-5" number="6" placement="below" type="start" />
-        </notations>
         <lyric default-y="-64" name="1" number="1">
-          <syllabic>end</syllabic>
+          <syllabic>single</syllabic>
           <text>na</text>
         </lyric>
       </note>
@@ -5183,7 +5228,7 @@
         <type>half</type>
         <stem default-y="-15.5">up</stem>
         <notations>
-          <slur number="6" type="stop" />
+          <slur number="4" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
@@ -5203,7 +5248,7 @@
         <type>quarter</type>
         <stem default-y="-15.5">up</stem>
         <notations>
-          <slur bezier-x="-35" bezier-y="20" default-x="13" default-y="-9" number="1" placement="below" type="start" />
+          <slur bezier-x="-35" bezier-y="20" default-x="13" default-y="-9" number="5" placement="below" type="start" />
         </notations>
         <lyric default-y="-70" justify="left" name="1" number="1" relative-x="-15">
           <syllabic>single</syllabic>
@@ -5259,7 +5304,7 @@
         <type>half</type>
         <stem default-y="-15.5">up</stem>
         <notations>
-          <slur number="1" type="stop" />
+          <slur number="5" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
@@ -5280,7 +5325,7 @@
         <accidental>double-sharp</accidental>
         <stem default-y="-15.5">up</stem>
         <notations>
-          <slur bezier-x="-57" bezier-y="15" default-x="11" default-y="-5" number="2" placement="below" type="start" />
+          <slur bezier-x="-57" bezier-y="16" default-x="11" default-y="-13" number="6" placement="below" type="start" />
         </notations>
         <lyric default-y="-83" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -5339,7 +5384,8 @@
     <measure implicit="no" number="55" width="71">
       <note default-x="16">
         <pitch>
-          <step>B</step>
+          <step>G</step>
+          <alter>1</alter>
           <octave>3</octave>
         </pitch>
         <duration>30240</duration>
@@ -5348,9 +5394,9 @@
         <stem default-y="-15.5">up</stem>
         <notations>
           <fermata type="upright" />
-          <slur number="2" type="stop" />
+          <slur number="6" type="stop" />
         </notations>
-        <lyric default-y="-64" name="1" number="1">
+        <lyric default-y="-72" name="1" number="1">
           <syllabic>single</syllabic>
           <text>cem</text>
         </lyric>
@@ -5394,7 +5440,7 @@
         <type>quarter</type>
         <stem default-y="8.5">up</stem>
         <notations>
-          <slur number="3" placement="above" type="start" />
+          <slur number="1" placement="above" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -5453,7 +5499,7 @@
         <type>quarter</type>
         <stem default-y="8.5">up</stem>
         <notations>
-          <slur number="3" type="stop" />
+          <slur number="1" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>single</syllabic>
@@ -5483,7 +5529,7 @@
         <type>quarter</type>
         <stem default-y="8.5">up</stem>
         <notations>
-          <slur number="4" placement="above" type="start" />
+          <slur number="2" placement="above" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -5542,7 +5588,7 @@
         <type>quarter</type>
         <stem default-y="8.5">up</stem>
         <notations>
-          <slur number="4" type="stop" />
+          <slur number="2" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>single</syllabic>
@@ -5562,7 +5608,7 @@
         <type>half</type>
         <stem default-y="-44">down</stem>
         <notations>
-          <slur number="5" placement="above" type="start" />
+          <slur number="3" placement="above" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -5579,7 +5625,7 @@
         <type>quarter</type>
         <stem default-y="8.5">up</stem>
         <notations>
-          <slur number="5" type="stop" />
+          <slur number="3" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
@@ -5599,7 +5645,7 @@
         <type>half</type>
         <stem default-y="-44">down</stem>
         <notations>
-          <slur number="6" placement="above" type="start" />
+          <slur number="4" placement="above" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -5647,7 +5693,7 @@
         <type>half</type>
         <stem default-y="-44">down</stem>
         <notations>
-          <slur number="6" type="stop" />
+          <slur number="4" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
@@ -5679,7 +5725,7 @@
         <type>quarter</type>
         <stem default-y="-36">down</stem>
         <notations>
-          <slur number="1" placement="above" type="start" />
+          <slur number="5" placement="above" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>single</syllabic>
@@ -5800,7 +5846,7 @@
         <type>quarter</type>
         <stem default-y="-44.5">down</stem>
         <notations>
-          <slur number="1" type="stop" />
+          <slur number="5" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
@@ -5837,7 +5883,7 @@
         <stem default-y="-7.5">up</stem>
         <notations>
           <tied type="start" />
-          <slur number="2" placement="above" type="start" />
+          <slur number="6" placement="above" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -5950,7 +5996,7 @@
         <type>half</type>
         <stem default-y="-36">down</stem>
         <notations>
-          <slur number="2" type="stop" />
+          <slur number="6" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
@@ -5970,7 +6016,7 @@
         <type>half</type>
         <stem default-y="-7">up</stem>
         <notations>
-          <slur bezier-x="-25" bezier-y="9" default-x="9" default-y="3" number="3" placement="below" type="start" />
+          <slur bezier-x="-25" bezier-y="9" default-x="9" default-y="3" number="1" placement="below" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -6010,7 +6056,7 @@
         <stem default-y="-7">up</stem>
         <notations>
           <tied type="stop" />
-          <slur number="3" type="stop" />
+          <slur number="1" type="stop" />
         </notations>
       </note>
       <note default-x="68">
@@ -6036,7 +6082,7 @@
         <type>quarter</type>
         <stem default-y="9">up</stem>
         <notations>
-          <slur number="4" placement="above" type="start" />
+          <slur number="2" placement="above" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -6095,7 +6141,7 @@
         <type>quarter</type>
         <stem default-y="9">up</stem>
         <notations>
-          <slur number="4" type="stop" />
+          <slur number="2" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
@@ -6125,7 +6171,7 @@
         <type>quarter</type>
         <stem default-y="9">up</stem>
         <notations>
-          <slur number="5" placement="above" type="start" />
+          <slur number="3" placement="above" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>single</syllabic>
@@ -6184,7 +6230,7 @@
         <type>quarter</type>
         <stem default-y="9">up</stem>
         <notations>
-          <slur number="5" type="stop" />
+          <slur number="3" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>single</syllabic>
@@ -6204,7 +6250,7 @@
         <type>half</type>
         <stem default-y="-43.5">down</stem>
         <notations>
-          <slur number="6" placement="above" type="start" />
+          <slur number="4" placement="above" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>single</syllabic>
@@ -6264,7 +6310,7 @@
         <dot />
         <stem default-y="-44">down</stem>
         <notations>
-          <slur number="6" type="stop" />
+          <slur number="4" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>single</syllabic>
@@ -6300,7 +6346,7 @@
         <type>quarter</type>
         <stem default-y="4.5">up</stem>
         <notations>
-          <slur bezier-x="-58" bezier-y="22" default-x="6" default-y="-3" number="1" placement="above" type="start" />
+          <slur bezier-x="-58" bezier-y="22" default-x="6" default-y="-3" number="5" placement="above" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -6369,7 +6415,7 @@
         <dot />
         <stem default-y="-44">down</stem>
         <notations>
-          <slur number="1" type="stop" />
+          <slur number="5" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
@@ -6389,7 +6435,7 @@
         <type>half</type>
         <stem default-y="-32">down</stem>
         <notations>
-          <slur number="2" placement="above" type="start" />
+          <slur number="6" placement="above" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -6471,7 +6517,7 @@
         <dot />
         <stem default-y="-40">down</stem>
         <notations>
-          <slur number="2" type="stop" />
+          <slur number="6" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
@@ -6490,7 +6536,7 @@
         <type>half</type>
         <stem default-y="-40">down</stem>
         <notations>
-          <slur number="3" placement="above" type="start" />
+          <slur number="1" placement="above" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -6591,7 +6637,7 @@
         <dot />
         <stem default-y="-44">down</stem>
         <notations>
-          <slur number="3" type="stop" />
+          <slur number="1" type="stop" />
         </notations>
       </note>
     </measure>
@@ -6606,7 +6652,7 @@
         <type>quarter</type>
         <stem default-y="-24">down</stem>
         <notations>
-          <slur bezier-x="-29" bezier-y="15" default-x="5" default-y="9" number="4" placement="above" type="start" />
+          <slur bezier-x="-29" bezier-y="15" default-x="5" default-y="9" number="2" placement="above" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -6653,7 +6699,7 @@
         <type>half</type>
         <stem default-y="-28">down</stem>
         <notations>
-          <slur number="4" type="stop" />
+          <slur number="2" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
@@ -6673,7 +6719,7 @@
         <type>quarter</type>
         <stem default-y="-32">down</stem>
         <notations>
-          <slur number="5" placement="above" type="start" />
+          <slur number="3" placement="above" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -6721,7 +6767,7 @@
         <type>half</type>
         <stem default-y="-36.5">down</stem>
         <notations>
-          <slur number="5" type="stop" />
+          <slur number="3" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
@@ -6740,7 +6786,7 @@
         <type>quarter</type>
         <stem default-y="-40">down</stem>
         <notations>
-          <slur number="6" placement="above" type="start" />
+          <slur number="4" placement="above" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>single</syllabic>
@@ -6842,16 +6888,29 @@
           <alter>2</alter>
           <octave>3</octave>
         </pitch>
-        <duration>30240</duration>
+        <duration>20160</duration>
         <type>half</type>
-        <dot />
         <accidental>double-sharp</accidental>
         <stem default-y="-36">down</stem>
         <notations>
-          <slur number="6" type="stop" />
+          <slur number="4" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
-          <syllabic>middle</syllabic>
+          <syllabic>end</syllabic>
+          <text>di</text>
+        </lyric>
+      </note>
+      <note default-x="62">
+        <pitch>
+          <step>F</step>
+          <alter>2</alter>
+          <octave>3</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+        <stem default-y="-36">down</stem>
+        <lyric default-y="-64" name="1" number="1">
+          <syllabic>single</syllabic>
           <text>do</text>
         </lyric>
       </note>
@@ -6868,10 +6927,10 @@
         <type>quarter</type>
         <stem default-y="-44.5">down</stem>
         <notations>
-          <slur number="1" placement="above" type="start" />
+          <slur bezier-x="-46" bezier-y="26" default-x="6" default-y="-3" number="5" placement="above" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
-          <syllabic>end</syllabic>
+          <syllabic>single</syllabic>
           <text>na</text>
         </lyric>
       </note>
@@ -6928,7 +6987,7 @@
         <type>half</type>
         <stem default-y="4.5">up</stem>
         <notations>
-          <slur number="1" type="stop" />
+          <slur number="5" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
@@ -6948,7 +7007,7 @@
         <type>quarter</type>
         <stem default-y="-44.5">down</stem>
         <notations>
-          <slur bezier-x="-35" bezier-y="25" default-x="9" default-y="-1" number="2" placement="above" type="start" />
+          <slur bezier-x="-35" bezier-y="25" default-x="9" default-y="-1" number="6" placement="above" type="start" />
         </notations>
         <lyric default-y="-64" justify="left" name="1" number="1" relative-x="-13">
           <syllabic>single</syllabic>
@@ -7004,7 +7063,7 @@
         <type>half</type>
         <stem default-y="4.5">up</stem>
         <notations>
-          <slur number="2" type="stop" />
+          <slur number="6" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>end</syllabic>
@@ -7024,7 +7083,7 @@
         <type>half</type>
         <stem default-y="-44.5">down</stem>
         <notations>
-          <slur number="3" placement="above" type="start" />
+          <slur number="1" placement="above" type="start" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>begin</syllabic>
@@ -7100,7 +7159,7 @@
         <stem default-y="-4">up</stem>
         <notations>
           <fermata type="upright" />
-          <slur number="3" type="stop" />
+          <slur number="1" type="stop" />
         </notations>
         <lyric default-y="-64" name="1" number="1">
           <syllabic>single</syllabic>
